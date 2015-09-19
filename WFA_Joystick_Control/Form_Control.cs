@@ -47,6 +47,49 @@ namespace WindowsFormsApplication1
             connectToJoystick(joystick);
         }
         //---------------------------------------------------------------------
+        void SaveStringConnection(string connectionString)
+        {
+            string path_connectionfile = @"connection.txt";
+            try
+            {
+                // Create the file.
+                using (FileStream fs = File.Create(path_connectionfile))
+                {
+                    Byte[] info = new UTF8Encoding(true).GetBytes(connectionString);
+                    // Add some information to the file.
+                    fs.Write(info, 0, info.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        string ReadStringConnect()
+        {
+            string connectionString = "";
+            string path_connectionfile = @"connection.txt";
+            try
+            {
+                // Open the stream and read it back.
+                using (StreamReader sr = File.OpenText(path_connectionfile))
+                {
+                    string s = "";
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(s);
+                        connectionString = s;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return connectionString;
+        }
+
         private void connectToJoystick(Joystick joystick)
         {
             while (true)
@@ -83,7 +126,7 @@ namespace WindowsFormsApplication1
         {
             //webBrowser1.Navigate("http://192.168.1.163:80/");
             //webBrowser1.Refresh();
-            webBrowser1.Url = new Uri("http://192.168.1.163:80/");
+            webBrowser1.Url = new Uri(ReadStringConnect());
             
 
         }
@@ -206,6 +249,11 @@ namespace WindowsFormsApplication1
         private void button8_Click(object sender, EventArgs e)
         {
             connectToJoystick(joystick);
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            SaveStringConnection(textBox1.Text);
         }
        
     }
