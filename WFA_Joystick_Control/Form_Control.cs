@@ -24,8 +24,7 @@ namespace WFA_Joystick_Control
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     //[FlagsAttribute]
-
-    
+   
     /*
     [FlagsAttribute]
     [ComVisibleAttribute(true)]
@@ -34,8 +33,8 @@ namespace WFA_Joystick_Control
         */
     public partial class Form_Control : Form
     {
-        private TcpIpLaurentConnector laurent1;
-        
+        private TcpIpLaurentConnector laurentA, laurentB;
+        private Controlls controlls;
         private Joystick joystick;
         private bool[] joystickButtons;
 
@@ -128,39 +127,35 @@ namespace WFA_Joystick_Control
         }
 
        
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonconnect_Click(object sender, EventArgs e)
         {
-           //webBrowser1.Navigate("http://192.168.1.163:80/");
-            //webBrowser1.Refresh();
-            webBrowser1.Url = new Uri(ReadStringConnect());
             string str = "Ok!";
             String message = "Ok";
-            laurent1.SetIP(textBox_TCP_1.Text);
-            laurent1.SetPort(textBox_Port1.Text);
-            message = laurent1.ConnectToLaurent();
+            laurentA.SetIP(textBox_TCP_1.Text);
+            laurentA.SetPort(textBox_Port1.Text);
+            message = laurentA.ConnectToLaurent();
             MessageBox.Show(message, str);
-            message = laurent1.LoginToLaurent();
+            message = laurentA.LoginToLaurent();
             MessageBox.Show(message, str);
-            message = laurent1.OnRel("1");
+            message = laurentA.OnRel("1");
             MessageBox.Show(message, str);
-            message = laurent1.OffRel("1");
+            message = laurentA.OffRel("1");
             MessageBox.Show(message, str);
+             
         }
         public void Test(String message)
         {
             MessageBox.Show(message, "client code");
         }
-
-       
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-            //webBrowser1.AllowWebBrowserDrop = false;
-            //webBrowser1.IsWebBrowserContextMenuEnabled = false;
-            //webBrowser1.WebBrowserShortcutsEnabled = false;
+            webBrowser1.AllowWebBrowserDrop = false;
+            webBrowser1.IsWebBrowserContextMenuEnabled = false;
+            webBrowser1.WebBrowserShortcutsEnabled = false;
             webBrowser1.ObjectForScripting = this;
             // Uncomment the following line when you are finished debugging.
-        //webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.ScriptErrorsSuppressed = true;
             /*
              webBrowser1.DocumentText =
             "<html><head><script>" +
@@ -175,69 +170,39 @@ namespace WFA_Joystick_Control
              "</body></html>";
             */
             string directory = AppDomain.CurrentDomain.BaseDirectory;
-             webBrowser1.DocumentText =
+             /*webBrowser1.DocumentText =
              "<html><head></head><body><img src=\"" + 
              directory +
              "1.jpg\" style=\"width:640px;height:480px;\"> " +
-             "</body></html>";
+             "</body></html>";*/
              textBox1.Text = ReadStringConnect();
-             laurent1 = new TcpIpLaurentConnector();
+             laurentA = new TcpIpLaurentConnector();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonLeft_Click(object sender, EventArgs e)
         {
-            webBrowser1.Document.InvokeScript("Button_onclick",
-     new String[] { "left" });
+            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonRight_Click(object sender, EventArgs e)
         {
-            webBrowser1.Document.InvokeScript("Button_onclick",
-    new String[] { "right" });
-            //webBrowser1.Refresh();
+            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonUp_Click(object sender, EventArgs e)
         {
-            webBrowser1.Document.InvokeScript("Button_onclick",
-    new String[] { "up" });
+            webBrowser1.Document.InvokeScript("Button_onclick",  new String[] { "up" });
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void buttonDown_Click(object sender, EventArgs e)
         {
-            webBrowser1.Document.InvokeScript("Button_onclick",
-    new String[] { "down" });
+            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" });
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }
-
-        private void webBrowser1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            //MessageBox.Show("Pressed " + Keys.Shift);
-        }
-
-
-        private void Form_Control_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MessageBox.Show("Form.KeyPress: '" +
-                    e.KeyChar.ToString() + "' pressed.");
-        }
-
-//         bool is_processed = false;
-        private void WebBrowser_Control_KeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            this.Focus();
-//             if(!is_processed)
-            {
-                MessageBox.Show("Form.KeyPress: '" + e.KeyData.ToString() + "' pressed.");
-//                 is_processed = true;
-            }
-        }
-
-
 
         enum Actions { a_move_forward, a_move_back, a_move_left, a_move_right };
         Dictionary<string, Actions> actions_dict;
@@ -296,7 +261,7 @@ namespace WFA_Joystick_Control
                 {
                     if (joystickButtons[i] == true)
                     {
-                        webBrowser1.Url = new Uri("http://192.168.1.163:80/"); //output.Text += "Button " + i + " Pressed\n";
+                        //webBrowser1.Url = new Uri("http://192.168.1.163:80/"); //output.Text += "Button " + i + " Pressed\n";
                         //webBrowser1.Refresh();
                     }
                 }
@@ -313,12 +278,12 @@ namespace WFA_Joystick_Control
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void buttonRefresh_Click(object sender, EventArgs e)
         {
             webBrowser1.Refresh();
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void buttonJoysticConnect_Click(object sender, EventArgs e)
         {
             connectToJoystick(joystick);
         }
@@ -330,7 +295,20 @@ namespace WFA_Joystick_Control
         
         private void button_disconnect1_Click(object sender, EventArgs e)
         {
-            laurent1.Disconnect();
+            laurentA.Disconnect();
+        }
+
+        private void button_Record_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonURLConnect_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Url = new Uri(ReadStringConnect());
+            string imagestream = ReadStringConnect();
+            imagestream += ":8080/?action=stream";
+            pictureBox1.Load(imagestream);
         }
 
     
