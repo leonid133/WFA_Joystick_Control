@@ -247,39 +247,7 @@ namespace WFA_Joystick_Control
         {
             try
             {
-                string str1="";
-//                 joystick.keyboard.Poll();
-                Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
-                if (keys[Key.W] /*&& keys[Key.E]*/)
-                {
-//                     MessageBox.Show("DirectX.DirectInput: w pressed.");
-                    str1 += "1";
-                    
-                }
-                if (keys[Key.E])
-                {
-                    str1 += "2";
-//                     MessageBox.Show("DirectX.DirectInput: e pressed.");
-                }
-                if (keys[Key.NumPad4] && !NUM_LOCK)
-                {
-                    str1 += "NUM_LeftArrow";
-                }
-                if (keys[Key.NumPad4] && NUM_LOCK)
-                {
-                    str1 += "NUM4";
-                }
-                if (keys[Key.LeftArrow]) str1 += "LeftArrow";
-                if (keys[Key.Numlock]) { 
-//                     str1 += "Numlock"; 
-                    NUM_LOCK = !NUM_LOCK; 
-                }
-
-                if(str1!="")
-                {
-                    MessageBox.Show(str1);
-                }
-
+               
                 joystick.UpdateStatus();
                 joystickButtons = joystick.buttons;
 
@@ -334,6 +302,50 @@ namespace WFA_Joystick_Control
         private void button_disconnect1_Click(object sender, EventArgs e)
         {
             laurent1.Disconnect();
+        }
+
+        private void keybordTimerTick(object sender, EventArgs e)
+        {
+            try
+            {
+                string str1 = "";
+                //                 joystick.keyboard.Poll();
+                Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
+                if (keys[Key.W] /*&& keys[Key.E]*/)
+                {
+                    //                     MessageBox.Show("DirectX.DirectInput: w pressed.");
+                    str1 += "1";
+
+                }
+                if (keys[Key.E])
+                {
+                    str1 += "2";
+                    //                     MessageBox.Show("DirectX.DirectInput: e pressed.");
+                }
+                if (keys[Key.NumPad4] && !NUM_LOCK)
+                {
+                    str1 += "NUM_LeftArrow";
+                }
+                if (keys[Key.NumPad4] && NUM_LOCK)
+                {
+                    str1 += "NUM4";
+                }
+                if (keys[Key.LeftArrow]) str1 += "LeftArrow";
+                if (keys[Key.Numlock])
+                {
+                    //                     str1 += "Numlock"; 
+                    NUM_LOCK = !NUM_LOCK;
+                }
+
+                if (str1 != "")
+                {
+                    MessageBox.Show(str1);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("KeyCatch");
+            }
         }
     }
 }

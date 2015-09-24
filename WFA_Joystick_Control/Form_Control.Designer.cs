@@ -43,12 +43,13 @@
             this.textBox_TCP_1 = new System.Windows.Forms.TextBox();
             this.textBox_Port1 = new System.Windows.Forms.TextBox();
             this.button_disconnect1 = new System.Windows.Forms.Button();
+            this.keybordTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // button_connect1
             // 
             this.button_connect1.Location = new System.Drawing.Point(582, 57);
-            this.button_connect1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_connect1.Margin = new System.Windows.Forms.Padding(4);
             this.button_connect1.Name = "button_connect1";
             this.button_connect1.Size = new System.Drawing.Size(100, 28);
             this.button_connect1.TabIndex = 1;
@@ -59,7 +60,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(16, 92);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 2;
@@ -70,7 +71,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(145, 92);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 28);
             this.button3.TabIndex = 3;
@@ -81,7 +82,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(79, 57);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
             this.button4.TabIndex = 4;
@@ -92,7 +93,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(79, 128);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(100, 28);
             this.button5.TabIndex = 5;
@@ -104,7 +105,7 @@
             // 
             this.button6.BackColor = System.Drawing.Color.OrangeRed;
             this.button6.Location = new System.Drawing.Point(16, 176);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(100, 28);
             this.button6.TabIndex = 6;
@@ -114,7 +115,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(171, 15);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(100, 28);
             this.button7.TabIndex = 7;
@@ -131,7 +132,7 @@
             // 
             this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(4);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(1259, 623);
@@ -141,7 +142,7 @@
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(17, 225);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(100, 28);
             this.button8.TabIndex = 9;
@@ -152,7 +153,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(339, 16);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(241, 22);
             this.textBox1.TabIndex = 10;
@@ -185,6 +186,12 @@
             this.button_disconnect1.UseVisualStyleBackColor = true;
             this.button_disconnect1.Click += new System.EventHandler(this.button_disconnect1_Click);
             // 
+            // keybordTimer
+            // 
+            this.keybordTimer.Enabled = true;
+            this.keybordTimer.Interval = 200;
+            this.keybordTimer.Tick += new System.EventHandler(this.keybordTimerTick);
+            // 
             // Form_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -203,7 +210,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button_connect1);
             this.Controls.Add(this.webBrowser1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_Control";
             this.Text = "Управление";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -228,6 +235,7 @@
         private System.Windows.Forms.TextBox textBox_TCP_1;
         private System.Windows.Forms.TextBox textBox_Port1;
         private System.Windows.Forms.Button button_disconnect1;
+        private System.Windows.Forms.Timer keybordTimer;
     }
 }
 
