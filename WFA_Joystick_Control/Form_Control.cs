@@ -126,7 +126,7 @@ namespace WFA_Joystick_Control
         {
             //webBrowser1.Navigate("http://192.168.1.163:80/");
             //webBrowser1.Refresh();
-            webBrowser1.Url = new Uri(ReadStringConnect());
+            //webBrowser1.Url = new Uri(ReadStringConnect());
             string str = "Ok!";
             String message = "Ok";
             message = laurent1.ConnectToLaurent();
