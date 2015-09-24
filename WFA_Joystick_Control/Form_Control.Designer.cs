@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace WFA_Joystick_Control
 {
     partial class Form_Control
     {

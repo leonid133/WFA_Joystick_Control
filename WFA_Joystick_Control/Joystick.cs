@@ -5,7 +5,7 @@ using Microsoft.DirectX.DirectInput;
 using System.Windows.Forms;
 using System;
 
-namespace WindowsFormsApplication1
+namespace WFA_Joystick_Control
 
 {
     class Joystick

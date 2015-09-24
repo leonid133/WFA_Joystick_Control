@@ -20,12 +20,11 @@ using System.Collections;
 
 
 
-namespace WindowsFormsApplication1
+namespace WFA_Joystick_Control
 {
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     //[FlagsAttribute]
-
     
     /*
     [FlagsAttribute]
@@ -38,6 +37,7 @@ namespace WindowsFormsApplication1
         private Joystick joystick;
         private bool[] joystickButtons;
 
+        private TcpIpLaurentConnector laurent1;
         //String ADRESS = "http:\\\\192.168.1.163:80";
 
         public Form_Control()
@@ -127,8 +127,16 @@ namespace WindowsFormsApplication1
             //webBrowser1.Navigate("http://192.168.1.163:80/");
             //webBrowser1.Refresh();
             webBrowser1.Url = new Uri(ReadStringConnect());
-            
-
+            string str = "Ok!";
+            String message = "Ok";
+            message = laurent1.ConnectToLaurent();
+            MessageBox.Show(message, str);
+            message = laurent1.LoginToLaurent();
+            MessageBox.Show(message, str);
+            message = laurent1.OnRel("1");
+            MessageBox.Show(message, str);
+            message = laurent1.OffRel("1");
+            MessageBox.Show(message, str);
         }
         public void Test(String message)
         {
@@ -164,6 +172,8 @@ namespace WindowsFormsApplication1
              directory +
              "1.jpg\" style=\"width:640px;height:480px;\"> " +
              "</body></html>";
+
+             laurent1 = new TcpIpLaurentConnector();
         }
 
         private void button2_Click(object sender, EventArgs e)
