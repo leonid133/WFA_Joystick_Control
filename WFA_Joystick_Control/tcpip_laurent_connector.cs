@@ -43,6 +43,17 @@ namespace WFA_Joystick_Control
         {
             m_port = port;
         }
+        public void SetPort(string port)
+        {
+            try
+            {
+                m_port = Convert.ToInt32(port);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Cannot convert Port string to int!");
+            }
+        }
         public string ConnectToLaurent()
         {
             string connection_string = "$KE";
@@ -142,11 +153,19 @@ namespace WFA_Joystick_Control
             result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
             return result;
         }
-
+        public void Disconnect()
+        {
+            if (m_Sock.Connected)
+                m_Sock.Close();
+            if (m_Client.Connected)
+                m_Client.Close();
+        }
         ~TcpIpLaurentConnector()
         {
-            m_Sock.Close();
-            m_Client.Close();
+            if (m_Sock.Connected)
+                m_Sock.Close();
+            if(m_Client.Connected)
+                m_Client.Close();
         }
         
     }

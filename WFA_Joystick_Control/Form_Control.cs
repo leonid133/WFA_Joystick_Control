@@ -129,7 +129,8 @@ namespace WFA_Joystick_Control
             webBrowser1.Url = new Uri(ReadStringConnect());
             string str = "Ok!";
             String message = "Ok";
-            
+            laurent1.SetIP(textBox_TCP_1.Text);
+            laurent1.SetPort(textBox_Port1.Text);
             message = laurent1.ConnectToLaurent();
             MessageBox.Show(message, str);
             message = laurent1.LoginToLaurent();
@@ -173,7 +174,7 @@ namespace WFA_Joystick_Control
              directory +
              "1.jpg\" style=\"width:640px;height:480px;\"> " +
              "</body></html>";
-
+             textBox1.Text = ReadStringConnect();
              laurent1 = new TcpIpLaurentConnector();
         }
 
@@ -265,6 +266,11 @@ namespace WFA_Joystick_Control
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             SaveStringConnection(textBox1.Text);
+        }
+
+        private void button_disconnect1_Click(object sender, EventArgs e)
+        {
+            laurent1.Disconnect();
         }
        
     }
