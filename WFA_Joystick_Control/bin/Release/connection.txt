@@ -1,1 +1,1 @@
-http://192.168.1.163/
+http://google.ru
