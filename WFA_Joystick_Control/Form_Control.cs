@@ -120,11 +120,11 @@ namespace WFA_Joystick_Control
             {
                 BeginInvoke(new ThreadStart(delegate()
                 {
-                    joystickTimer.Enabled = true;
+                    joystick_keybord_Timer.Enabled = true;
                 }));
             }
             else
-                joystickTimer.Enabled = true;
+                joystick_keybord_Timer.Enabled = true;
         }
 
        
@@ -250,19 +250,48 @@ namespace WFA_Joystick_Control
                
                 joystick.UpdateStatus();
                 joystickButtons = joystick.buttons;
-
-                if (joystick.Xaxis == 0)
+                Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
+               
+                if (joystick.Xaxis == 0 || keys[Key.Left])
+                {
                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
+                    button_left.BackColor = Color.Red;
+                }
+                else
+                {
+                    button_left.BackColor = Form.DefaultBackColor;
+                }
 
-                if (joystick.Xaxis == 65535)
+                if (joystick.Xaxis == 65535 || keys[Key.Right])
+                {
                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
+                    button_right.BackColor = Color.Red;
+                }
+                else
+                {
+                    button_right.BackColor = Form.DefaultBackColor;
+                }
 
-                if (joystick.Yaxis == 0)
+                if (joystick.Yaxis == 0 || keys[Key.Up])
+                {
                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
+                    button_up.BackColor = Color.Red;
+                }
+                else
+                {
+                    button_up.BackColor = Form.DefaultBackColor;
+                }
 
-                if (joystick.Yaxis == 65535)
+                if (joystick.Yaxis == 65535 || keys[Key.Down])
+                {
                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
-
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                
                 for (int i = 0; i < joystickButtons.Length; i++)
                 {
                     if (joystickButtons[i] == true)
@@ -274,7 +303,7 @@ namespace WFA_Joystick_Control
             }
             catch
             {
-                joystickTimer.Enabled = false;
+                joystick_keybord_Timer.Enabled = false;
                 connectToJoystick(joystick);
             }
         }
@@ -304,48 +333,6 @@ namespace WFA_Joystick_Control
             laurent1.Disconnect();
         }
 
-        private void keybordTimerTick(object sender, EventArgs e)
-        {
-            try
-            {
-                string str1 = "";
-                //                 joystick.keyboard.Poll();
-                Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
-                if (keys[Key.W] /*&& keys[Key.E]*/)
-                {
-                    //                     MessageBox.Show("DirectX.DirectInput: w pressed.");
-                    str1 += "1";
-
-                }
-                if (keys[Key.E])
-                {
-                    str1 += "2";
-                    //                     MessageBox.Show("DirectX.DirectInput: e pressed.");
-                }
-                if (keys[Key.NumPad4] && !NUM_LOCK)
-                {
-                    str1 += "NUM_LeftArrow";
-                }
-                if (keys[Key.NumPad4] && NUM_LOCK)
-                {
-                    str1 += "NUM4";
-                }
-                if (keys[Key.LeftArrow]) str1 += "LeftArrow";
-                if (keys[Key.Numlock])
-                {
-                    //                     str1 += "Numlock"; 
-                    NUM_LOCK = !NUM_LOCK;
-                }
-
-                if (str1 != "")
-                {
-                    MessageBox.Show(str1);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("KeyCatch");
-            }
-        }
+    
     }
 }

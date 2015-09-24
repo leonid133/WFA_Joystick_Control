@@ -162,10 +162,12 @@ namespace WFA_Joystick_Control
         }
         ~TcpIpLaurentConnector()
         {
-            if (m_Sock.Connected)
-                m_Sock.Close();
-            if(m_Client.Connected)
+            if (m_Client.Connected)
+            {
+                if (m_Sock.Connected)
+                    m_Sock.Close();
                 m_Client.Close();
+            }
         }
         
     }

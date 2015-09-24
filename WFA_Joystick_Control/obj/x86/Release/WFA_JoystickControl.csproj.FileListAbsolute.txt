@@ -44,3 +44,13 @@ C:\Users\user1\Documents\Трактор\WFA_Joystick_Control\WFA_Joystick_Contro
 C:\Users\user1\Documents\Трактор\WFA_Joystick_Control\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_Joystick_Control.Properties.Resources.resources
 C:\Users\user1\Documents\Трактор\WFA_Joystick_Control\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\GenerateResource.read.1.tlog
 C:\Users\user1\Documents\Трактор\WFA_Joystick_Control\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\bin\Release\WFA_Joystick_Control.exe.config
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_Joystick_Control.exe
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_Joystick_Control.pdb
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\bin\Release\WFA_Joystick_Control.exe
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\bin\Release\WFA_Joystick_Control.pdb
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_Joystick_Control.Form_Control.resources
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_Joystick_Control.Properties.Resources.resources
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\GenerateResource.write.1.tlog
