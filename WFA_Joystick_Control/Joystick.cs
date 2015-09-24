@@ -5,7 +5,7 @@ using Microsoft.DirectX.DirectInput;
 using System.Windows.Forms;
 using System;
 
-namespace WFA_Joystick_Control
+namespace WindowsFormsApplication1
 
 {
     class Joystick
@@ -20,12 +20,22 @@ namespace WFA_Joystick_Control
         public bool[] buttons;
         private string systemJoysticks;
 
+
+        public Microsoft.DirectX.DirectInput.Device keyboard;
+
         #endregion
 
         public Joystick(IntPtr window_handle)
         {
             hWnd = window_handle;
             Xaxis = -1;
+        }
+
+        public void InitializeKeyboard()
+        {
+            keyboard = new Microsoft.DirectX.DirectInput.Device(SystemGuid.Keyboard);
+            keyboard.SetCooperativeLevel(hWnd, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
+            keyboard.Acquire();
         }
 
         public string FindJoysticks()

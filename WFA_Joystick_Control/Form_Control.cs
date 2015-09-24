@@ -18,13 +18,15 @@ using System.Management;
 using System.Drawing.Imaging;
 using System.Collections;
 
+using Microsoft.DirectX.DirectInput;
 
 
-namespace WFA_Joystick_Control
+namespace WindowsFormsApplication1
 {
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     //[FlagsAttribute]
+
     
     /*
     [FlagsAttribute]
@@ -37,7 +39,9 @@ namespace WFA_Joystick_Control
         private Joystick joystick;
         private bool[] joystickButtons;
 
-        private TcpIpLaurentConnector laurent1;
+//         private Microsoft.DirectX.DirectInput.Device keyboard;
+//         private bool[] keyboardButtons;
+
         //String ADRESS = "http:\\\\192.168.1.163:80";
 
         public Form_Control()
@@ -45,6 +49,8 @@ namespace WFA_Joystick_Control
             InitializeComponent();
             joystick = new Joystick(this.Handle);
             connectToJoystick(joystick);
+            joystick.InitializeKeyboard();
+
         }
         //---------------------------------------------------------------------
         void SaveStringConnection(string connectionString)
@@ -127,18 +133,8 @@ namespace WFA_Joystick_Control
             //webBrowser1.Navigate("http://192.168.1.163:80/");
             //webBrowser1.Refresh();
             webBrowser1.Url = new Uri(ReadStringConnect());
-            string str = "Ok!";
-            String message = "Ok";
-            laurent1.SetIP(textBox_TCP_1.Text);
-            laurent1.SetPort(textBox_Port1.Text);
-            message = laurent1.ConnectToLaurent();
-            MessageBox.Show(message, str);
-            message = laurent1.LoginToLaurent();
-            MessageBox.Show(message, str);
-            message = laurent1.OnRel("1");
-            MessageBox.Show(message, str);
-            message = laurent1.OffRel("1");
-            MessageBox.Show(message, str);
+            
+
         }
         public void Test(String message)
         {
@@ -174,8 +170,6 @@ namespace WFA_Joystick_Control
              directory +
              "1.jpg\" style=\"width:640px;height:480px;\"> " +
              "</body></html>";
-             textBox1.Text = ReadStringConnect();
-             laurent1 = new TcpIpLaurentConnector();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -213,10 +207,67 @@ namespace WFA_Joystick_Control
             //MessageBox.Show("Pressed " + Keys.Shift);
         }
 
+
+        private void Form_Control_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MessageBox.Show("Form.KeyPress: '" +
+                    e.KeyChar.ToString() + "' pressed.");
+        }
+
+//         bool is_processed = false;
+        private void WebBrowser_Control_KeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            this.Focus();
+//             if(!is_processed)
+            {
+                MessageBox.Show("Form.KeyPress: '" + e.KeyData.ToString() + "' pressed.");
+//                 is_processed = true;
+            }
+        }
+
+
+
+        enum Actions { a_move_forward, a_move_back, a_move_left, a_move_right };
+        Dictionary<string, Actions> actions_dict;
+
+        bool NUM_LOCK = true;
         private void joystickTimer_Tick(object sender, EventArgs e)
         {
             try
             {
+                string str1="";
+//                 joystick.keyboard.Poll();
+                Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
+                if (keys[Key.W] /*&& keys[Key.E]*/)
+                {
+//                     MessageBox.Show("DirectX.DirectInput: w pressed.");
+                    str1 += "1";
+                    
+                }
+                if (keys[Key.E])
+                {
+                    str1 += "2";
+//                     MessageBox.Show("DirectX.DirectInput: e pressed.");
+                }
+                if (keys[Key.NumPad4] && !NUM_LOCK)
+                {
+                    str1 += "NUM_LeftArrow";
+                }
+                if (keys[Key.NumPad4] && NUM_LOCK)
+                {
+                    str1 += "NUM4";
+                }
+                if (keys[Key.LeftArrow]) str1 += "LeftArrow";
+                if (keys[Key.Numlock]) { 
+//                     str1 += "Numlock"; 
+                    NUM_LOCK = !NUM_LOCK; 
+                }
+
+                if(str1!="")
+                {
+                    MessageBox.Show(str1);
+                }
+
                 joystick.UpdateStatus();
                 joystickButtons = joystick.buttons;
 
@@ -266,11 +317,6 @@ namespace WFA_Joystick_Control
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             SaveStringConnection(textBox1.Text);
-        }
-
-        private void button_disconnect1_Click(object sender, EventArgs e)
-        {
-            laurent1.Disconnect();
         }
        
     }

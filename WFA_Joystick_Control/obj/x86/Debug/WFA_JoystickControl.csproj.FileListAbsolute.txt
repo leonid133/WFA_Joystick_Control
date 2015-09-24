@@ -1,1 +1,9 @@
 C:\Users\User\Documents\Visual Studio 2010\Projects\WFA_Joystick_Control\WFA_Joystick_Control\bin\Debug\WFA_Joystick_Control.exe.config
+D:\Projects\truck\truck\WFA_Joystick_Control\bin\Debug\WFA_Joystick_Control.exe.config
+D:\Projects\truck\truck\WFA_Joystick_Control\bin\Debug\WFA_Joystick_Control.exe
+D:\Projects\truck\truck\WFA_Joystick_Control\bin\Debug\WFA_Joystick_Control.pdb
+D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WindowsFormsApplication1.Form_Control.resources
+D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.Properties.Resources.resources
+D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WFA_JoystickControl.csproj.GenerateResource.Cache
+D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.exe
+D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.pdb

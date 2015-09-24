@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 
-namespace WFA_Joystick_Control
+namespace WindowsFormsApplication1
 {
     static class Program
     {
