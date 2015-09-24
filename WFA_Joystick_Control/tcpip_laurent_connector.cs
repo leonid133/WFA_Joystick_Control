@@ -20,7 +20,7 @@ namespace WFA_Joystick_Control
         {
             m_login = "admin";
             m_psw = "123";
-            m_ip = "192.168.0.111";
+            m_ip = "192.168.0.110";
             m_port = 2424;
             m_Client = new TcpClient();
             m_ip_net = System.Net.IPAddress.Parse(m_ip);
@@ -49,17 +49,20 @@ namespace WFA_Joystick_Control
             byte[] remdata = { };
             try
             {
-                m_Client.Connect(m_ip_net, m_port);
+                if (!m_Client.Connected)
+                {
+                    m_Client.Connect(m_ip_net, m_port);
+                    m_Sock = m_Client.Client;
+                }
             }
             catch
             {
                 Console.WriteLine("Cannot connect to remote host!");
                 return "Cannot connect to remote host!";
             }
-            m_Sock =  m_Client.Client;
+            
             m_Sock.Send(Encoding.ASCII.GetBytes(connection_string));
             m_Sock.Receive(remdata);
-            m_Sock.Close();
             string result;
             result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
             return result;
@@ -71,7 +74,7 @@ namespace WFA_Joystick_Control
             connection_string += m_psw;
             byte[] remdata = { };
             
-            m_Sock = m_Client.Client;
+            //m_Sock = m_Client.Client;
             try
             {
                 m_Sock.Send(Encoding.ASCII.GetBytes(connection_string));
@@ -82,7 +85,6 @@ namespace WFA_Joystick_Control
                 return "Cannot connect to remote host!";
             }
             m_Sock.Receive(remdata);
-            m_Sock.Close();
             
             string result;
             result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
@@ -98,7 +100,7 @@ namespace WFA_Joystick_Control
             connection_string += ",1";
             byte[] remdata = { };
 
-            m_Sock = m_Client.Client;
+            //m_Sock = m_Client.Client;
             try
             {
                 m_Sock.Send(Encoding.ASCII.GetBytes(connection_string));
@@ -109,7 +111,6 @@ namespace WFA_Joystick_Control
                 return "Cannot connect to remote host!";
             }
             m_Sock.Receive(remdata);
-            m_Sock.Close();
 
             string result;
             result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
@@ -125,7 +126,7 @@ namespace WFA_Joystick_Control
             connection_string += ",1";
             byte[] remdata = { };
 
-            m_Sock = m_Client.Client;
+            //m_Sock = m_Client.Client;
             try
             {
                 m_Sock.Send(Encoding.ASCII.GetBytes(connection_string));
@@ -136,7 +137,6 @@ namespace WFA_Joystick_Control
                 return "Cannot connect to remote host!";
             }
             m_Sock.Receive(remdata);
-            m_Sock.Close();
 
             string result;
             result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
@@ -145,6 +145,7 @@ namespace WFA_Joystick_Control
 
         ~TcpIpLaurentConnector()
         {
+            m_Sock.Close();
             m_Client.Close();
         }
         
