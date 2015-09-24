@@ -9,8 +9,6 @@ using System.Windows.Forms;
 
 using System.Security.Permissions;
 
-//using Microsoft.DirectX.DirectInput;
-
 using System.Threading;
 using System.IO;
 using System.Management;
@@ -21,7 +19,7 @@ using System.Collections;
 using Microsoft.DirectX.DirectInput;
 
 
-namespace WindowsFormsApplication1
+namespace WFA_Joystick_Control
 {
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
@@ -36,6 +34,8 @@ namespace WindowsFormsApplication1
         */
     public partial class Form_Control : Form
     {
+        private TcpIpLaurentConnector laurent1;
+        
         private Joystick joystick;
         private bool[] joystickButtons;
 
@@ -130,11 +130,21 @@ namespace WindowsFormsApplication1
        
         private void button1_Click(object sender, EventArgs e)
         {
-            //webBrowser1.Navigate("http://192.168.1.163:80/");
+           //webBrowser1.Navigate("http://192.168.1.163:80/");
             //webBrowser1.Refresh();
             webBrowser1.Url = new Uri(ReadStringConnect());
-            
-
+            string str = "Ok!";
+            String message = "Ok";
+            laurent1.SetIP(textBox_TCP_1.Text);
+            laurent1.SetPort(textBox_Port1.Text);
+            message = laurent1.ConnectToLaurent();
+            MessageBox.Show(message, str);
+            message = laurent1.LoginToLaurent();
+            MessageBox.Show(message, str);
+            message = laurent1.OnRel("1");
+            MessageBox.Show(message, str);
+            message = laurent1.OffRel("1");
+            MessageBox.Show(message, str);
         }
         public void Test(String message)
         {
@@ -170,6 +180,8 @@ namespace WindowsFormsApplication1
              directory +
              "1.jpg\" style=\"width:640px;height:480px;\"> " +
              "</body></html>";
+             textBox1.Text = ReadStringConnect();
+             laurent1 = new TcpIpLaurentConnector();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -318,6 +330,10 @@ namespace WindowsFormsApplication1
         {
             SaveStringConnection(textBox1.Text);
         }
-       
+        
+        private void button_disconnect1_Click(object sender, EventArgs e)
+        {
+            laurent1.Disconnect();
+        }
     }
 }
