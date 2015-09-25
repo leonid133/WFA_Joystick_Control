@@ -7,3 +7,13 @@ D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.
 D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WFA_JoystickControl.csproj.GenerateResource.Cache
 D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.exe
 D:\Projects\truck\truck\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.pdb
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\bin\Debug\WFA_Joystick_Control.exe.config
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.Form_Control.resources
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.Properties.Resources.resources
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\bin\Debug\WFA_Joystick_Control.exe
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\bin\Debug\WFA_Joystick_Control.pdb
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.exe
+C:\Users\User\Documents\Visual Studio 2010\Projects\PoleznayzNagruzka\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Debug\WFA_Joystick_Control.pdb

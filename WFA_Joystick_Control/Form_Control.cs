@@ -109,12 +109,16 @@ namespace WFA_Joystick_Control
                     }
                 }
                 else
+                {
+                    ReserveKeybord_timer.Enabled = true;
                     break;
+                }
             }
         }
 
         private void enableTimer()
         {
+            ReserveKeybord_timer.Enabled = false;
             if (this.InvokeRequired)
             {
                 BeginInvoke(new ThreadStart(delegate()
@@ -273,6 +277,60 @@ namespace WFA_Joystick_Control
             }
         }
 
+        private void ReserveKeybord_timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
+
+                if (keys[Key.Left])
+                {
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
+                    button_left.BackColor = Color.Red;
+                }
+                else
+                {
+                    button_left.BackColor = Form.DefaultBackColor;
+                }
+
+                if (keys[Key.Right])
+                {
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
+                    button_right.BackColor = Color.Red;
+                }
+                else
+                {
+                    button_right.BackColor = Form.DefaultBackColor;
+                }
+
+                if (keys[Key.Up])
+                {
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
+                    button_up.BackColor = Color.Red;
+                }
+                else
+                {
+                    button_up.BackColor = Form.DefaultBackColor;
+                }
+
+                if (keys[Key.Down])
+                {
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+
+
+            }
+            catch
+            {
+                ReserveKeybord_timer.Enabled = false;
+            }
+        }
+
         private void webBrowser1_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
@@ -306,11 +364,17 @@ namespace WFA_Joystick_Control
         private void buttonURLConnect_Click(object sender, EventArgs e)
         {
             webBrowser1.Url = new Uri(ReadStringConnect());
-            string imagestream = ReadStringConnect();
-            imagestream += ":8080/?action=stream";
-            pictureBox1.Load(imagestream);
+            
         }
 
+        private void button_VideoConnect_Click(object sender, EventArgs e)
+        {
+            string imagestream = textBox_VideoConnect.Text;
+            //imagestream += ":8080/?action=stream";
+            //imagestream += ":8080/?action=snapshot";
+            pictureBox1.Load(imagestream);
+            pictureBox1.BringToFront();
+        }
     
     }
 }
