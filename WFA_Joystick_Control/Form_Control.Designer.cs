@@ -130,10 +130,10 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(152, 81);
+            this.webBrowser1.Location = new System.Drawing.Point(129, 78);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(482, 276);
+            this.webBrowser1.Size = new System.Drawing.Size(812, 344);
             this.webBrowser1.TabIndex = 8;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted_1);
             // 
@@ -200,7 +200,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(167, 94);
+            this.pictureBox1.Location = new System.Drawing.Point(129, 78);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(449, 246);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -235,9 +235,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1009, 434);
+            this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.textBox_VideoConnect);
             this.Controls.Add(this.button_VideoConnect);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonURLConnect);
             this.Controls.Add(this.button_disconnect1);
             this.Controls.Add(this.textBox_TCP_1);
@@ -251,7 +251,7 @@
             this.Controls.Add(this.button_right);
             this.Controls.Add(this.button_left);
             this.Controls.Add(this.button_connect1);
-            this.Controls.Add(this.webBrowser1);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "Form_Control";
             this.Text = "Управление";
             this.Load += new System.EventHandler(this.Form1_Load);

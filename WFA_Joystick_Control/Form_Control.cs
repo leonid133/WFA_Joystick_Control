@@ -374,6 +374,7 @@ namespace WFA_Joystick_Control
             //imagestream += ":8080/?action=snapshot";
             pictureBox1.Load(imagestream);
             pictureBox1.BringToFront();
+            webBrowser1.Visible = false;
         }
     
     }
