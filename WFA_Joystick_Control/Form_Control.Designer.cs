@@ -41,7 +41,6 @@
             this.button_joyConnect = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox_Port1 = new System.Windows.Forms.TextBox();
-            this.button_disconnect1 = new System.Windows.Forms.Button();
             this.buttonURLConnect = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_VideoConnect = new System.Windows.Forms.Button();
@@ -49,6 +48,8 @@
             this.ReserveKeybord_timer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.textBox_TCP_1 = new System.Windows.Forms.TextBox();
+            this.textBox_TCP_2 = new System.Windows.Forms.TextBox();
+            this.textBox_Port2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -132,7 +133,7 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(129, 78);
+            this.webBrowser1.Location = new System.Drawing.Point(129, 95);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(657, 344);
@@ -167,17 +168,6 @@
             this.textBox_Port1.TabIndex = 12;
             this.textBox_Port1.Text = "2424";
             // 
-            // button_disconnect1
-            // 
-            this.button_disconnect1.Location = new System.Drawing.Point(446, 36);
-            this.button_disconnect1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button_disconnect1.Name = "button_disconnect1";
-            this.button_disconnect1.Size = new System.Drawing.Size(75, 23);
-            this.button_disconnect1.TabIndex = 13;
-            this.button_disconnect1.Text = "disconnect";
-            this.button_disconnect1.UseVisualStyleBackColor = true;
-            this.button_disconnect1.Click += new System.EventHandler(this.button_disconnect1_Click);
-            // 
             // buttonURLConnect
             // 
             this.buttonURLConnect.Location = new System.Drawing.Point(347, 6);
@@ -190,7 +180,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(129, 78);
+            this.pictureBox1.Location = new System.Drawing.Point(129, 95);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(449, 246);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -227,11 +217,12 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_Port2);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_TCP_2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.webBrowser1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_VideoConnect);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.button_VideoConnect);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.buttonURLConnect);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.button_disconnect1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_TCP_1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_Port1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox1);
@@ -265,6 +256,22 @@
             this.textBox_TCP_1.TabIndex = 11;
             this.textBox_TCP_1.Text = "192.168.0.110";
             // 
+            // textBox_TCP_2
+            // 
+            this.textBox_TCP_2.Location = new System.Drawing.Point(167, 62);
+            this.textBox_TCP_2.Name = "textBox_TCP_2";
+            this.textBox_TCP_2.Size = new System.Drawing.Size(86, 20);
+            this.textBox_TCP_2.TabIndex = 18;
+            this.textBox_TCP_2.Text = "192.168.0.111";
+            // 
+            // textBox_Port2
+            // 
+            this.textBox_Port2.Location = new System.Drawing.Point(280, 61);
+            this.textBox_Port2.Name = "textBox_Port2";
+            this.textBox_Port2.Size = new System.Drawing.Size(51, 20);
+            this.textBox_Port2.TabIndex = 19;
+            this.textBox_Port2.Text = "2424";
+            // 
             // Form_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,7 +304,6 @@
         private System.Windows.Forms.Button button_joyConnect;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox_Port1;
-        private System.Windows.Forms.Button button_disconnect1;
         private System.Windows.Forms.Button buttonURLConnect;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button_VideoConnect;
@@ -305,6 +311,8 @@
         private System.Windows.Forms.Timer ReserveKeybord_timer;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.TextBox textBox_TCP_1;
+        private System.Windows.Forms.TextBox textBox_Port2;
+        private System.Windows.Forms.TextBox textBox_TCP_2;
     }
 }
 
