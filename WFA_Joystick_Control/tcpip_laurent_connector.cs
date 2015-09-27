@@ -107,6 +107,20 @@ namespace WFA_Joystick_Control
                 NetworkStream stream = client.GetStream();
                 Byte[] bytes = System.Text.Encoding.ASCII.GetBytes(message);
                 stream.Write(bytes, 0, bytes.Length);
+                
+                message = "$KE";
+                message += ",PSW,SET,";
+                message += m_psw;
+                Byte[] bytes2 = System.Text.Encoding.ASCII.GetBytes(message);
+                stream.Write(bytes2, 0, bytes.Length);
+
+                message = "";
+                message += "$KE";
+                message += ",REL,";
+                message += "1";
+                message += ",1";
+                Byte[] bytes3 = System.Text.Encoding.ASCII.GetBytes(message);
+                stream.Write(bytes3, 0, bytes.Length);
 
                 bytes = new Byte[256];
                 String responseData = String.Empty;
