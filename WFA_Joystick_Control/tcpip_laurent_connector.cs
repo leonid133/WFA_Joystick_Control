@@ -128,7 +128,7 @@ namespace WFA_Joystick_Control
         } // end connection
         public string ConnectToLaurent()
         {
-            Connect(m_ip, "$KE", m_port);
+            Connect(m_ip, "$KE;", m_port);
             if (m_Client.Connected)
                 Disconnect();
             string result="";
