@@ -285,11 +285,13 @@ namespace WFA_Joystick_Control
 
                 if (keys[Key.Left])
                 {
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
+                    controlls.LeftOn(ref laurentA, ref laurentB);
+                   // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
@@ -353,7 +355,7 @@ namespace WFA_Joystick_Control
         
         private void button_disconnect1_Click(object sender, EventArgs e)
         {
-            laurentA.Disconnect();
+            //laurentA.Disconnect();
         }
 
         private void button_Record_Click(object sender, EventArgs e)

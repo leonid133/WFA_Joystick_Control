@@ -15,8 +15,6 @@ namespace WFA_Joystick_Control
         private System.Net.IPAddress m_ip_net;
         private string m_ip;
         private int m_port;
-        private TcpClient m_Client;
-        private Socket m_Sock;
 
         public TcpIpLaurentConnector()
         {
@@ -28,9 +26,6 @@ namespace WFA_Joystick_Control
             try
             {
                 m_ip_net = System.Net.IPAddress.Parse(m_ip);
-                m_Client = new TcpClient();
-                m_Sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
             }
             catch (Exception e)
             {
@@ -97,12 +92,11 @@ namespace WFA_Joystick_Control
                 Console.WriteLine("Message : " + e.Message);
             }
         }
-        private void Connect(String server, String message, Int32 port)
+        private String Connect(String server, String message, Int32 port)
         {
-
+            String result = "";
             try
             {
-
                 TcpClient tcpClient = new TcpClient(server, port);
 
                 // Uses the GetStream public method to return the NetworkStream.
@@ -120,7 +114,7 @@ namespace WFA_Joystick_Control
 
                     // Closing the tcpClient instance does not close the network stream.
                     netStream.Close();
-                    return;
+                    return result;
                 }
 
                 if (netStream.CanRead)
@@ -134,9 +128,9 @@ namespace WFA_Joystick_Control
 
                     // Returns the data received from the host to the console.
                     string returndata = Encoding.UTF8.GetString(bytes);
-
-                    Console.WriteLine("This is what the host returned to you: " + returndata);
-
+                    returndata += "\r\n";
+                   // Console.WriteLine("This is what the host returned to you: " + returndata);
+                    result = returndata;
                 }
                 else
                 {
@@ -145,9 +139,11 @@ namespace WFA_Joystick_Control
 
                     // Closing the tcpClient instance does not close the network stream.
                     netStream.Close();
-                    return;
+                    return result;
                 }
+                tcpClient.Close();
                 netStream.Close();
+                return result;
             }
 
             catch (Exception e)
@@ -157,52 +153,14 @@ namespace WFA_Joystick_Control
                 Console.WriteLine("Exception caught!!!");
                 Console.WriteLine("Source : " + e.Source);
                 Console.WriteLine("Message : " + e.Message);
-
+                return result;
             }
 
         } // end connection
+
         public string ConnectToLaurent()
         {
-            //Connect(m_ip, "GET / HTTP/1.1\r\n", m_port);
-            Connect(m_ip, "$KE\r\n", m_port);
-            if (m_Client.Connected)
-                Disconnect();
-            string result="";
-            string connection_string = "$KE";
-            connection_string += "\r\n";
-            //string connection_string = "GET / HTTP/1.1";
-            byte[] remdata = { };
-           
-            try
-            {
-                m_Client.Connect(m_ip_net, m_port);
-                m_Sock = m_Client.Client;
-                
-                //m_Sock.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.Type, SocketType.Unknown);
-                //m_Sock.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.ReceiveTimeout, 1000);
-                /*
-                m_Sock.Send(Encoding.ASCII.GetBytes(connection_string), Encoding.ASCII.GetBytes(connection_string).Length, SocketFlags.None );
-                m_Sock.Receive(remdata, m_Sock.Available, SocketFlags.None);
-                result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
-                */
-               Stream networkStream = m_Client.GetStream();
-               StreamReader clientStremReader = new StreamReader(networkStream);
-               StreamWriter clientStremWriter = new StreamWriter(networkStream);
-               clientStremWriter.Write(connection_string);
-           
-               result = clientStremReader.ReadLine();
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("Cannot connect to remote host!");
-                Console.WriteLine("Exception caught!!!");
-                Console.WriteLine("Source : " + e.Source);
-                Console.WriteLine("Message : " + e.Message);
-                return "Cannot connect to remote host!";
-            }
-           
-            
-            return result;
+            return  Connect(m_ip, "$KE\r\n", m_port);
         }
         public string LoginToLaurent()
         {
@@ -210,23 +168,8 @@ namespace WFA_Joystick_Control
             connection_string += ",PSW,SET,";
             connection_string += m_psw;
             connection_string += "\r\n";
-            byte[] remdata = { };
-            
-            //m_Sock = m_Client.Client;
-            try
-            {
-                m_Sock.Send(Encoding.ASCII.GetBytes(connection_string));
-            }
-            catch
-            {
-                Console.WriteLine("Cannot connect to remote host!");
-                return "Cannot connect to remote host!";
-            }
-            m_Sock.Receive(remdata);
-            
-            string result;
-            result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
-            return result;
+
+            return Connect(m_ip, connection_string, m_port); 
         }
 
         public string OnRel(string rele_number_string)
@@ -237,23 +180,7 @@ namespace WFA_Joystick_Control
             connection_string += rele_number_string;
             connection_string += ",1";
             connection_string += "\r\n";
-            byte[] remdata = { };
-
-            //m_Sock = m_Client.Client;
-            try
-            {
-                m_Sock.Send(Encoding.ASCII.GetBytes(connection_string));
-            }
-            catch
-            {
-                Console.WriteLine("Cannot connect to remote host!");
-                return "Cannot connect to remote host!";
-            }
-            m_Sock.Receive(remdata);
-
-            string result;
-            result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
-            return result;
+            return Connect(m_ip, connection_string, m_port);
         }
 
         public string OffRel(string rele_number_string)
@@ -262,43 +189,14 @@ namespace WFA_Joystick_Control
             connection_string += "$KE";
             connection_string += ",REL,";
             connection_string += rele_number_string;
-            connection_string += ",1";
+            connection_string += ",0";
             connection_string += "\r\n";
-            byte[] remdata = { };
-
-            //m_Sock = m_Client.Client;
-            try
-            {
-                m_Sock.Send(Encoding.ASCII.GetBytes(connection_string));
-            }
-            catch
-            {
-                Console.WriteLine("Cannot connect to remote host!");
-                return "Cannot connect to remote host!";
-            }
-            m_Sock.Receive(remdata);
-
-            string result;
-            result = System.Text.Encoding.UTF8.GetString(remdata).TrimEnd('\0');
-            return result;
+            return Connect(m_ip, connection_string, m_port);
         }
-        public void Disconnect()
-        {
-            if (m_Client.Connected)
-            {
-                if (m_Sock.Connected)
-                    m_Sock.Close();
-                m_Client.Close();
-            }
-        }
+       
         ~TcpIpLaurentConnector()
         {
-            if (m_Client.Connected)
-            {
-                if (m_Sock.Connected)
-                    m_Sock.Close();
-                m_Client.Close();
-            }
+            
         }
         
     }
