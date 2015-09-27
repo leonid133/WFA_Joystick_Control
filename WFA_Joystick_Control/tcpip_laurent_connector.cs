@@ -108,7 +108,13 @@ namespace WFA_Joystick_Control
                 message += "\r\n";
                 Byte[] bytes = System.Text.Encoding.ASCII.GetBytes(message);
                 stream.Write(bytes, 0, bytes.Length);
-                
+                bytes = new Byte[256];
+                String responseData = String.Empty;
+
+                Int32 i = stream.Read(bytes, 0, bytes.Length);
+                responseData = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
+                System.Windows.Forms.MessageBox.Show(responseData, message);
+                /*************************/
                 message = "$KE";
                 message += ",PSW,SET,";
                 message += m_psw;
@@ -124,15 +130,16 @@ namespace WFA_Joystick_Control
                 message += "\r\n";
                 Byte[] bytes3 = System.Text.Encoding.ASCII.GetBytes(message);
                 stream.Write(bytes3, 0, bytes.Length);
-
+                /*
                 bytes = new Byte[256];
                 String responseData = String.Empty;
-
+                
                 Int32 i = stream.Read(bytes, 0, bytes.Length);
                 responseData = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
                 System.Windows.Forms.MessageBox.Show(responseData, message);
+               
+                */
                 client.Close();
-
             }
 
             catch (Exception e)
@@ -145,12 +152,13 @@ namespace WFA_Joystick_Control
         } // end connection
         public string ConnectToLaurent()
         {
-            Connect(m_ip, "$KE;", m_port);
+            Connect(m_ip, "$KE", m_port);
             if (m_Client.Connected)
                 Disconnect();
             string result="";
-            //string connection_string = "$KE";
-            string connection_string = "GET / HTTP/1.1";
+            string connection_string = "$KE";
+            connection_string += "\r\n";
+            //string connection_string = "GET / HTTP/1.1";
             byte[] remdata = { };
            
             try
@@ -189,6 +197,7 @@ namespace WFA_Joystick_Control
             string connection_string = "$KE";
             connection_string += ",PSW,SET,";
             connection_string += m_psw;
+            connection_string += "\r\n";
             byte[] remdata = { };
             
             //m_Sock = m_Client.Client;
@@ -215,6 +224,7 @@ namespace WFA_Joystick_Control
             connection_string += ",REL,";
             connection_string += rele_number_string;
             connection_string += ",1";
+            connection_string += "\r\n";
             byte[] remdata = { };
 
             //m_Sock = m_Client.Client;
@@ -241,6 +251,7 @@ namespace WFA_Joystick_Control
             connection_string += ",REL,";
             connection_string += rele_number_string;
             connection_string += ",1";
+            connection_string += "\r\n";
             byte[] remdata = { };
 
             //m_Sock = m_Client.Client;
