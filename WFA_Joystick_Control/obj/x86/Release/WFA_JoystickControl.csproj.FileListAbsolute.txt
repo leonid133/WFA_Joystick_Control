@@ -62,3 +62,4 @@ D:\Traktor\WFA_Joystick_Control\WFA_Joystick_Control\bin\Release\WFA_Joystick_Co
 D:\Traktor\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_Joystick_Control.Form_Control.resources
 D:\Traktor\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_Joystick_Control.Properties.Resources.resources
 D:\Traktor\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_JoystickControl.csproj.GenerateResource.Cache
+C:\Users\user1\Documents\Трактор\WFA_Joystick_Control\WFA_Joystick_Control\WFA_Joystick_Control\obj\x86\Release\WFA_Joystick_Control.Form_Settings.resources

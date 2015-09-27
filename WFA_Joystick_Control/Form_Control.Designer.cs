@@ -50,6 +50,7 @@
             this.textBox_Port2 = new System.Windows.Forms.TextBox();
             this.textBox_TCP_2 = new System.Windows.Forms.TextBox();
             this.textBox_TCP_1 = new System.Windows.Forms.TextBox();
+            this.button_Settings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -231,6 +232,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.button_Settings);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_Port2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_TCP_2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.webBrowser1);
@@ -288,6 +290,16 @@
             this.textBox_TCP_1.TabIndex = 11;
             this.textBox_TCP_1.Text = "192.168.0.110";
             // 
+            // button_Settings
+            // 
+            this.button_Settings.Location = new System.Drawing.Point(8, 191);
+            this.button_Settings.Name = "button_Settings";
+            this.button_Settings.Size = new System.Drawing.Size(100, 29);
+            this.button_Settings.TabIndex = 20;
+            this.button_Settings.Text = "Settings";
+            this.button_Settings.UseVisualStyleBackColor = true;
+            this.button_Settings.Click += new System.EventHandler(this.button_Settings_Click);
+            // 
             // Form_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -330,6 +342,7 @@
         private System.Windows.Forms.TextBox textBox_TCP_1;
         private System.Windows.Forms.TextBox textBox_Port2;
         private System.Windows.Forms.TextBox textBox_TCP_2;
+        private System.Windows.Forms.Button button_Settings;
     }
 }
 

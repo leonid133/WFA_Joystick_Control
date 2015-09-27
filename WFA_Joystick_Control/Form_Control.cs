@@ -38,19 +38,17 @@ namespace WFA_Joystick_Control
         private Controlls controlls;
         private Joystick joystick;
         private bool[] joystickButtons;
-
+        private Form_Settings form_settings;
 //         private Microsoft.DirectX.DirectInput.Device keyboard;
 //         private bool[] keyboardButtons;
 
         //String ADRESS = "http:\\\\192.168.1.163:80";
-
         public Form_Control()
         {
             InitializeComponent();
             joystick = new Joystick(this.Handle);
             connectToJoystick(joystick);
             joystick.InitializeKeyboard();
-
         }
         //---------------------------------------------------------------------
         void SaveStringConnection(string connectionString)
@@ -188,6 +186,7 @@ namespace WFA_Joystick_Control
              laurentA = new TcpIpLaurentConnector();
              laurentB = new TcpIpLaurentConnector();
              controlls = new Controlls();
+             form_settings = new Form_Settings();
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)
@@ -233,13 +232,13 @@ namespace WFA_Joystick_Control
                
                 if (joystick.Xaxis == 0 || keys[Key.Left])
                 {
-                    controlls.LeftOn(ref laurentA, ref laurentB);
+                   // controlls.LeftOn(ref laurentA, ref laurentB);
                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
-                    controlls.LeftOff(ref laurentA, ref laurentB);
+                    //controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
@@ -298,13 +297,13 @@ namespace WFA_Joystick_Control
 
                 if (keys[Key.Left])
                 {
-                    controlls.LeftOn(ref laurentA, ref laurentB);
+                    //controlls.LeftOn(ref laurentA, ref laurentB);
                    // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
-                    controlls.LeftOff(ref laurentA, ref laurentB);
+                    //controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
@@ -390,6 +389,11 @@ namespace WFA_Joystick_Control
             pictureBox1.Load(imagestream);
             pictureBox1.BringToFront();
             webBrowser1.Visible = false;
+        }
+
+        private void button_Settings_Click(object sender, EventArgs e)
+        {
+            form_settings.ShowDialog();
         }
     
     }
