@@ -89,10 +89,28 @@ namespace WFA_Joystick_Control
             dict.Add(eKey.S, eKey.S);
             dict.Add(eKey.A, eKey.A);
             dict.Add(eKey.D, eKey.D);
-            dict.Add(eKey.UpArrow, eKey.UpArrow);
-            dict.Add(eKey.DownArrow, eKey.DownArrow);
-            dict.Add(eKey.LeftArrow, eKey.LeftArrow);
-            dict.Add(eKey.RightArrow, eKey.RightArrow);
+
+            dict.Add(eKey.Up, eKey.Up);
+            dict.Add(eKey.Down, eKey.Down);
+            dict.Add(eKey.Left, eKey.Left);
+            dict.Add(eKey.Right, eKey.Right);
+
+            dict.Add(eKey.NumPad8, eKey.NumPad8);
+            dict.Add(eKey.NumPad2, eKey.NumPad2);
+            dict.Add(eKey.NumPad4, eKey.NumPad4);
+            dict.Add(eKey.NumPad6, eKey.NumPad6);
+
+            dict.Add(eKey.D1, eKey.D1);
+            dict.Add(eKey.D2, eKey.D2);
+            dict.Add(eKey.D3, eKey.D3);
+            dict.Add(eKey.D4, eKey.D4);
+            dict.Add(eKey.D5, eKey.D5);
+            dict.Add(eKey.D6, eKey.D6);
+            dict.Add(eKey.D7, eKey.D7);
+            dict.Add(eKey.D8, eKey.D8);
+            dict.Add(eKey.D9, eKey.D9);
+            dict.Add(eKey.D0, eKey.D0);
+
             return dict;
         }
     }
