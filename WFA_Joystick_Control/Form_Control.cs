@@ -33,7 +33,8 @@ namespace WFA_Joystick_Control
         */
     public partial class Form_Control : Form
     {
-        private TcpIpLaurentConnector laurentA, laurentB;
+        private TcpIpLaurentConnector laurentA;
+        private TcpIpLaurentConnector laurentB;
         private Controlls controlls;
         private Joystick joystick;
         private bool[] joystickButtons;
@@ -137,6 +138,8 @@ namespace WFA_Joystick_Control
             String message = "Ok";
             laurentA.SetIP(textBox_TCP_1.Text);
             laurentA.SetPort(textBox_Port1.Text);
+            laurentB.SetIP(textBox_TCP_2.Text);
+            laurentB.SetPort(textBox_Port2.Text);
             message = laurentA.ConnectToLaurent();
             MessageBox.Show(message, str);
             message = laurentA.LoginToLaurent();
@@ -145,7 +148,8 @@ namespace WFA_Joystick_Control
             MessageBox.Show(message, str);
             message = laurentA.OffRel("1");
             MessageBox.Show(message, str);
-             
+            message = laurentB.LoginToLaurent();
+            MessageBox.Show(message, str);
         }
         public void Test(String message)
         {
@@ -180,11 +184,17 @@ namespace WFA_Joystick_Control
              "1.jpg\" style=\"width:640px;height:480px;\"> " +
              "</body></html>";*/
              textBox1.Text = ReadStringConnect();
+
              laurentA = new TcpIpLaurentConnector();
+             laurentB = new TcpIpLaurentConnector();
+             controlls = new Controlls();
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)
         {
+
+            //controlls.LeftOn(ref laurentA, ref laurentB);
+            
             webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });
         }
 
@@ -223,11 +233,13 @@ namespace WFA_Joystick_Control
                
                 if (joystick.Xaxis == 0 || keys[Key.Left])
                 {
+                    controlls.LeftOn(ref laurentA, ref laurentB);
                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
@@ -273,6 +285,7 @@ namespace WFA_Joystick_Control
             catch
             {
                 joystick_keybord_Timer.Enabled = false;
+                ReserveKeybord_timer.Enabled = true;
                 connectToJoystick(joystick);
             }
         }
@@ -285,11 +298,13 @@ namespace WFA_Joystick_Control
 
                 if (keys[Key.Left])
                 {
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
+                    controlls.LeftOn(ref laurentA, ref laurentB);
+                   // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
@@ -353,7 +368,7 @@ namespace WFA_Joystick_Control
         
         private void button_disconnect1_Click(object sender, EventArgs e)
         {
-            laurentA.Disconnect();
+            //laurentA.Disconnect();
         }
 
         private void button_Record_Click(object sender, EventArgs e)

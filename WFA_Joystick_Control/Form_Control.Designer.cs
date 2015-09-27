@@ -40,15 +40,16 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.button_joyConnect = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox_TCP_1 = new System.Windows.Forms.TextBox();
             this.textBox_Port1 = new System.Windows.Forms.TextBox();
-            this.button_disconnect1 = new System.Windows.Forms.Button();
             this.buttonURLConnect = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_VideoConnect = new System.Windows.Forms.Button();
             this.textBox_VideoConnect = new System.Windows.Forms.TextBox();
             this.ReserveKeybord_timer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.textBox_Port2 = new System.Windows.Forms.TextBox();
+            this.textBox_TCP_2 = new System.Windows.Forms.TextBox();
+            this.textBox_TCP_1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -57,7 +58,7 @@
             // button_connect1
             // 
             this.button_connect1.Location = new System.Drawing.Point(463, 41);
-            this.button_connect1.Margin = new System.Windows.Forms.Padding(4);
+            this.button_connect1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_connect1.Name = "button_connect1";
             this.button_connect1.Size = new System.Drawing.Size(100, 28);
             this.button_connect1.TabIndex = 1;
@@ -68,7 +69,7 @@
             // button_left
             // 
             this.button_left.Location = new System.Drawing.Point(8, 32);
-            this.button_left.Margin = new System.Windows.Forms.Padding(4);
+            this.button_left.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_left.Name = "button_left";
             this.button_left.Size = new System.Drawing.Size(55, 28);
             this.button_left.TabIndex = 2;
@@ -79,7 +80,7 @@
             // button_right
             // 
             this.button_right.Location = new System.Drawing.Point(128, 32);
-            this.button_right.Margin = new System.Windows.Forms.Padding(4);
+            this.button_right.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_right.Name = "button_right";
             this.button_right.Size = new System.Drawing.Size(55, 28);
             this.button_right.TabIndex = 3;
@@ -90,7 +91,7 @@
             // button_up
             // 
             this.button_up.Location = new System.Drawing.Point(69, 9);
-            this.button_up.Margin = new System.Windows.Forms.Padding(4);
+            this.button_up.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_up.Name = "button_up";
             this.button_up.Size = new System.Drawing.Size(55, 28);
             this.button_up.TabIndex = 4;
@@ -101,7 +102,7 @@
             // button_down
             // 
             this.button_down.Location = new System.Drawing.Point(69, 62);
-            this.button_down.Margin = new System.Windows.Forms.Padding(4);
+            this.button_down.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_down.Name = "button_down";
             this.button_down.Size = new System.Drawing.Size(55, 28);
             this.button_down.TabIndex = 5;
@@ -113,7 +114,7 @@
             // 
             this.button_Record.BackColor = System.Drawing.Color.OrangeRed;
             this.button_Record.Location = new System.Drawing.Point(1076, 44);
-            this.button_Record.Margin = new System.Windows.Forms.Padding(4);
+            this.button_Record.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Record.Name = "button_Record";
             this.button_Record.Size = new System.Drawing.Size(100, 28);
             this.button_Record.TabIndex = 6;
@@ -124,7 +125,7 @@
             // button_refresh
             // 
             this.button_refresh.Location = new System.Drawing.Point(595, 9);
-            this.button_refresh.Margin = new System.Windows.Forms.Padding(4);
+            this.button_refresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_refresh.Name = "button_refresh";
             this.button_refresh.Size = new System.Drawing.Size(100, 28);
             this.button_refresh.TabIndex = 7;
@@ -139,8 +140,8 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(172, 96);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(4);
+            this.webBrowser1.Location = new System.Drawing.Point(172, 117);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(876, 423);
@@ -150,7 +151,7 @@
             // button_joyConnect
             // 
             this.button_joyConnect.Location = new System.Drawing.Point(8, 146);
-            this.button_joyConnect.Margin = new System.Windows.Forms.Padding(4);
+            this.button_joyConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_joyConnect.Name = "button_joyConnect";
             this.button_joyConnect.Size = new System.Drawing.Size(100, 28);
             this.button_joyConnect.TabIndex = 9;
@@ -161,21 +162,12 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(223, 14);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(217, 22);
             this.textBox1.TabIndex = 10;
             this.textBox1.Text = "http://192.168.1.163/";
             this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
-            // 
-            // textBox_TCP_1
-            // 
-            this.textBox_TCP_1.Location = new System.Drawing.Point(223, 44);
-            this.textBox_TCP_1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox_TCP_1.Name = "textBox_TCP_1";
-            this.textBox_TCP_1.Size = new System.Drawing.Size(113, 22);
-            this.textBox_TCP_1.TabIndex = 11;
-            this.textBox_TCP_1.Text = "213.180.193.3";
             // 
             // textBox_Port1
             // 
@@ -184,23 +176,12 @@
             this.textBox_Port1.Name = "textBox_Port1";
             this.textBox_Port1.Size = new System.Drawing.Size(67, 22);
             this.textBox_Port1.TabIndex = 12;
-            this.textBox_Port1.Text = "80";
-            // 
-            // button_disconnect1
-            // 
-            this.button_disconnect1.Location = new System.Drawing.Point(595, 44);
-            this.button_disconnect1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_disconnect1.Name = "button_disconnect1";
-            this.button_disconnect1.Size = new System.Drawing.Size(100, 28);
-            this.button_disconnect1.TabIndex = 13;
-            this.button_disconnect1.Text = "disconnect";
-            this.button_disconnect1.UseVisualStyleBackColor = true;
-            this.button_disconnect1.Click += new System.EventHandler(this.button_disconnect1_Click);
+            this.textBox_Port1.Text = "2424";
             // 
             // buttonURLConnect
             // 
             this.buttonURLConnect.Location = new System.Drawing.Point(463, 7);
-            this.buttonURLConnect.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonURLConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonURLConnect.Name = "buttonURLConnect";
             this.buttonURLConnect.Size = new System.Drawing.Size(124, 28);
             this.buttonURLConnect.TabIndex = 14;
@@ -210,8 +191,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(172, 96);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(172, 117);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(449, 246);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -221,7 +202,7 @@
             // button_VideoConnect
             // 
             this.button_VideoConnect.Location = new System.Drawing.Point(1076, 9);
-            this.button_VideoConnect.Margin = new System.Windows.Forms.Padding(4);
+            this.button_VideoConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_VideoConnect.Name = "button_VideoConnect";
             this.button_VideoConnect.Size = new System.Drawing.Size(100, 28);
             this.button_VideoConnect.TabIndex = 16;
@@ -232,7 +213,7 @@
             // textBox_VideoConnect
             // 
             this.textBox_VideoConnect.Location = new System.Drawing.Point(721, 12);
-            this.textBox_VideoConnect.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox_VideoConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_VideoConnect.Name = "textBox_VideoConnect";
             this.textBox_VideoConnect.Size = new System.Drawing.Size(345, 22);
             this.textBox_VideoConnect.TabIndex = 17;
@@ -250,11 +231,12 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_Port2);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_TCP_2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.webBrowser1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_VideoConnect);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.button_VideoConnect);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.buttonURLConnect);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.button_disconnect1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_TCP_1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox_Port1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox1);
@@ -267,9 +249,11 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.button_left);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.button_connect1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox1);
+            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1187, 534);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
             this.toolStripContainer1.Size = new System.Drawing.Size(1187, 534);
@@ -277,13 +261,40 @@
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
             // 
+            // textBox_Port2
+            // 
+            this.textBox_Port2.Location = new System.Drawing.Point(373, 75);
+            this.textBox_Port2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Port2.Name = "textBox_Port2";
+            this.textBox_Port2.Size = new System.Drawing.Size(67, 22);
+            this.textBox_Port2.TabIndex = 19;
+            this.textBox_Port2.Text = "2424";
+            // 
+            // textBox_TCP_2
+            // 
+            this.textBox_TCP_2.Location = new System.Drawing.Point(223, 76);
+            this.textBox_TCP_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_TCP_2.Name = "textBox_TCP_2";
+            this.textBox_TCP_2.Size = new System.Drawing.Size(113, 22);
+            this.textBox_TCP_2.TabIndex = 18;
+            this.textBox_TCP_2.Text = "192.168.0.111";
+            // 
+            // textBox_TCP_1
+            // 
+            this.textBox_TCP_1.Location = new System.Drawing.Point(223, 44);
+            this.textBox_TCP_1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox_TCP_1.Name = "textBox_TCP_1";
+            this.textBox_TCP_1.Size = new System.Drawing.Size(113, 22);
+            this.textBox_TCP_1.TabIndex = 11;
+            this.textBox_TCP_1.Text = "192.168.0.110";
+            // 
             // Form_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 534);
             this.Controls.Add(this.toolStripContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form_Control";
             this.Text = "Управление";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -309,15 +320,16 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button button_joyConnect;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox_TCP_1;
         private System.Windows.Forms.TextBox textBox_Port1;
-        private System.Windows.Forms.Button button_disconnect1;
         private System.Windows.Forms.Button buttonURLConnect;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button_VideoConnect;
         private System.Windows.Forms.TextBox textBox_VideoConnect;
         private System.Windows.Forms.Timer ReserveKeybord_timer;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.TextBox textBox_TCP_1;
+        private System.Windows.Forms.TextBox textBox_Port2;
+        private System.Windows.Forms.TextBox textBox_TCP_2;
     }
 }
 
