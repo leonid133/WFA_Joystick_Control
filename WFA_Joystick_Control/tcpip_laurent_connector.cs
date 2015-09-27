@@ -105,12 +105,14 @@ namespace WFA_Joystick_Control
 
                 TcpClient client = new TcpClient(server, port);
                 NetworkStream stream = client.GetStream();
+                message += "\r\n";
                 Byte[] bytes = System.Text.Encoding.ASCII.GetBytes(message);
                 stream.Write(bytes, 0, bytes.Length);
                 
                 message = "$KE";
                 message += ",PSW,SET,";
                 message += m_psw;
+                message += "\r\n";
                 Byte[] bytes2 = System.Text.Encoding.ASCII.GetBytes(message);
                 stream.Write(bytes2, 0, bytes.Length);
 
@@ -119,6 +121,7 @@ namespace WFA_Joystick_Control
                 message += ",REL,";
                 message += "1";
                 message += ",1";
+                message += "\r\n";
                 Byte[] bytes3 = System.Text.Encoding.ASCII.GetBytes(message);
                 stream.Write(bytes3, 0, bytes.Length);
 
