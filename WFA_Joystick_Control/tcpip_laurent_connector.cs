@@ -103,56 +103,68 @@ namespace WFA_Joystick_Control
             try
             {
 
-                TcpClient client = new TcpClient(server, port);
-                NetworkStream stream = client.GetStream();
-                message += "\r\n";
-                Byte[] bytes = System.Text.Encoding.ASCII.GetBytes(message);
-                stream.Write(bytes, 0, bytes.Length);
-                bytes = new Byte[256];
-                String responseData = String.Empty;
+                TcpClient tcpClient = new TcpClient(server, port);
 
-                Int32 i = stream.Read(bytes, 0, bytes.Length);
-                responseData = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
-                System.Windows.Forms.MessageBox.Show(responseData, message);
-                /*************************/
-                message = "$KE";
-                message += ",PSW,SET,";
-                message += m_psw;
-                message += "\r\n";
-                Byte[] bytes2 = System.Text.Encoding.ASCII.GetBytes(message);
-                stream.Write(bytes2, 0, bytes.Length);
+                // Uses the GetStream public method to return the NetworkStream.
+                NetworkStream netStream = tcpClient.GetStream();
 
-                message = "";
-                message += "$KE";
-                message += ",REL,";
-                message += "1";
-                message += ",1";
-                message += "\r\n";
-                Byte[] bytes3 = System.Text.Encoding.ASCII.GetBytes(message);
-                stream.Write(bytes3, 0, bytes.Length);
-                /*
-                bytes = new Byte[256];
-                String responseData = String.Empty;
-                
-                Int32 i = stream.Read(bytes, 0, bytes.Length);
-                responseData = System.Text.Encoding.UTF8.GetString(bytes, 0, i);
-                System.Windows.Forms.MessageBox.Show(responseData, message);
-               
-                */
-                client.Close();
+                if (netStream.CanWrite)
+                {
+                    Byte[] sendBytes = Encoding.UTF8.GetBytes(message);
+                    netStream.Write(sendBytes, 0, sendBytes.Length);
+                }
+                else
+                {
+                    Console.WriteLine("You cannot write data to this stream.");
+                    tcpClient.Close();
+
+                    // Closing the tcpClient instance does not close the network stream.
+                    netStream.Close();
+                    return;
+                }
+
+                if (netStream.CanRead)
+                {
+                    // Reads NetworkStream into a byte buffer.
+                    byte[] bytes = new byte[tcpClient.ReceiveBufferSize];
+
+                    // Read can return anything from 0 to numBytesToRead. 
+                    // This method blocks until at least one byte is read.
+                    netStream.Read(bytes, 0, (int)tcpClient.ReceiveBufferSize);
+
+                    // Returns the data received from the host to the console.
+                    string returndata = Encoding.UTF8.GetString(bytes);
+
+                    Console.WriteLine("This is what the host returned to you: " + returndata);
+
+                }
+                else
+                {
+                    Console.WriteLine("You cannot read data from this stream.");
+                    tcpClient.Close();
+
+                    // Closing the tcpClient instance does not close the network stream.
+                    netStream.Close();
+                    return;
+                }
+                netStream.Close();
             }
 
             catch (Exception e)
             {
 
                 // ошибка соединения
+                Console.WriteLine("Exception caught!!!");
+                Console.WriteLine("Source : " + e.Source);
+                Console.WriteLine("Message : " + e.Message);
 
             }
 
         } // end connection
         public string ConnectToLaurent()
         {
-            Connect(m_ip, "$KE", m_port);
+            //Connect(m_ip, "GET / HTTP/1.1\r\n", m_port);
+            Connect(m_ip, "$KE\r\n", m_port);
             if (m_Client.Connected)
                 Disconnect();
             string result="";
