@@ -15,6 +15,10 @@ namespace WFA_Joystick_Control
         private System.Net.IPAddress m_ip_net;
         private string m_ip;
         private int m_port;
+        private bool m_connect_succes;
+        private TcpClient m_tcpClient;
+        private NetworkStream m_netStream;
+        private bool m_need_read;
 
         public TcpIpLaurentConnector()
         {
@@ -22,6 +26,8 @@ namespace WFA_Joystick_Control
             m_psw = "123";
             m_ip = "192.168.0.110";
             m_port = 2424;
+            m_connect_succes = false;
+            m_need_read = false;
 
             try
             {
@@ -34,15 +40,25 @@ namespace WFA_Joystick_Control
                 Console.WriteLine("Message : " + e.Message);
             }
         }
+        public bool GetConnectionStatus()
+        {
+            return m_connect_succes;
+        }
+        public void NeedRead(bool need_read)
+        {
+            m_need_read = need_read;
+        }
 
         public void SetPSW(string psw)
         {
             m_psw = psw;
         }
+
         public void SetLogin(string login)
         {
             m_login = login;
         }
+
         public void SetIP(string ip)
         {
             m_ip = ip;
@@ -74,10 +90,12 @@ namespace WFA_Joystick_Control
                 Console.WriteLine("Message : " + e.Message);
             }
         }
+
         public void SetPort(int port)
         {
             m_port = port;
         }
+
         public void SetPort(string port)
         {
             try
@@ -92,85 +110,122 @@ namespace WFA_Joystick_Control
                 Console.WriteLine("Message : " + e.Message);
             }
         }
+
+        private String SendMessage( String message )
+        {
+            String result = "";
+            try
+            {
+                if (m_connect_succes)
+                {
+                    if (m_netStream.CanWrite)
+                    {
+                        Byte[] sendBytes = Encoding.UTF8.GetBytes(message);
+                        m_netStream.Write(sendBytes, 0, sendBytes.Length);
+                        result += "отправлено:" + message;
+                    }
+                    else
+                    {
+                        CloseConnection();
+                        return result;
+                    }
+
+                    if (m_need_read && m_netStream.CanRead)
+                    {
+                        // Reads NetworkStream into a byte buffer.
+                        byte[] bytes = new byte[m_tcpClient.ReceiveBufferSize];
+
+                        // Read can return anything from 0 to numBytesToRead. 
+                        // This method blocks until at least one byte is read.
+                        m_netStream.Read(bytes, 0, (int)m_tcpClient.ReceiveBufferSize);
+
+                        // Returns the data received from the host to the console.
+                        string returndata = Encoding.UTF8.GetString(bytes);
+                        returndata += "\r\n";
+                        // Console.WriteLine("This is what the host returned to you: " + returndata);
+                        result += "получено:" + returndata;
+                    }
+                    else
+                    {
+                        CloseConnection();
+                        return result;
+                    }
+                }
+                else
+                {
+                    result = "Подключение отсутствует";
+                }
+            }
+
+            catch (Exception e)
+            {
+                // ошибка соединения
+                Console.WriteLine("Exception caught!!!");
+                Console.WriteLine("Source : " + e.Source);
+                Console.WriteLine("Message : " + e.Message);
+                result += "Произошла Ошибка \r\n";
+                result += " Source : " + e.Source;
+                result += " Message : " + e.Message;
+                CloseConnection();
+                return result;
+            }
+            return result;
+        }
+
         private String Connect(String server, String message, Int32 port)
         {
             String result = "";
             try
             {
-                TcpClient tcpClient = new TcpClient(server, port);
-
-                // Uses the GetStream public method to return the NetworkStream.
-                NetworkStream netStream = tcpClient.GetStream();
-
-                if (netStream.CanWrite)
+                if (m_connect_succes)
                 {
-                    Byte[] sendBytes = Encoding.UTF8.GetBytes(message);
-                    netStream.Write(sendBytes, 0, sendBytes.Length);
+                    SendMessage(message);
                 }
                 else
                 {
-                    Console.WriteLine("You cannot write data to this stream.");
-                    tcpClient.Close();
+                    TcpClient m_tcpClient = new TcpClient(server, port);
+                    NetworkStream m_netStream = m_tcpClient.GetStream();
 
-                    // Closing the tcpClient instance does not close the network stream.
-                    netStream.Close();
-                    return result;
+                    m_tcpClient.ReceiveTimeout = 100;
+                    m_tcpClient.SendTimeout = 100;
+
+                    m_connect_succes = true;
+                    result += "Успешное подключение.";
+                    result += SendMessage(message);
                 }
-
-                if (netStream.CanRead)
-                {
-                    // Reads NetworkStream into a byte buffer.
-                    byte[] bytes = new byte[tcpClient.ReceiveBufferSize];
-
-                    // Read can return anything from 0 to numBytesToRead. 
-                    // This method blocks until at least one byte is read.
-                    netStream.Read(bytes, 0, (int)tcpClient.ReceiveBufferSize);
-
-                    // Returns the data received from the host to the console.
-                    string returndata = Encoding.UTF8.GetString(bytes);
-                    returndata += "\r\n";
-                   // Console.WriteLine("This is what the host returned to you: " + returndata);
-                    result = returndata;
-                }
-                else
-                {
-                    Console.WriteLine("You cannot read data from this stream.");
-                    tcpClient.Close();
-
-                    // Closing the tcpClient instance does not close the network stream.
-                    netStream.Close();
-                    return result;
-                }
-                tcpClient.Close();
-                netStream.Close();
                 return result;
             }
 
             catch (Exception e)
             {
-
-                // ошибка соединения
                 Console.WriteLine("Exception caught!!!");
                 Console.WriteLine("Source : " + e.Source);
                 Console.WriteLine("Message : " + e.Message);
-                return result;
+                result += "Произошла Ошибка \r\n";
+                result += " Source : " + e.Source;
+                result += " Message : " + e.Message;
             }
-
+            return result;
         } // end connection
 
-        public string ConnectToLaurent()
-        {
-            return  Connect(m_ip, "$KE\r\n", m_port);
-        }
-        public string LoginToLaurent()
+        private string LoginToLaurent()
         {
             string connection_string = "$KE";
             connection_string += ",PSW,SET,";
             connection_string += m_psw;
             connection_string += "\r\n";
-
-            return Connect(m_ip, connection_string, m_port); 
+            return SendMessage(connection_string);
         }
+
+        public string ConnectToLaurent()
+        {
+            String answer_message = m_ip + ":" + m_port + ";";
+            answer_message += Connect(m_ip, "$KE\r\n", m_port);
+            answer_message += LoginToLaurent();
+            return answer_message;
+        }
+
+
 
         public string OnRel(string rele_number_string)
         {
@@ -180,7 +235,7 @@ namespace WFA_Joystick_Control
             connection_string += rele_number_string;
             connection_string += ",1";
             connection_string += "\r\n";
-            return Connect(m_ip, connection_string, m_port);
+            return SendMessage(connection_string);
         }
 
         public string OffRel(string rele_number_string)
@@ -191,12 +246,31 @@ namespace WFA_Joystick_Control
             connection_string += rele_number_string;
             connection_string += ",0";
             connection_string += "\r\n";
-            return Connect(m_ip, connection_string, m_port);
+            return SendMessage(connection_string);
         }
        
+        private void CloseConnection()
+        {
+            m_connect_succes = false;
+            try
+            {
+                m_tcpClient.Close();
+                m_netStream.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception caught!!!");
+                Console.WriteLine("Source : " + e.Source);
+                Console.WriteLine("Message : " + e.Message);
+            }
+        }
+
         ~TcpIpLaurentConnector()
         {
-            
+            if (m_connect_succes)
+            {
+                CloseConnection();
+            }
         }
         
     }
