@@ -134,20 +134,28 @@ namespace WFA_Joystick_Control
         {
             string str = "Ok!";
             String message = "Ok";
+            
             laurentA.SetIP(textBox_TCP_1.Text);
             laurentA.SetPort(textBox_Port1.Text);
+            laurentA.NeedRead(true);
+            message = "Модуль А> Попытка подключения \r \n";
+            textBox_Statusbar.AppendText(message);
+            message = "Модуль А>";
+            message += laurentA.ConnectToLaurent();
+            textBox_Statusbar.AppendText(message);
+            laurentA.NeedRead(false);
+
+            message = "Модуль Б>  Попытка подключения \r \n";
+            textBox_Statusbar.AppendText(message);
+            message = "Модуль Б>";
             laurentB.SetIP(textBox_TCP_2.Text);
             laurentB.SetPort(textBox_Port2.Text);
-            message = laurentA.ConnectToLaurent();
-            MessageBox.Show(message, str);
-            message = laurentA.LoginToLaurent();
-            MessageBox.Show(message, str);
-            message = laurentA.OnRel("1");
-            MessageBox.Show(message, str);
-            message = laurentA.OffRel("1");
-            MessageBox.Show(message, str);
-            message = laurentB.LoginToLaurent();
-            MessageBox.Show(message, str);
+            laurentB.NeedRead(true);
+            message += laurentB.ConnectToLaurent();
+            textBox_Statusbar.AppendText(message);
+            laurentB.NeedRead(false);
+
+            TimerConnectionStatus.Enabled = true;
         }
         public void Test(String message)
         {
@@ -192,24 +200,24 @@ namespace WFA_Joystick_Control
         private void buttonLeft_Click(object sender, EventArgs e)
         {
 
-            //controlls.LeftOn(ref laurentA, ref laurentB);
+            controlls.LeftOn(ref laurentA, ref laurentB);
             
-            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });
+            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });
         }
 
         private void buttonRight_Click(object sender, EventArgs e)
         {
-            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });
+            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });
         }
 
         private void buttonUp_Click(object sender, EventArgs e)
         {
-            webBrowser1.Document.InvokeScript("Button_onclick",  new String[] { "up" });
+            //webBrowser1.Document.InvokeScript("Button_onclick",  new String[] { "up" });
         }
 
         private void buttonDown_Click(object sender, EventArgs e)
         {
-            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" });
+            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" });
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -297,13 +305,13 @@ namespace WFA_Joystick_Control
 
                 if (keys[Key.Left])
                 {
-                    //controlls.LeftOn(ref laurentA, ref laurentB);
+                    controlls.LeftOn(ref laurentA, ref laurentB);
                    // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
-                    //controlls.LeftOff(ref laurentA, ref laurentB);
+                    controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
@@ -394,6 +402,23 @@ namespace WFA_Joystick_Control
         private void button_Settings_Click(object sender, EventArgs e)
         {
             form_settings.ShowDialog();
+        }
+
+        private void TimerConnectionStatus_Tick(object sender, EventArgs e)
+        {
+            textBox_Statusbar.Clear();
+            String message = "Модуль А >";
+            if (laurentA.GetConnectionStatus())
+                message += "Есть подключение \r \n";
+            else
+                message += "Подключение отсутствует \r \n";
+            textBox_Statusbar.AppendText(message);
+            message = "Модуль Б >";
+            if (laurentB.GetConnectionStatus())
+                message += "Есть подключение \r \n";
+            else
+                message += "Подключение отсутствует \r \n";
+            textBox_Statusbar.AppendText(message);
         }
     
     }
