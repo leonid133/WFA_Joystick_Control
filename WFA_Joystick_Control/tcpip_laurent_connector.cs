@@ -32,6 +32,7 @@ namespace WFA_Joystick_Control
             try
             {
                 m_ip_net = System.Net.IPAddress.Parse(m_ip);
+                m_tcpClient = new TcpClient();
             }
             catch (Exception e)
             {
@@ -147,7 +148,8 @@ namespace WFA_Joystick_Control
                     }
                     else
                     {
-                        CloseConnection();
+                        if(m_need_read)
+                            CloseConnection();
                         return result;
                     }
                 }
@@ -179,14 +181,14 @@ namespace WFA_Joystick_Control
             {
                 if (m_connect_succes)
                 {
-                    SendMessage(message);
+                    result += SendMessage(message);
                 }
                 else
                 {
-                    TcpClient m_tcpClient = new TcpClient(server, port);
-                    NetworkStream m_netStream = m_tcpClient.GetStream();
+                    m_tcpClient.Connect(server, port);
+                    m_netStream = m_tcpClient.GetStream();
 
-                    m_tcpClient.ReceiveTimeout = 100;
+                    m_tcpClient.ReceiveTimeout = 1000;
                     m_tcpClient.SendTimeout = 100;
 
                     m_connect_succes = true;
@@ -205,6 +207,7 @@ namespace WFA_Joystick_Control
                 result += " Source : " + e.Source;
                 result += " Message : " + e.Message;
             }
+            
             return result;
         } // end connection
 

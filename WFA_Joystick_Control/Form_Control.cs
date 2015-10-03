@@ -240,13 +240,13 @@ namespace WFA_Joystick_Control
                
                 if (joystick.Xaxis == 0 || keys[Key.Left])
                 {
-                   // controlls.LeftOn(ref laurentA, ref laurentB);
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
+                    controlls.LeftOn(ref laurentA, ref laurentB);
+                   // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
-                    //controlls.LeftOff(ref laurentA, ref laurentB);
+                    controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
