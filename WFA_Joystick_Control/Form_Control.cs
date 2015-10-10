@@ -233,7 +233,7 @@ namespace WFA_Joystick_Control
         {
             try
             {
-               
+                ReserveKeybord_timer.Enabled = false;
                 joystick.UpdateStatus();
                 joystickButtons = joystick.buttons;
                 Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
@@ -252,31 +252,37 @@ namespace WFA_Joystick_Control
 
                 if (joystick.Xaxis == 65535 || keys[Key.Right])
                 {
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
+                    controlls.RightOn(ref laurentA, ref laurentB);
+                    // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
                     button_right.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.RightOff(ref laurentA, ref laurentB);
                     button_right.BackColor = Form.DefaultBackColor;
                 }
 
                 if (joystick.Yaxis == 0 || keys[Key.Up])
                 {
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
+                    controlls.UpOn(ref laurentA, ref laurentB);
+                    //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
                     button_up.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.UpOff(ref laurentA, ref laurentB);
                     button_up.BackColor = Form.DefaultBackColor;
                 }
 
                 if (joystick.Yaxis == 65535 || keys[Key.Down])
                 {
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
+                    controlls.DownOn(ref laurentA, ref laurentB);
+                    //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
                     button_down.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.DownOff(ref laurentA, ref laurentB);
                     button_down.BackColor = Form.DefaultBackColor;
                 }
                 
@@ -409,16 +415,32 @@ namespace WFA_Joystick_Control
             textBox_Statusbar.Clear();
             String message = "Модуль А >";
             if (laurentA.GetConnectionStatus())
-                message += "Есть подключение \r \n";
+            {
+                message += "Есть подключение ";
+                laurentA.NeedRead(true);
+                message += laurentA.GetRDR();
+                laurentB.NeedRead(false);
+                message += " \r \n";
+            }
             else
                 message += "Подключение отсутствует \r \n";
+            
+
             textBox_Statusbar.AppendText(message);
             message = "Модуль Б >";
             if (laurentB.GetConnectionStatus())
-                message += "Есть подключение \r \n";
+            {
+                message += "Есть подключение ";
+                laurentB.NeedRead(true);
+                message += laurentB.GetRDR();
+                laurentB.NeedRead(false);
+                message += " \r \n";
+            }
             else
                 message += "Подключение отсутствует \r \n";
+            
             textBox_Statusbar.AppendText(message);
+            
         }
     
     }
