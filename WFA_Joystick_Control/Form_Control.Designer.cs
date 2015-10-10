@@ -47,11 +47,11 @@
             this.textBox_VideoConnect = new System.Windows.Forms.TextBox();
             this.ReserveKeybord_timer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.textBox_Statusbar = new System.Windows.Forms.TextBox();
             this.button_Settings = new System.Windows.Forms.Button();
             this.textBox_Port2 = new System.Windows.Forms.TextBox();
             this.textBox_TCP_2 = new System.Windows.Forms.TextBox();
             this.textBox_TCP_1 = new System.Windows.Forms.TextBox();
-            this.textBox_Statusbar = new System.Windows.Forms.TextBox();
             this.TimerConnectionStatus = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -143,11 +143,11 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(172, 117);
+            this.webBrowser1.Location = new System.Drawing.Point(172, 191);
             this.webBrowser1.Margin = new System.Windows.Forms.Padding(4);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(915, 423);
+            this.webBrowser1.Size = new System.Drawing.Size(915, 349);
             this.webBrowser1.TabIndex = 8;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted_1);
             // 
@@ -194,7 +194,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(172, 117);
+            this.pictureBox1.Location = new System.Drawing.Point(172, 161);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(449, 246);
@@ -266,6 +266,15 @@
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
             // 
+            // textBox_Statusbar
+            // 
+            this.textBox_Statusbar.Location = new System.Drawing.Point(571, 41);
+            this.textBox_Statusbar.Multiline = true;
+            this.textBox_Statusbar.Name = "textBox_Statusbar";
+            this.textBox_Statusbar.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_Statusbar.Size = new System.Drawing.Size(428, 113);
+            this.textBox_Statusbar.TabIndex = 21;
+            // 
             // button_Settings
             // 
             this.button_Settings.Location = new System.Drawing.Point(8, 191);
@@ -303,17 +312,9 @@
             this.textBox_TCP_1.TabIndex = 11;
             this.textBox_TCP_1.Text = "192.168.0.110";
             // 
-            // textBox_Statusbar
-            // 
-            this.textBox_Statusbar.Location = new System.Drawing.Point(571, 41);
-            this.textBox_Statusbar.Multiline = true;
-            this.textBox_Statusbar.Name = "textBox_Statusbar";
-            this.textBox_Statusbar.Size = new System.Drawing.Size(428, 57);
-            this.textBox_Statusbar.TabIndex = 21;
-            // 
             // TimerConnectionStatus
             // 
-            this.TimerConnectionStatus.Interval = 35000;
+            this.TimerConnectionStatus.Interval = 1000;
             this.TimerConnectionStatus.Tick += new System.EventHandler(this.TimerConnectionStatus_Tick);
             // 
             // Form_Control

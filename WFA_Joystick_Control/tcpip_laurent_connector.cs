@@ -251,7 +251,18 @@ namespace WFA_Joystick_Control
             connection_string += "\r\n";
             return SendMessage(connection_string);
         }
+
+        public string GetRDR()
+        {
+            string connection_string = "";
+            connection_string += "$KE";
+            connection_string += ",RDR,";
+            connection_string += "ALL";
+            connection_string += "\r\n";
+            return SendMessage(connection_string);
+        }
        
+
         private void CloseConnection()
         {
             m_connect_succes = false;
