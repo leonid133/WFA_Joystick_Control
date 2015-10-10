@@ -36,19 +36,26 @@ namespace WFA_Joystick_Control
         private TcpIpLaurentConnector laurentA;
         private TcpIpLaurentConnector laurentB;
         private Controlls controlls;
+        private Keybord keybord;
+
         private Joystick joystick;
-        private bool[] joystickButtons;
+        private bool[] joystickButtons_J1;
+
+        private Joystick joystick2;
+        private bool[] joystickButtons_J2;
+        private bool joy2_connected;
+
         private Form_Settings form_settings;
-//         private Microsoft.DirectX.DirectInput.Device keyboard;
-//         private bool[] keyboardButtons;
 
         //String ADRESS = "http:\\\\192.168.1.163:80";
         public Form_Control()
         {
             InitializeComponent();
             joystick = new Joystick(this.Handle);
-            connectToJoystick(joystick);
-            joystick.InitializeKeyboard();
+            joystick2 = new Joystick(this.Handle);
+
+            keybord = new Keybord(this.Handle);
+            keybord.InitializeKeyboard();
         }
         //---------------------------------------------------------------------
         void SaveStringConnection(string connectionString)
@@ -98,12 +105,22 @@ namespace WFA_Joystick_Control
         {
             while (true)
             {
-                string sticks = joystick.FindJoysticks();
-                if (sticks != null)
+                List<Guid> list_sticks = new List<Guid>();
+                list_sticks = joystick.FindJoysticks();
+
+                if ( list_sticks.Count > 0)
                 {
-                    if (joystick.AcquireJoystick(sticks))
+
+                    if (joystick.AcquireJoystick(list_sticks[0]))
                     {
                         enableTimer();
+                        if (list_sticks.Count > 1)
+                        {
+                            if (joystick2.AcquireJoystick(list_sticks[1]))
+                                joy2_connected = true;
+                            else
+                                joy2_connected = false;
+                        }
                         break;
                     }
                 }
@@ -229,16 +246,18 @@ namespace WFA_Joystick_Control
         Dictionary<string, Actions> actions_dict;
 
         bool NUM_LOCK = true;
-        private void joystickTimer_Tick(object sender, EventArgs e)
+        private void joystick_and_keybord_Timer_Tick(object sender, EventArgs e)
         {
             try
             {
                 ReserveKeybord_timer.Enabled = false;
                 joystick.UpdateStatus();
-                joystickButtons = joystick.buttons;
-                Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
+                joystickButtons_J1 = joystick.m_buttons;
+                
+
+                Microsoft.DirectX.DirectInput.KeyboardState keys = keybord.m_keyboard_device.GetCurrentKeyboardState();
                
-                if (joystick.Xaxis == 0 || keys[Key.Left])
+                if (joystick.m_Xaxis == 0 || keys[Key.Left])
                 {
                     controlls.LeftOn(ref laurentA, ref laurentB);
                    // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
@@ -250,7 +269,7 @@ namespace WFA_Joystick_Control
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joystick.Xaxis == 65535 || keys[Key.Right])
+                if (joystick.m_Xaxis == 65535 || keys[Key.Right])
                 {
                     controlls.RightOn(ref laurentA, ref laurentB);
                     // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
@@ -262,7 +281,7 @@ namespace WFA_Joystick_Control
                     button_right.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joystick.Yaxis == 0 || keys[Key.Up])
+                if (joystick.m_Yaxis == 0 || keys[Key.Up])
                 {
                     controlls.UpOn(ref laurentA, ref laurentB);
                     //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
@@ -274,7 +293,7 @@ namespace WFA_Joystick_Control
                     button_up.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joystick.Yaxis == 65535 || keys[Key.Down])
+                if (joystick.m_Yaxis == 65535 || keys[Key.Down])
                 {
                     controlls.DownOn(ref laurentA, ref laurentB);
                     //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
@@ -286,12 +305,31 @@ namespace WFA_Joystick_Control
                     button_down.BackColor = Form.DefaultBackColor;
                 }
                 
-                for (int i = 0; i < joystickButtons.Length; i++)
+                for (int i = 0; i < joystickButtons_J1.Length; i++)
                 {
-                    if (joystickButtons[i] == true)
+                    if (joystickButtons_J1[i] == true)
                     {
                         //webBrowser1.Url = new Uri("http://192.168.1.163:80/"); //output.Text += "Button " + i + " Pressed\n";
                         //webBrowser1.Refresh();
+                    }
+                }
+
+                //J2
+                if (joy2_connected)
+                {
+                    joystick2.UpdateStatus();
+                    joystickButtons_J2 = joystick2.m_buttons;
+
+                    if (joystick2.m_Yaxis == 65535)
+                    {
+                        controlls.FoldingDownOn(ref laurentA, ref laurentB);
+                        //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
+                        button_down.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        controlls.FoldingDownOff(ref laurentA, ref laurentB);
+                        button_down.BackColor = Form.DefaultBackColor;
                     }
                 }
             }
@@ -299,7 +337,7 @@ namespace WFA_Joystick_Control
             {
                 joystick_keybord_Timer.Enabled = false;
                 ReserveKeybord_timer.Enabled = true;
-                connectToJoystick(joystick);
+                //connectToJoystick(joystick);
             }
         }
 
@@ -307,7 +345,7 @@ namespace WFA_Joystick_Control
         {
             try
             {
-                Microsoft.DirectX.DirectInput.KeyboardState keys = joystick.keyboard.GetCurrentKeyboardState();
+                Microsoft.DirectX.DirectInput.KeyboardState keys = keybord.m_keyboard_device.GetCurrentKeyboardState();
 
                 if (keys[Key.Left])
                 {
@@ -356,6 +394,7 @@ namespace WFA_Joystick_Control
             catch
             {
                 ReserveKeybord_timer.Enabled = false;
+                connectToJoystick(joystick);
             }
         }
 

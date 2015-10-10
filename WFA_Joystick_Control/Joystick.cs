@@ -12,36 +12,29 @@ namespace WFA_Joystick_Control
     {
           #region param
 
-        private Device joystickDevice;
-        private JoystickState state;
-        public int Xaxis; // X-axis movement
-        public int Yaxis; //Y-axis movement
         private IntPtr hWnd;
-        public bool[] buttons;
-        private string systemJoysticks;
 
+        private List<Guid> m_systemJoysticks;
 
-        public Microsoft.DirectX.DirectInput.Device keyboard;
+        private Device m_joystickDevice;
+        private JoystickState m_state;
+        public int m_Xaxis; 
+        public int m_Yaxis; 
+        public bool[] m_buttons;
 
         #endregion
 
         public Joystick(IntPtr window_handle)
         {
             hWnd = window_handle;
-            Xaxis = -1;
+
+            m_Xaxis = -1;
         }
-
-        public void InitializeKeyboard()
+ 
+        public List<Guid> FindJoysticks()
         {
-            keyboard = new Microsoft.DirectX.DirectInput.Device(SystemGuid.Keyboard);
-            keyboard.SetCooperativeLevel(hWnd, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
-            keyboard.Acquire();
-        }
-
-        public string FindJoysticks()
-        {
-            systemJoysticks = null;
-
+            m_systemJoysticks = new List<Guid>();
+            
             try
             {
                 // Find all the GameControl devices that are attached.
@@ -53,12 +46,12 @@ namespace WFA_Joystick_Control
                     foreach (DeviceInstance deviceInstance in gameControllerList)
                     {
                         // create a device from this controller so we can retrieve info.
-                        joystickDevice = new Device(deviceInstance.InstanceGuid);
-                        joystickDevice.SetCooperativeLevel(hWnd, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
+                        m_joystickDevice = new Device(deviceInstance.InstanceGuid);
+                        m_joystickDevice.SetCooperativeLevel(hWnd, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
 
-                        systemJoysticks = joystickDevice.DeviceInformation.InstanceName;
+                        m_systemJoysticks.Add( m_joystickDevice.DeviceInformation.InstanceGuid );
 
-                        break;
+                        //break;
                     }
                 }
             }
@@ -67,35 +60,37 @@ namespace WFA_Joystick_Control
                 return null;
             }
 
-            return systemJoysticks;
+            return m_systemJoysticks;
         }
 
-        public bool AcquireJoystick(string name)
+        public bool AcquireJoystick( Guid guid )
         {
+            
             try
             {
                 DeviceList gameControllerList = Manager.GetDevices(DeviceClass.GameControl, EnumDevicesFlags.AttachedOnly);
-                int i = 0;
-                bool found = false;
-                
+                int number_device = 0;
+                bool found_J1 = false;
+
                 foreach (DeviceInstance deviceInstance in gameControllerList)
                 {
-                    if (deviceInstance.InstanceName == name)
+
+                    if (deviceInstance.InstanceGuid == guid )
                     {
-                        found = true;
-                        joystickDevice = new Device(deviceInstance.InstanceGuid);
-                        joystickDevice.SetCooperativeLevel(hWnd, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
+                        found_J1 = true;
+                        m_joystickDevice = new Device(deviceInstance.InstanceGuid);
+                        m_joystickDevice.SetCooperativeLevel(hWnd, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
                         break;
                     }
-                    i++;
+                    
+                    number_device++;
                 }
 
-                if (!found)
+                if (!found_J1 )
                     return false;
 
-                joystickDevice.SetDataFormat(DeviceDataFormat.Joystick);
-
-                joystickDevice.Acquire();
+                m_joystickDevice.SetDataFormat(DeviceDataFormat.Joystick);
+                m_joystickDevice.Acquire();
 
                 UpdateStatus();
             }
@@ -109,37 +104,36 @@ namespace WFA_Joystick_Control
 
         public void ReleaseJoystick()
         {
-            joystickDevice.Unacquire();
+            m_joystickDevice.Unacquire();
         }
 
         public void UpdateStatus()
         {
             Poll();
 
-            int[] extraAxis = state.GetSlider();
+            int[] extraAxis_J1 = m_state.GetSlider();
             
-            Xaxis = state.X;
-            Yaxis = state.Y;
+            m_Xaxis = m_state.X;
+            m_Yaxis = m_state.Y;
 
-            byte[] jsButtons = state.GetButtons();
-            buttons = new bool[jsButtons.Length];
+            byte[] jsButtons_J1 = m_state.GetButtons();
+            m_buttons = new bool[jsButtons_J1.Length];
 
-            int i = 0;
-            foreach (byte button in jsButtons)
+            int it_button_J1 = 0;
+            foreach (byte button in jsButtons_J1)
             {
-                buttons[i] = button >= 128;
-                i++;
+                m_buttons[it_button_J1] = button >= 128;
+                it_button_J1++;
             }
+
         }
 
         private void Poll()
         {
             try
             {
-                // poll the joystick
-                joystickDevice.Poll();
-                // update the joystick state field
-                state = joystickDevice.CurrentJoystickState;
+                m_joystickDevice.Poll();
+                m_state = m_joystickDevice.CurrentJoystickState;
             }
             catch
             {

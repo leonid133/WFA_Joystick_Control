@@ -139,7 +139,7 @@
             // joystick_keybord_Timer
             // 
             this.joystick_keybord_Timer.Enabled = true;
-            this.joystick_keybord_Timer.Tick += new System.EventHandler(this.joystickTimer_Tick);
+            this.joystick_keybord_Timer.Tick += new System.EventHandler(this.joystick_and_keybord_Timer_Tick);
             // 
             // webBrowser1
             // 
