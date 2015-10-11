@@ -48,6 +48,7 @@
             this.button1.Text = "w";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
             // 
             // button2
             // 
@@ -57,7 +58,8 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "s";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button1_Click);
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
             // 
             // button3
             // 
@@ -67,7 +69,8 @@
             this.button3.TabIndex = 1;
             this.button3.Text = "a";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button1_Click);
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
             // 
             // button4
             // 
@@ -77,7 +80,8 @@
             this.button4.TabIndex = 1;
             this.button4.Text = "d";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button1_Click);
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
             // 
             // label1
             // 
@@ -140,9 +144,13 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form_Settings";
-            this.Text = "Form_Settings";
+            this.Text = "Настройки";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.control_PreviewKeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
