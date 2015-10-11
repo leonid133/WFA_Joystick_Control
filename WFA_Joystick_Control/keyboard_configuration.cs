@@ -16,6 +16,11 @@ namespace WFA_Joystick_Control
 
         public Dictionary<eKey, eKey> keyboard_map;
 
+        public void SetKey(eKey dest, eKey source)
+        {
+            keyboard_map[dest] = source;
+        }
+
         public KeyboardConfiguration()
         {
             string connectionString = "";
@@ -37,6 +42,7 @@ namespace WFA_Joystick_Control
             catch (Exception ex)
             {
                 keyboard_map = DefaultDictionary();
+                Flush();
                 throw new System.Exception("An error occured while reading keyboard.config. Keyboard was reset to default. \nError: " + ex.Message);
 //                 Console.WriteLine(ex.ToString());
             }

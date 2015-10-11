@@ -47,12 +47,16 @@ namespace WFA_Joystick_Control
 
         private Form_Settings form_settings;
 
+        private KeyboardConfiguration m_kb_config;
+
         //String ADRESS = "http:\\\\192.168.1.163:80";
         public Form_Control()
         {
             InitializeComponent();
             joystick = new Joystick(this.Handle);
             joystick2 = new Joystick(this.Handle);
+
+            m_kb_config = new KeyboardConfiguration();
 
             keybord = new Keybord(this.Handle);
             keybord.InitializeKeyboard();
@@ -347,7 +351,7 @@ namespace WFA_Joystick_Control
             {
                 Microsoft.DirectX.DirectInput.KeyboardState keys = keybord.m_keyboard_device.GetCurrentKeyboardState();
 
-                if (keys[Key.Left])
+                if (keys[m_kb_config.keyboard_map[Key.A]])
                 {
                     controlls.LeftOn(ref laurentA, ref laurentB);
                    // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
@@ -359,9 +363,9 @@ namespace WFA_Joystick_Control
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
-                if (keys[Key.Right])
+                if (keys[m_kb_config.keyboard_map[Key.D]])
                 {
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
+//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
                     button_right.BackColor = Color.Red;
                 }
                 else
@@ -369,9 +373,9 @@ namespace WFA_Joystick_Control
                     button_right.BackColor = Form.DefaultBackColor;
                 }
 
-                if (keys[Key.Up])
+                if (keys[m_kb_config.keyboard_map[Key.W]])
                 {
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
+//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
                     button_up.BackColor = Color.Red;
                 }
                 else
@@ -379,9 +383,9 @@ namespace WFA_Joystick_Control
                     button_up.BackColor = Form.DefaultBackColor;
                 }
 
-                if (keys[Key.Down])
+                if (keys[m_kb_config.keyboard_map[Key.S]])
                 {
-                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
+//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
                     button_down.BackColor = Color.Red;
                 }
                 else
@@ -447,6 +451,7 @@ namespace WFA_Joystick_Control
         private void button_Settings_Click(object sender, EventArgs e)
         {
             form_settings.ShowDialog();
+            m_kb_config = new KeyboardConfiguration();
         }
 
         private void TimerConnectionStatus_Tick(object sender, EventArgs e)
