@@ -379,10 +379,13 @@ namespace WFA_Joystick_Control
         
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            string path_connectionfile = @"videosrc.txt";
-            string imagestream = ReadStringConnect(path_connectionfile);
-            pictureBox1.LoadAsync(imagestream);
-            //throw new NotImplementedException();
+            while (true)
+            {
+                string path_connectionfile = @"videosrc.txt";
+                string imagestream = ReadStringConnect(path_connectionfile);
+                pictureBox1.Load(imagestream);
+                //throw new NotImplementedException();
+            }
         }
         
         private void button_Settings_Click(object sender, EventArgs e)
