@@ -11,7 +11,7 @@ namespace WFA_Joystick_Control
 {
     class KeyboardConfiguration
     {
-        static string config_file_name = "keyboard.config";
+        static string config_file_name = "keyboard.config.txt";
         static DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Dictionary<eKey, eKey>));
 
         public Dictionary<eKey, eKey> keyboard_map;

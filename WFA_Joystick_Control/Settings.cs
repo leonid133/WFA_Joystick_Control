@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.DirectX.DirectInput;
+using System.IO;
 
 using eKey = Microsoft.DirectX.DirectInput.Key;
 
@@ -18,6 +19,24 @@ namespace WFA_Joystick_Control
         private KeyboardConfiguration m_kb_config = new KeyboardConfiguration();
         private Keybord m_keybord;
 
+        void SaveStringConnection(string connectionString, string path_connectionfile)
+        {
+            
+            try
+            {
+                // Create the file.
+                using (FileStream fs = File.Create(path_connectionfile))
+                {
+                    Byte[] info = new UTF8Encoding(true).GetBytes(connectionString);
+                    // Add some information to the file.
+                    fs.Write(info, 0, info.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
 
         public Form_Settings()
         {
@@ -30,6 +49,25 @@ namespace WFA_Joystick_Control
 
             m_keybord = new Keybord(this.Handle);
             m_keybord.InitializeKeyboard();
+
+            try
+            {
+                // Find all the GameControl devices that are attached.
+                DeviceList gameControllerList = Manager.GetDevices(DeviceClass.GameControl, EnumDevicesFlags.AttachedOnly);
+
+                // check that we have at least one device.
+                if (gameControllerList.Count > 0)
+                {
+                    foreach (DeviceInstance deviceInstance in gameControllerList)
+                    {
+                        this.comboBox_Sticks.Items.Add(deviceInstance.ProductName);    
+                    }
+                }
+            }
+            catch
+            {
+                this.comboBox_Sticks.Items.Clear();
+            }
 
             Refresh();
         }
@@ -94,6 +132,24 @@ namespace WFA_Joystick_Control
             label1.Visible = true;
             m_current_button = eKey.D;
 
+        }
+
+        private void textBox_Connection_KeyUp(object sender, KeyEventArgs e)
+        {
+            string path_connectionfile = @"connection.txt";
+            SaveStringConnection(textBox_Connection.Text, path_connectionfile);
+        }
+
+        private void textBox_VideoConnect_KeyUp(object sender, KeyEventArgs e)
+        {
+            string path_connectionfile = @"videosrc.txt";
+            SaveStringConnection(textBox_VideoConnect.Text, path_connectionfile);
+        }
+
+        private void comboBox_Sticks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string path_connectionfile = @"joy.txt";
+            SaveStringConnection(comboBox_Sticks.SelectedIndex.ToString(), path_connectionfile);
         }
 
     }

@@ -23,27 +23,13 @@ namespace WFA_Joystick_Control
 {
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    //[FlagsAttribute]
-   
-    /*
-    [FlagsAttribute]
-    [ComVisibleAttribute(true)]
-    [TypeConverterAttribute(typeof(KeysConverter))]
-    public enum Keys
-        */
+ 
     public partial class Form_Control : Form
     {
-        private TcpIpLaurentConnector laurentA;
-        private TcpIpLaurentConnector laurentB;
-        private Controlls controlls;
         private Keybord keybord;
 
         private Joystick joystick;
         private bool[] joystickButtons_J1;
-
-        private Joystick joystick2;
-        private bool[] joystickButtons_J2;
-        private bool joy2_connected;
 
         private Form_Settings form_settings;
 
@@ -54,7 +40,6 @@ namespace WFA_Joystick_Control
         {
             InitializeComponent();
             joystick = new Joystick(this.Handle);
-            joystick2 = new Joystick(this.Handle);
 
             m_kb_config = new KeyboardConfiguration();
 
@@ -81,10 +66,10 @@ namespace WFA_Joystick_Control
             }
         }
 
-        string ReadStringConnect()
+        string ReadStringConnect(string path_connectionfile)
         {
             string connectionString = "";
-            string path_connectionfile = @"connection.txt";
+           
             try
             {
                 // Open the stream and read it back.
@@ -114,19 +99,21 @@ namespace WFA_Joystick_Control
 
                 if ( list_sticks.Count > 0)
                 {
-
-                    if (joystick.AcquireJoystick(list_sticks[0]))
+                    string path_connectionfile = @"joy.txt";
+                    string joy_item_str = ReadStringConnect(path_connectionfile);
+                    int joy_item = -1;
+                    try
                     {
-                        enableTimer();
-                        if (list_sticks.Count > 1)
-                        {
-                            if (joystick2.AcquireJoystick(list_sticks[1]))
-                                joy2_connected = true;
-                            else
-                                joy2_connected = false;
-                        }
-                        break;
+                        joy_item = Convert.ToInt32(joy_item_str);
+                        if (joy_item >= 0 && joy_item < list_sticks.Count)
+                            if (joystick.AcquireJoystick(list_sticks[joy_item]))
+                            {
+                                enableTimer();
+                                break;
+                            }
                     }
+                    catch { break; }
+                    
                 }
                 else
                 {
@@ -151,33 +138,7 @@ namespace WFA_Joystick_Control
         }
 
        
-        private void buttonconnect_Click(object sender, EventArgs e)
-        {
-            string str = "Ok!";
-            String message = "Ok";
-            
-            laurentA.SetIP(textBox_TCP_1.Text);
-            laurentA.SetPort(textBox_Port1.Text);
-            laurentA.NeedRead(true);
-            message = "Модуль А> Попытка подключения \r \n";
-            textBox_Statusbar.AppendText(message);
-            message = "Модуль А>";
-            message += laurentA.ConnectToLaurent();
-            textBox_Statusbar.AppendText(message);
-            laurentA.NeedRead(false);
-
-            message = "Модуль Б>  Попытка подключения \r \n";
-            textBox_Statusbar.AppendText(message);
-            message = "Модуль Б>";
-            laurentB.SetIP(textBox_TCP_2.Text);
-            laurentB.SetPort(textBox_Port2.Text);
-            laurentB.NeedRead(true);
-            message += laurentB.ConnectToLaurent();
-            textBox_Statusbar.AppendText(message);
-            laurentB.NeedRead(false);
-
-            TimerConnectionStatus.Enabled = true;
-        }
+       
         public void Test(String message)
         {
             MessageBox.Show(message, "client code");
@@ -191,14 +152,14 @@ namespace WFA_Joystick_Control
             webBrowser1.ObjectForScripting = this;
             // Uncomment the following line when you are finished debugging.
             webBrowser1.ScriptErrorsSuppressed = true;
-            /*
+            
              webBrowser1.DocumentText =
             "<html><head><script>" +
             "function test(message) { alert(message); }" +
             "</script></head><body><button " +
             "onclick=\"window.external.Test('called from script code')\">" +
             "call client code from script code</button>" +
-            "</body></html>";*/
+            "</body></html>";
             /*
              webBrowser1.DocumentText =
              "<html><head></head><body><img src=\"C:\\Users\\User\\Documents\\Visual Studio 2010\\Projects\\WindowsFormsApplication1\\WindowsFormsApplication1\\1.jpg\" style=\"width:640px;height:480px;\"> "  +
@@ -210,35 +171,28 @@ namespace WFA_Joystick_Control
              directory +
              "1.jpg\" style=\"width:640px;height:480px;\"> " +
              "</body></html>";*/
-             textBox1.Text = ReadStringConnect();
-
-             laurentA = new TcpIpLaurentConnector();
-             laurentB = new TcpIpLaurentConnector();
-             controlls = new Controlls();
+             
              form_settings = new Form_Settings();
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)
         {
-
-            controlls.LeftOn(ref laurentA, ref laurentB);
-            
-            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });
+            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });
         }
 
         private void buttonRight_Click(object sender, EventArgs e)
         {
-            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });
+            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });
         }
 
         private void buttonUp_Click(object sender, EventArgs e)
         {
-            //webBrowser1.Document.InvokeScript("Button_onclick",  new String[] { "up" });
+            webBrowser1.Document.InvokeScript("Button_onclick",  new String[] { "up" });
         }
 
         private void buttonDown_Click(object sender, EventArgs e)
         {
-            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" });
+            webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" });
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -260,52 +214,44 @@ namespace WFA_Joystick_Control
                 
 
                 Microsoft.DirectX.DirectInput.KeyboardState keys = keybord.m_keyboard_device.GetCurrentKeyboardState();
-               
-                if (joystick.m_Xaxis == 0 || keys[Key.Left])
+
+                if (joystick.m_Xaxis == 0 || keys[m_kb_config.keyboard_map[Key.A]])
                 {
-                    controlls.LeftOn(ref laurentA, ref laurentB);
-                   // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
-                    controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joystick.m_Xaxis == 65535 || keys[Key.Right])
+                if (joystick.m_Xaxis == 65535 || keys[m_kb_config.keyboard_map[Key.D]])
                 {
-                    controlls.RightOn(ref laurentA, ref laurentB);
-                    // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
                     button_right.BackColor = Color.Red;
                 }
                 else
                 {
-                    controlls.RightOff(ref laurentA, ref laurentB);
                     button_right.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joystick.m_Yaxis == 0 || keys[Key.Up])
+                if (joystick.m_Yaxis == 0 || keys[m_kb_config.keyboard_map[Key.W]])
                 {
-                    controlls.UpOn(ref laurentA, ref laurentB);
-                    //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
                     button_up.BackColor = Color.Red;
                 }
                 else
                 {
-                    controlls.UpOff(ref laurentA, ref laurentB);
                     button_up.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joystick.m_Yaxis == 65535 || keys[Key.Down])
+                if (joystick.m_Yaxis == 65535 || keys[m_kb_config.keyboard_map[Key.S]])
                 {
-                    controlls.DownOn(ref laurentA, ref laurentB);
-                    //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
                     button_down.BackColor = Color.Red;
                 }
                 else
                 {
-                    controlls.DownOff(ref laurentA, ref laurentB);
                     button_down.BackColor = Form.DefaultBackColor;
                 }
                 
@@ -318,24 +264,6 @@ namespace WFA_Joystick_Control
                     }
                 }
 
-                //J2
-                if (joy2_connected)
-                {
-                    joystick2.UpdateStatus();
-                    joystickButtons_J2 = joystick2.m_buttons;
-
-                    if (joystick2.m_Yaxis == 65535)
-                    {
-                        controlls.FoldingDownOn(ref laurentA, ref laurentB);
-                        //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
-                        button_down.BackColor = Color.Red;
-                    }
-                    else
-                    {
-                        controlls.FoldingDownOff(ref laurentA, ref laurentB);
-                        button_down.BackColor = Form.DefaultBackColor;
-                    }
-                }
             }
             catch
             {
@@ -353,19 +281,17 @@ namespace WFA_Joystick_Control
 
                 if (keys[m_kb_config.keyboard_map[Key.A]])
                 {
-                    controlls.LeftOn(ref laurentA, ref laurentB);
-                   // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
                 {
-                    controlls.LeftOff(ref laurentA, ref laurentB);
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
                 if (keys[m_kb_config.keyboard_map[Key.D]])
                 {
-//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
                     button_right.BackColor = Color.Red;
                 }
                 else
@@ -375,7 +301,7 @@ namespace WFA_Joystick_Control
 
                 if (keys[m_kb_config.keyboard_map[Key.W]])
                 {
-//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
                     button_up.BackColor = Color.Red;
                 }
                 else
@@ -385,14 +311,13 @@ namespace WFA_Joystick_Control
 
                 if (keys[m_kb_config.keyboard_map[Key.S]])
                 {
-//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
+                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
                     button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     button_down.BackColor = Form.DefaultBackColor;
                 }
-
 
             }
             catch
@@ -417,11 +342,7 @@ namespace WFA_Joystick_Control
             connectToJoystick(joystick);
         }
 
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            SaveStringConnection(textBox1.Text);
-        }
-        
+               
         private void button_disconnect1_Click(object sender, EventArgs e)
         {
             //laurentA.Disconnect();
@@ -434,58 +355,47 @@ namespace WFA_Joystick_Control
 
         private void buttonURLConnect_Click(object sender, EventArgs e)
         {
-            webBrowser1.Url = new Uri(ReadStringConnect());
+            string path_connectionfile = @"connection.txt";
+            webBrowser1.Url = new Uri(ReadStringConnect(path_connectionfile));
             
         }
 
         private void button_VideoConnect_Click(object sender, EventArgs e)
         {
-            string imagestream = textBox_VideoConnect.Text;
+            buttonJoysticConnect_Click(sender, e);
+            buttonURLConnect_Click(sender, e);
+            
+            string path_connectionfile = @"videosrc.txt";
+            string imagestream = ReadStringConnect(path_connectionfile);
             //imagestream += ":8080/?action=stream";
             //imagestream += ":8080/?action=snapshot";
-            pictureBox1.Load(imagestream);
-            pictureBox1.BringToFront();
-            webBrowser1.Visible = false;
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+            worker.RunWorkerAsync();
+            //pictureBox1.Load(imagestream);
+            //pictureBox1.BringToFront();
+            //webBrowser1.Visible = false;
         }
-
+        
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string path_connectionfile = @"videosrc.txt";
+            string imagestream = ReadStringConnect(path_connectionfile);
+            pictureBox1.LoadAsync(imagestream);
+            //throw new NotImplementedException();
+        }
+        
         private void button_Settings_Click(object sender, EventArgs e)
         {
             form_settings.ShowDialog();
             m_kb_config = new KeyboardConfiguration();
         }
-
-        private void TimerConnectionStatus_Tick(object sender, EventArgs e)
+                
+        private void panel1_DragDrop(object sender, DragEventArgs e)
         {
-            textBox_Statusbar.Clear();
-            String message = "Модуль А >";
-            if (laurentA.GetConnectionStatus())
-            {
-                message += "Есть подключение ";
-                laurentA.NeedRead(true);
-                message += laurentA.GetRDR();
-                laurentB.NeedRead(false);
-                message += " \r \n";
-            }
-            else
-                message += "Подключение отсутствует \r \n";
-            
-
-            textBox_Statusbar.AppendText(message);
-            message = "Модуль Б >";
-            if (laurentB.GetConnectionStatus())
-            {
-                message += "Есть подключение ";
-                laurentB.NeedRead(true);
-                message += laurentB.GetRDR();
-                laurentB.NeedRead(false);
-                message += " \r \n";
-            }
-            else
-                message += "Подключение отсутствует \r \n";
-            
-            textBox_Statusbar.AppendText(message);
-            
+            e.Effect = DragDropEffects.Move;
         }
-    
+
+           
     }
 }

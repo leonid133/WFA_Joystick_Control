@@ -37,6 +37,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox_Connection = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox_VideoConnect = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox_Sticks = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -87,7 +93,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(247, 15);
+            this.label1.Location = new System.Drawing.Point(52, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(222, 16);
             this.label1.TabIndex = 2;
@@ -130,11 +136,71 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Движение вправо:";
             // 
+            // textBox_Connection
+            // 
+            this.textBox_Connection.Location = new System.Drawing.Point(351, 69);
+            this.textBox_Connection.Name = "textBox_Connection";
+            this.textBox_Connection.Size = new System.Drawing.Size(159, 20);
+            this.textBox_Connection.TabIndex = 3;
+            this.textBox_Connection.Text = "http://192.168.1.235";
+            this.textBox_Connection.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Connection_KeyUp);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(351, 50);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Адрес подключения RPi";
+            // 
+            // textBox_VideoConnect
+            // 
+            this.textBox_VideoConnect.Location = new System.Drawing.Point(354, 150);
+            this.textBox_VideoConnect.Name = "textBox_VideoConnect";
+            this.textBox_VideoConnect.Size = new System.Drawing.Size(156, 20);
+            this.textBox_VideoConnect.TabIndex = 5;
+            this.textBox_VideoConnect.Text = "http://192.168.1.235:8080";
+            this.textBox_VideoConnect.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_VideoConnect_KeyUp);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(356, 131);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(123, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Источник видеопотока";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(356, 200);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Джойстик";
+            // 
+            // comboBox_Sticks
+            // 
+            this.comboBox_Sticks.FormattingEnabled = true;
+            this.comboBox_Sticks.Location = new System.Drawing.Point(354, 232);
+            this.comboBox_Sticks.Name = "comboBox_Sticks";
+            this.comboBox_Sticks.Size = new System.Drawing.Size(156, 21);
+            this.comboBox_Sticks.TabIndex = 9;
+            this.comboBox_Sticks.SelectedIndexChanged += new System.EventHandler(this.comboBox_Sticks_SelectedIndexChanged);
+            // 
             // Form_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 471);
+            this.ClientSize = new System.Drawing.Size(565, 298);
+            this.Controls.Add(this.comboBox_Sticks);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox_VideoConnect);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox_Connection);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -167,5 +233,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox_Connection;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox_VideoConnect;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBox_Sticks;
     }
 }

@@ -94,7 +94,7 @@ namespace WFA_Joystick_Control
 
                 UpdateStatus();
             }
-            catch (Exception err)
+            catch 
             {
                 return false;
             }
