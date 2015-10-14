@@ -93,6 +93,9 @@ namespace WFA_Joystick_Control
                 path_connectionfile = @"videosrc.txt";
                 textBox_VideoConnect.Text = ReadStringConnect(path_connectionfile);
 
+                path_connectionfile = @"videoexe.txt";
+                textBox_VideoLAN.Text = ReadStringConnect(path_connectionfile);
+
             }
             catch
             {
@@ -180,6 +183,12 @@ namespace WFA_Joystick_Control
         {
             string path_connectionfile = @"joy.txt";
             SaveStringConnection(comboBox_Sticks.SelectedIndex.ToString(), path_connectionfile);
+        }
+
+        private void textBox_VideoLAN_KeyUp(object sender, KeyEventArgs e)
+        {
+            string path_connectionfile = @"videoexe.txt";
+            SaveStringConnection(textBox_VideoLAN.Text, path_connectionfile);
         }
 
     }

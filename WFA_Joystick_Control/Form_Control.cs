@@ -353,6 +353,10 @@ namespace WFA_Joystick_Control
 
         private void button_Record_Click(object sender, EventArgs e)
         {
+            if (button_Record.BackColor == Color.OrangeRed)
+                button_Record.BackColor = Color.Gray;
+            else
+                button_Record.BackColor = Color.OrangeRed;
 
         }
 
@@ -362,53 +366,54 @@ namespace WFA_Joystick_Control
             webBrowser1.Url = new Uri(ReadStringConnect(path_connectionfile));
             
         }
-        private void PlayFile(String url)
-        {
-            axWindowsMediaPlayer1.settings.autoStart = true;
-            axWindowsMediaPlayer1.URL = url;
-        }
-        private void Player_PlayStateChange(int NewState)
-        {
-            if ((WMPLib.WMPPlayState)NewState == WMPLib.WMPPlayState.wmppsStopped)
-            {
-                this.Close();
-            }
-        }
-
-        private void Player_MediaError(object pMediaObject)
-        {
-            MessageBox.Show("Cannot play media file.");
-            this.Close();
-        }
+        
+       
 
         private void button_VideoConnect_Click(object sender, EventArgs e)
         {
             buttonJoysticConnect_Click(sender, e);
             buttonURLConnect_Click(sender, e);
-            
-            string path_connectionfile = @"videosrc.txt";
-            String imagestream = ReadStringConnect(path_connectionfile);
-            
-            PlayFile(imagestream);
-            axShockwaveFlash1.Movie = imagestream.Trim();
-            
-            ProcessStartInfo psi = new ProcessStartInfo();
-
-            psi.FileName = @"C:\Progra~2\VideoLAN\VLC\vlc";
-            psi.Arguments = @" http://192.168.1.235:8080";
-            Process.Start(psi);
+         
             //imagestream += ":8080/?action=stream";
             //imagestream += ":8080/?action=snapshot";
-           // BackgroundWorker worker = new BackgroundWorker();
-            //worker.DoWork += new DoWorkEventHandler(worker_DoWork);
-            //worker.RunWorkerAsync();
+            if (button_Record.BackColor == Color.OrangeRed)
+            {
+
+                saveFileDialog_video.Filter = "Видео файл | *.mp4";
+                saveFileDialog_video.ShowDialog();
+            }
+             BackgroundWorker worker = new BackgroundWorker();
+             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+             worker.RunWorkerAsync();
             //pictureBox1.Load(imagestream);
             //pictureBox1.BringToFront();
             //webBrowser1.Visible = false;
         }
-        /*
+        
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
+            ProcessStartInfo psi = new ProcessStartInfo();
+            string patch_videoplayer = @"videoexe.txt";
+            string vido_player_exe = ReadStringConnect(patch_videoplayer);
+            psi.FileName = vido_player_exe; //"C:\VideoLAN\VLC\vlc.exe";
+
+            string path_connectionfile = @"videosrc.txt";
+            string imagestream = ReadStringConnect(path_connectionfile);
+
+            if (button_Record.BackColor == Color.OrangeRed)
+            {
+                if (saveFileDialog_video.CheckPathExists)
+                {
+                    imagestream += " --sout=#duplicate{dst=std{access=file,mux=mp4,dst=";
+                    imagestream += saveFileDialog_video.FileName;
+                    imagestream +="},dst=display}";
+                }
+            }
+            
+            psi.Arguments = imagestream;
+            Process.Start(psi);
+            //C:\VideoLAN\VLC\vlc.exe
+            /*
             while (true)
             {
                 string path_connectionfile = @"videosrc.txt";
@@ -417,8 +422,9 @@ namespace WFA_Joystick_Control
                 pictureBox1.Load(imagestream);
                 //throw new NotImplementedException();
             }
+             * */
         }
-        */
+        
         private void button_Settings_Click(object sender, EventArgs e)
         {
             form_settings.ShowDialog();

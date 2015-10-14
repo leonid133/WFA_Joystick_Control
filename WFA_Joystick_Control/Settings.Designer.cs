@@ -43,6 +43,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox_Sticks = new System.Windows.Forms.ComboBox();
+            this.textBox_VideoLAN = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -138,7 +140,7 @@
             // 
             // textBox_Connection
             // 
-            this.textBox_Connection.Location = new System.Drawing.Point(351, 69);
+            this.textBox_Connection.Location = new System.Drawing.Point(348, 42);
             this.textBox_Connection.Name = "textBox_Connection";
             this.textBox_Connection.Size = new System.Drawing.Size(159, 20);
             this.textBox_Connection.TabIndex = 3;
@@ -148,7 +150,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(351, 50);
+            this.label6.Location = new System.Drawing.Point(348, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(128, 13);
             this.label6.TabIndex = 4;
@@ -156,7 +158,7 @@
             // 
             // textBox_VideoConnect
             // 
-            this.textBox_VideoConnect.Location = new System.Drawing.Point(354, 150);
+            this.textBox_VideoConnect.Location = new System.Drawing.Point(351, 123);
             this.textBox_VideoConnect.Name = "textBox_VideoConnect";
             this.textBox_VideoConnect.Size = new System.Drawing.Size(156, 20);
             this.textBox_VideoConnect.TabIndex = 5;
@@ -166,7 +168,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(356, 131);
+            this.label7.Location = new System.Drawing.Point(353, 104);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(123, 13);
             this.label7.TabIndex = 6;
@@ -175,7 +177,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(356, 200);
+            this.label8.Location = new System.Drawing.Point(353, 173);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 13);
             this.label8.TabIndex = 7;
@@ -184,17 +186,36 @@
             // comboBox_Sticks
             // 
             this.comboBox_Sticks.FormattingEnabled = true;
-            this.comboBox_Sticks.Location = new System.Drawing.Point(354, 232);
+            this.comboBox_Sticks.Location = new System.Drawing.Point(351, 195);
             this.comboBox_Sticks.Name = "comboBox_Sticks";
             this.comboBox_Sticks.Size = new System.Drawing.Size(156, 21);
             this.comboBox_Sticks.TabIndex = 9;
             this.comboBox_Sticks.SelectedIndexChanged += new System.EventHandler(this.comboBox_Sticks_SelectedIndexChanged);
             // 
+            // textBox_VideoLAN
+            // 
+            this.textBox_VideoLAN.Location = new System.Drawing.Point(351, 266);
+            this.textBox_VideoLAN.Name = "textBox_VideoLAN";
+            this.textBox_VideoLAN.Size = new System.Drawing.Size(156, 20);
+            this.textBox_VideoLAN.TabIndex = 10;
+            this.textBox_VideoLAN.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_VideoLAN_KeyUp);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(351, 247);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 13);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Видеоплеер";
+            // 
             // Form_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 298);
+            this.ClientSize = new System.Drawing.Size(565, 316);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBox_VideoLAN);
             this.Controls.Add(this.comboBox_Sticks);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -239,5 +260,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox_Sticks;
+        private System.Windows.Forms.TextBox textBox_VideoLAN;
+        private System.Windows.Forms.Label label9;
     }
 }
