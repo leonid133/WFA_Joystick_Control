@@ -37,6 +37,29 @@ namespace WFA_Joystick_Control
                 Console.WriteLine(ex.ToString());
             }
         }
+        string ReadStringConnect(string path_connectionfile)
+        {
+            string connectionString = "";
+
+            try
+            {
+                // Open the stream and read it back.
+                using (StreamReader sr = File.OpenText(path_connectionfile))
+                {
+                    string s = "";
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(s);
+                        connectionString = s;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return connectionString;
+        }
 
         public Form_Settings()
         {
@@ -63,6 +86,13 @@ namespace WFA_Joystick_Control
                         this.comboBox_Sticks.Items.Add(deviceInstance.ProductName);    
                     }
                 }
+                
+                string path_connectionfile = @"connection.txt";
+                textBox_Connection.Text = ReadStringConnect( path_connectionfile);
+
+                path_connectionfile = @"videosrc.txt";
+                textBox_VideoConnect.Text = ReadStringConnect(path_connectionfile);
+
             }
             catch
             {

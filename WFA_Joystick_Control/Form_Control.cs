@@ -18,6 +18,8 @@ using System.Collections;
 
 using Microsoft.DirectX.DirectInput;
 
+using System.Diagnostics;
+
 
 namespace WFA_Joystick_Control
 {
@@ -45,6 +47,7 @@ namespace WFA_Joystick_Control
 
             keybord = new Keybord(this.Handle);
             keybord.InitializeKeyboard();
+            
         }
         //---------------------------------------------------------------------
         void SaveStringConnection(string connectionString)
@@ -359,6 +362,24 @@ namespace WFA_Joystick_Control
             webBrowser1.Url = new Uri(ReadStringConnect(path_connectionfile));
             
         }
+        private void PlayFile(String url)
+        {
+            axWindowsMediaPlayer1.settings.autoStart = true;
+            axWindowsMediaPlayer1.URL = url;
+        }
+        private void Player_PlayStateChange(int NewState)
+        {
+            if ((WMPLib.WMPPlayState)NewState == WMPLib.WMPPlayState.wmppsStopped)
+            {
+                this.Close();
+            }
+        }
+
+        private void Player_MediaError(object pMediaObject)
+        {
+            MessageBox.Show("Cannot play media file.");
+            this.Close();
+        }
 
         private void button_VideoConnect_Click(object sender, EventArgs e)
         {
@@ -366,28 +387,38 @@ namespace WFA_Joystick_Control
             buttonURLConnect_Click(sender, e);
             
             string path_connectionfile = @"videosrc.txt";
-            string imagestream = ReadStringConnect(path_connectionfile);
+            String imagestream = ReadStringConnect(path_connectionfile);
+            
+            PlayFile(imagestream);
+            axShockwaveFlash1.Movie = imagestream.Trim();
+            
+            ProcessStartInfo psi = new ProcessStartInfo();
+
+            psi.FileName = @"C:\Progra~2\VideoLAN\VLC\vlc";
+            psi.Arguments = @" http://192.168.1.235:8080";
+            Process.Start(psi);
             //imagestream += ":8080/?action=stream";
             //imagestream += ":8080/?action=snapshot";
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
-            worker.RunWorkerAsync();
+           // BackgroundWorker worker = new BackgroundWorker();
+            //worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+            //worker.RunWorkerAsync();
             //pictureBox1.Load(imagestream);
             //pictureBox1.BringToFront();
             //webBrowser1.Visible = false;
         }
-        
+        /*
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             while (true)
             {
                 string path_connectionfile = @"videosrc.txt";
                 string imagestream = ReadStringConnect(path_connectionfile);
+                
                 pictureBox1.Load(imagestream);
                 //throw new NotImplementedException();
             }
         }
-        
+        */
         private void button_Settings_Click(object sender, EventArgs e)
         {
             form_settings.ShowDialog();
