@@ -11,7 +11,7 @@ namespace WFA_Joystick_Control
 {
     class KeyboardConfiguration
     {
-        static string config_file_name = "keyboard.config.txt";
+        static string config_file_name = @"keyboard.config.txt";
         static DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Dictionary<eKey, eKey>));
 
         public Dictionary<eKey, eKey> keyboard_map;
@@ -95,6 +95,8 @@ namespace WFA_Joystick_Control
             dict.Add(eKey.S, eKey.S);
             dict.Add(eKey.A, eKey.A);
             dict.Add(eKey.D, eKey.D);
+            dict.Add(eKey.Z, eKey.Z);
+            dict.Add(eKey.X, eKey.X);
 
             dict.Add(eKey.Up, eKey.Up);
             dict.Add(eKey.Down, eKey.Down);

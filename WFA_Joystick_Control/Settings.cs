@@ -111,6 +111,8 @@ namespace WFA_Joystick_Control
             button2.Text = m_kb_config.keyboard_map[eKey.S].ToString();
             button3.Text = m_kb_config.keyboard_map[eKey.A].ToString();
             button4.Text = m_kb_config.keyboard_map[eKey.D].ToString();
+            button5.Text = m_kb_config.keyboard_map[eKey.Z].ToString();
+            button6.Text = m_kb_config.keyboard_map[eKey.X].ToString();
 
             base.Refresh();
         }
@@ -189,6 +191,56 @@ namespace WFA_Joystick_Control
         {
             string path_connectionfile = @"videoexe.txt";
             SaveStringConnection(textBox_VideoLAN.Text, path_connectionfile);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            label1.Visible = true;
+            m_current_button = eKey.Z;
+
+        }
+
+        private void button5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            eKey[] keys = m_keybord.m_keyboard_device.GetPressedKeys();
+
+            if (keys.Length > 0)
+            {
+                m_kb_config.SetKey(m_current_button, keys[0]);
+                m_kb_config.Flush();
+
+                Refresh();
+            }
+
+            m_current_button = 0;
+            label1.Visible = false;
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.X;
+        }
+
+        private void button6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            eKey[] keys = m_keybord.m_keyboard_device.GetPressedKeys();
+
+            if (keys.Length > 0)
+            {
+                m_kb_config.SetKey(m_current_button, keys[0]);
+                m_kb_config.Flush();
+
+                Refresh();
+            }
+
+            m_current_button = 0;
+            label1.Visible = false;
+  
         }
 
     }

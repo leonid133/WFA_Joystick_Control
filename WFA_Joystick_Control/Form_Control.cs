@@ -257,11 +257,23 @@ namespace WFA_Joystick_Control
                 {
                     button_down.BackColor = Form.DefaultBackColor;
                 }
-                
+
+                if (joystickButtons_J1[0] || keys[m_kb_config.keyboard_map[Key.Z]])
+                {
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "spin" }); //output.Text += "Down\n";
+                    button_down.BackColor = Color.Red;
+                }
+
+                if (joystickButtons_J1[1] || keys[m_kb_config.keyboard_map[Key.X]])
+                {
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "counterspin" }); //output.Text += "Down\n";
+                    button_down.BackColor = Color.Red;
+                }
                 for (int i = 0; i < joystickButtons_J1.Length; i++)
                 {
                     if (joystickButtons_J1[i] == true)
                     {
+                        
                         //webBrowser1.Url = new Uri("http://192.168.1.163:80/"); //output.Text += "Button " + i + " Pressed\n";
                         //webBrowser1.Refresh();
                     }
@@ -320,6 +332,18 @@ namespace WFA_Joystick_Control
                 else
                 {
                     button_down.BackColor = Form.DefaultBackColor;
+                }
+
+                if (keys[m_kb_config.keyboard_map[Key.Z]])
+                {
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "spin" }); //output.Text += "Down\n";
+                    button_down.BackColor = Color.Red;
+                }
+
+                if (keys[m_kb_config.keyboard_map[Key.X]])
+                {
+                    webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "counterspin" }); //output.Text += "Down\n";
+                    button_down.BackColor = Color.Red;
                 }
 
             }
