@@ -34,34 +34,45 @@ namespace WFA_Joystick_Control
             Refresh();
         }
 
+        private string NiceName(string raw_name)
+        {
+            if (raw_name.Length == 2 && raw_name[0] == 'D')
+                return raw_name[1].ToString();
+            if (raw_name == "DownArrow")
+                return "Down";
+            if (raw_name == "LeftArrow")
+                return "Left";
+            return raw_name;
+        }
+
         public override void Refresh()
         {
-            button1.Text = m_kb_config.keyboard_map[eKey.W].ToString();
-            button2.Text = m_kb_config.keyboard_map[eKey.S].ToString();
-            button3.Text = m_kb_config.keyboard_map[eKey.A].ToString();
-            button4.Text = m_kb_config.keyboard_map[eKey.D].ToString();
+            button1.Text = NiceName(m_kb_config.keyboard_map[eKey.W].ToString());
+            button2.Text = NiceName(m_kb_config.keyboard_map[eKey.S].ToString());
+            button3.Text = NiceName(m_kb_config.keyboard_map[eKey.A].ToString());
+            button4.Text = NiceName(m_kb_config.keyboard_map[eKey.D].ToString());
 
-            button8.Text = m_kb_config.keyboard_map[eKey.Up].ToString();
-            button7.Text = m_kb_config.keyboard_map[eKey.Down].ToString();
-            button6.Text = m_kb_config.keyboard_map[eKey.Left].ToString();
-            button5.Text = m_kb_config.keyboard_map[eKey.Right].ToString();
+            button8.Text = NiceName(m_kb_config.keyboard_map[eKey.Up].ToString());
+            button7.Text = NiceName(m_kb_config.keyboard_map[eKey.Down].ToString());
+            button6.Text = NiceName(m_kb_config.keyboard_map[eKey.Left].ToString());
+            button5.Text = NiceName(m_kb_config.keyboard_map[eKey.Right].ToString());
 
-            button12.Text = m_kb_config.keyboard_map[eKey.NumPad8].ToString();
-            button11.Text = m_kb_config.keyboard_map[eKey.NumPad2].ToString();
-            button10.Text = m_kb_config.keyboard_map[eKey.NumPad4].ToString();
-            button9.Text = m_kb_config.keyboard_map[eKey.NumPad6].ToString();
-            button13.Text = m_kb_config.keyboard_map[eKey.NumPad5].ToString();
+            button12.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad8].ToString());
+            button11.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad2].ToString());
+            button10.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad4].ToString());
+            button9.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad6].ToString());
+            button13.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad5].ToString());
 
-            button23.Text = m_kb_config.keyboard_map[eKey.D1].ToString();
-            button22.Text = m_kb_config.keyboard_map[eKey.D2].ToString();
-            button21.Text = m_kb_config.keyboard_map[eKey.D3].ToString();
-            button20.Text = m_kb_config.keyboard_map[eKey.D4].ToString();
-            button19.Text = m_kb_config.keyboard_map[eKey.D5].ToString();
-            button18.Text = m_kb_config.keyboard_map[eKey.D6].ToString();
-            button17.Text = m_kb_config.keyboard_map[eKey.D7].ToString();
-            button16.Text = m_kb_config.keyboard_map[eKey.D8].ToString();
-            button15.Text = m_kb_config.keyboard_map[eKey.D9].ToString();
-            button14.Text = m_kb_config.keyboard_map[eKey.D0].ToString();
+            button23.Text = NiceName(m_kb_config.keyboard_map[eKey.D1].ToString());
+            button22.Text = NiceName(m_kb_config.keyboard_map[eKey.D2].ToString());
+            button21.Text = NiceName(m_kb_config.keyboard_map[eKey.D3].ToString());
+            button20.Text = NiceName(m_kb_config.keyboard_map[eKey.D4].ToString());
+            button19.Text = NiceName(m_kb_config.keyboard_map[eKey.D5].ToString());
+            button18.Text = NiceName(m_kb_config.keyboard_map[eKey.D6].ToString());
+            button17.Text = NiceName(m_kb_config.keyboard_map[eKey.D7].ToString());
+            button16.Text = NiceName(m_kb_config.keyboard_map[eKey.D8].ToString());
+            button15.Text = NiceName(m_kb_config.keyboard_map[eKey.D9].ToString());
+            button14.Text = NiceName(m_kb_config.keyboard_map[eKey.D0].ToString());
 
             base.Refresh();
         }
