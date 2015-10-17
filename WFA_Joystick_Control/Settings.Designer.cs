@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.button_w = new System.Windows.Forms.Button();
+            this.button_s = new System.Windows.Forms.Button();
+            this.button_a = new System.Windows.Forms.Button();
+            this.button_d = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,85 +42,86 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.button_Right = new System.Windows.Forms.Button();
+            this.button_Left = new System.Windows.Forms.Button();
+            this.button_Down = new System.Windows.Forms.Button();
+            this.button_Up = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.button_Num6 = new System.Windows.Forms.Button();
+            this.button_Num4 = new System.Windows.Forms.Button();
+            this.button_Num2 = new System.Windows.Forms.Button();
+            this.button_Num8 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
-            this.button13 = new System.Windows.Forms.Button();
+            this.button_Num5 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
+            this.button_6 = new System.Windows.Forms.Button();
+            this.button_5 = new System.Windows.Forms.Button();
+            this.button_4 = new System.Windows.Forms.Button();
+            this.button_3 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
-            this.button22 = new System.Windows.Forms.Button();
+            this.button_2 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
-            this.button23 = new System.Windows.Forms.Button();
+            this.button_1 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
+            this.button_0 = new System.Windows.Forms.Button();
+            this.button_9 = new System.Windows.Forms.Button();
+            this.button_8 = new System.Windows.Forms.Button();
+            this.button_7 = new System.Windows.Forms.Button();
+            this.joystick_settings_Timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // button1
+            // button_w
             // 
-            this.button1.Location = new System.Drawing.Point(171, 55);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "w";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_w.Location = new System.Drawing.Point(171, 55);
+            this.button_w.Name = "button_w";
+            this.button_w.Size = new System.Drawing.Size(125, 23);
+            this.button_w.TabIndex = 1;
+            this.button_w.Text = "w";
+            this.button_w.UseVisualStyleBackColor = true;
+            this.button_w.Click += new System.EventHandler(this.button_w_Click);
+            this.button_w.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button2
+            // button_s
             // 
-            this.button2.Location = new System.Drawing.Point(171, 100);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "s";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            this.button2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_s.Location = new System.Drawing.Point(171, 100);
+            this.button_s.Name = "button_s";
+            this.button_s.Size = new System.Drawing.Size(125, 23);
+            this.button_s.TabIndex = 1;
+            this.button_s.Text = "s";
+            this.button_s.UseVisualStyleBackColor = true;
+            this.button_s.Click += new System.EventHandler(this.button_s_Click);
+            this.button_s.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button3
+            // button_a
             // 
-            this.button3.Location = new System.Drawing.Point(171, 145);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "a";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            this.button3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_a.Location = new System.Drawing.Point(171, 145);
+            this.button_a.Name = "button_a";
+            this.button_a.Size = new System.Drawing.Size(125, 23);
+            this.button_a.TabIndex = 1;
+            this.button_a.Text = "a";
+            this.button_a.UseVisualStyleBackColor = true;
+            this.button_a.Click += new System.EventHandler(this.button_a_Click);
+            this.button_a.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button4
+            // button_d
             // 
-            this.button4.Location = new System.Drawing.Point(171, 190);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "d";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            this.button4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_d.Location = new System.Drawing.Point(171, 190);
+            this.button_d.Name = "button_d";
+            this.button_d.Size = new System.Drawing.Size(125, 23);
+            this.button_d.TabIndex = 1;
+            this.button_d.Text = "d";
+            this.button_d.UseVisualStyleBackColor = true;
+            this.button_d.Click += new System.EventHandler(this.button_d_Click);
+            this.button_d.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
             // label1
             // 
@@ -127,9 +129,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(342, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(222, 16);
+            this.label1.Size = new System.Drawing.Size(456, 16);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Выберите клавишу для действия";
+            this.label1.Text = "Выберите клавишу для действия || Выберите действие на джойстике";
             this.label1.Visible = false;
             // 
             // label2
@@ -204,49 +206,49 @@
             this.label9.TabIndex = 10;
             this.label9.Text = "Подъем пушки:";
             // 
-            // button5
+            // button_Right
             // 
-            this.button5.Location = new System.Drawing.Point(171, 420);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Right";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            this.button5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Right.Location = new System.Drawing.Point(171, 420);
+            this.button_Right.Name = "button_Right";
+            this.button_Right.Size = new System.Drawing.Size(125, 23);
+            this.button_Right.TabIndex = 4;
+            this.button_Right.Text = "Right";
+            this.button_Right.UseVisualStyleBackColor = true;
+            this.button_Right.Click += new System.EventHandler(this.button_Right_Click);
+            this.button_Right.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button6
+            // button_Left
             // 
-            this.button6.Location = new System.Drawing.Point(171, 375);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "Left";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            this.button6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Left.Location = new System.Drawing.Point(171, 375);
+            this.button_Left.Name = "button_Left";
+            this.button_Left.Size = new System.Drawing.Size(125, 23);
+            this.button_Left.TabIndex = 3;
+            this.button_Left.Text = "Left";
+            this.button_Left.UseVisualStyleBackColor = true;
+            this.button_Left.Click += new System.EventHandler(this.button_Left_Click);
+            this.button_Left.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button7
+            // button_Down
             // 
-            this.button7.Location = new System.Drawing.Point(171, 330);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Down";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            this.button7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Down.Location = new System.Drawing.Point(171, 330);
+            this.button_Down.Name = "button_Down";
+            this.button_Down.Size = new System.Drawing.Size(125, 23);
+            this.button_Down.TabIndex = 5;
+            this.button_Down.Text = "Down";
+            this.button_Down.UseVisualStyleBackColor = true;
+            this.button_Down.Click += new System.EventHandler(this.button_Down_Click);
+            this.button_Down.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button8
+            // button_Up
             // 
-            this.button8.Location = new System.Drawing.Point(171, 285);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "Up";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            this.button8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Up.Location = new System.Drawing.Point(171, 285);
+            this.button_Up.Name = "button_Up";
+            this.button_Up.Size = new System.Drawing.Size(125, 23);
+            this.button_Up.TabIndex = 6;
+            this.button_Up.Text = "Up";
+            this.button_Up.UseVisualStyleBackColor = true;
+            this.button_Up.Click += new System.EventHandler(this.button_Up_Click);
+            this.button_Up.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
             // label10
             // 
@@ -284,49 +286,49 @@
             this.label13.TabIndex = 18;
             this.label13.Text = "Складывание по вертикали\r\n (вверх):";
             // 
-            // button9
+            // button_Num6
             // 
-            this.button9.Location = new System.Drawing.Point(477, 189);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 12;
-            this.button9.Text = "Num6";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            this.button9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Num6.Location = new System.Drawing.Point(477, 189);
+            this.button_Num6.Name = "button_Num6";
+            this.button_Num6.Size = new System.Drawing.Size(125, 23);
+            this.button_Num6.TabIndex = 12;
+            this.button_Num6.Text = "Num6";
+            this.button_Num6.UseVisualStyleBackColor = true;
+            this.button_Num6.Click += new System.EventHandler(this.button_Num6_Click);
+            this.button_Num6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button10
+            // button_Num4
             // 
-            this.button10.Location = new System.Drawing.Point(477, 144);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 11;
-            this.button10.Text = "Num4";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            this.button10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Num4.Location = new System.Drawing.Point(477, 144);
+            this.button_Num4.Name = "button_Num4";
+            this.button_Num4.Size = new System.Drawing.Size(125, 23);
+            this.button_Num4.TabIndex = 11;
+            this.button_Num4.Text = "Num4";
+            this.button_Num4.UseVisualStyleBackColor = true;
+            this.button_Num4.Click += new System.EventHandler(this.button_Num4_Click);
+            this.button_Num4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button11
+            // button_Num2
             // 
-            this.button11.Location = new System.Drawing.Point(477, 99);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 13;
-            this.button11.Text = "Num2";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            this.button11.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Num2.Location = new System.Drawing.Point(477, 99);
+            this.button_Num2.Name = "button_Num2";
+            this.button_Num2.Size = new System.Drawing.Size(125, 23);
+            this.button_Num2.TabIndex = 13;
+            this.button_Num2.Text = "Num2";
+            this.button_Num2.UseVisualStyleBackColor = true;
+            this.button_Num2.Click += new System.EventHandler(this.button_Num2_Click);
+            this.button_Num2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button12
+            // button_Num8
             // 
-            this.button12.Location = new System.Drawing.Point(477, 54);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 14;
-            this.button12.Text = "Num8";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            this.button12.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Num8.Location = new System.Drawing.Point(477, 54);
+            this.button_Num8.Name = "button_Num8";
+            this.button_Num8.Size = new System.Drawing.Size(125, 23);
+            this.button_Num8.TabIndex = 14;
+            this.button_Num8.Text = "Num8";
+            this.button_Num8.UseVisualStyleBackColor = true;
+            this.button_Num8.Click += new System.EventHandler(this.button_Num8_Click);
+            this.button_Num8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
             // label14
             // 
@@ -337,16 +339,16 @@
             this.label14.TabIndex = 20;
             this.label14.Text = "Фиксация вертикального \r\nскладывания:";
             // 
-            // button13
+            // button_Num5
             // 
-            this.button13.Location = new System.Drawing.Point(477, 234);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 19;
-            this.button13.Text = "Num5";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            this.button13.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_Num5.Location = new System.Drawing.Point(477, 234);
+            this.button_Num5.Name = "button_Num5";
+            this.button_Num5.Size = new System.Drawing.Size(125, 23);
+            this.button_Num5.TabIndex = 19;
+            this.button_Num5.Text = "Num5";
+            this.button_Num5.UseVisualStyleBackColor = true;
+            this.button_Num5.Click += new System.EventHandler(this.button_Num5_Click);
+            this.button_Num5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
             // label19
             // 
@@ -384,49 +386,49 @@
             this.label22.TabIndex = 25;
             this.label22.Text = "Доп. оборудование №1 (вверх):";
             // 
-            // button18
+            // button_6
             // 
-            this.button18.Location = new System.Drawing.Point(789, 192);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(75, 23);
-            this.button18.TabIndex = 22;
-            this.button18.Text = "6";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
-            this.button18.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_6.Location = new System.Drawing.Point(789, 192);
+            this.button_6.Name = "button_6";
+            this.button_6.Size = new System.Drawing.Size(125, 23);
+            this.button_6.TabIndex = 22;
+            this.button_6.Text = "6";
+            this.button_6.UseVisualStyleBackColor = true;
+            this.button_6.Click += new System.EventHandler(this.button_6_Click);
+            this.button_6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button19
+            // button_5
             // 
-            this.button19.Location = new System.Drawing.Point(789, 147);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(75, 23);
-            this.button19.TabIndex = 21;
-            this.button19.Text = "5";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
-            this.button19.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_5.Location = new System.Drawing.Point(789, 147);
+            this.button_5.Name = "button_5";
+            this.button_5.Size = new System.Drawing.Size(125, 23);
+            this.button_5.TabIndex = 21;
+            this.button_5.Text = "5";
+            this.button_5.UseVisualStyleBackColor = true;
+            this.button_5.Click += new System.EventHandler(this.button_5_Click);
+            this.button_5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button20
+            // button_4
             // 
-            this.button20.Location = new System.Drawing.Point(789, 100);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(75, 23);
-            this.button20.TabIndex = 24;
-            this.button20.Text = "4";
-            this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.button20_Click);
-            this.button20.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_4.Location = new System.Drawing.Point(789, 100);
+            this.button_4.Name = "button_4";
+            this.button_4.Size = new System.Drawing.Size(125, 23);
+            this.button_4.TabIndex = 24;
+            this.button_4.Text = "4";
+            this.button_4.UseVisualStyleBackColor = true;
+            this.button_4.Click += new System.EventHandler(this.button_4_Click);
+            this.button_4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button21
+            // button_3
             // 
-            this.button21.Location = new System.Drawing.Point(789, 55);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(75, 23);
-            this.button21.TabIndex = 23;
-            this.button21.Text = "3";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.button21_Click);
-            this.button21.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_3.Location = new System.Drawing.Point(789, 55);
+            this.button_3.Name = "button_3";
+            this.button_3.Size = new System.Drawing.Size(125, 23);
+            this.button_3.TabIndex = 23;
+            this.button_3.Text = "3";
+            this.button_3.UseVisualStyleBackColor = true;
+            this.button_3.Click += new System.EventHandler(this.button_3_Click);
+            this.button_3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
             // label23
             // 
@@ -437,16 +439,16 @@
             this.label23.TabIndex = 40;
             this.label23.Text = "Камера:";
             // 
-            // button22
+            // button_2
             // 
-            this.button22.Location = new System.Drawing.Point(477, 420);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(75, 23);
-            this.button22.TabIndex = 39;
-            this.button22.Text = "2";
-            this.button22.UseVisualStyleBackColor = true;
-            this.button22.Click += new System.EventHandler(this.button22_Click);
-            this.button22.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_2.Location = new System.Drawing.Point(477, 420);
+            this.button_2.Name = "button_2";
+            this.button_2.Size = new System.Drawing.Size(125, 23);
+            this.button_2.TabIndex = 39;
+            this.button_2.Text = "2";
+            this.button_2.UseVisualStyleBackColor = true;
+            this.button_2.Click += new System.EventHandler(this.button_2_Click);
+            this.button_2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
             // label24
             // 
@@ -457,16 +459,16 @@
             this.label24.TabIndex = 38;
             this.label24.Text = "Прожектор:";
             // 
-            // button23
+            // button_1
             // 
-            this.button23.Location = new System.Drawing.Point(477, 375);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(75, 23);
-            this.button23.TabIndex = 37;
-            this.button23.Text = "1";
-            this.button23.UseVisualStyleBackColor = true;
-            this.button23.Click += new System.EventHandler(this.button23_Click);
-            this.button23.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_1.Location = new System.Drawing.Point(477, 375);
+            this.button_1.Name = "button_1";
+            this.button_1.Size = new System.Drawing.Size(125, 23);
+            this.button_1.TabIndex = 37;
+            this.button_1.Text = "1";
+            this.button_1.UseVisualStyleBackColor = true;
+            this.button_1.Click += new System.EventHandler(this.button_1_Click);
+            this.button_1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
             // label15
             // 
@@ -504,108 +506,112 @@
             this.label18.TabIndex = 45;
             this.label18.Text = "Доп. оборудование №3 (вверх):";
             // 
-            // button14
+            // button_0
             // 
-            this.button14.Location = new System.Drawing.Point(789, 420);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 42;
-            this.button14.Text = "0";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            this.button14.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_0.Location = new System.Drawing.Point(789, 420);
+            this.button_0.Name = "button_0";
+            this.button_0.Size = new System.Drawing.Size(125, 23);
+            this.button_0.TabIndex = 42;
+            this.button_0.Text = "0";
+            this.button_0.UseVisualStyleBackColor = true;
+            this.button_0.Click += new System.EventHandler(this.button_0_Click);
+            this.button_0.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button15
+            // button_9
             // 
-            this.button15.Location = new System.Drawing.Point(789, 375);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 41;
-            this.button15.Text = "9";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            this.button15.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_9.Location = new System.Drawing.Point(789, 375);
+            this.button_9.Name = "button_9";
+            this.button_9.Size = new System.Drawing.Size(125, 23);
+            this.button_9.TabIndex = 41;
+            this.button_9.Text = "9";
+            this.button_9.UseVisualStyleBackColor = true;
+            this.button_9.Click += new System.EventHandler(this.button_9_Click);
+            this.button_9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button16
+            // button_8
             // 
-            this.button16.Location = new System.Drawing.Point(789, 328);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 23);
-            this.button16.TabIndex = 44;
-            this.button16.Text = "8";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            this.button16.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_8.Location = new System.Drawing.Point(789, 328);
+            this.button_8.Name = "button_8";
+            this.button_8.Size = new System.Drawing.Size(125, 23);
+            this.button_8.TabIndex = 44;
+            this.button_8.Text = "8";
+            this.button_8.UseVisualStyleBackColor = true;
+            this.button_8.Click += new System.EventHandler(this.button_8_Click);
+            this.button_8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             // 
-            // button17
+            // button_7
             // 
-            this.button17.Location = new System.Drawing.Point(789, 283);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 23);
-            this.button17.TabIndex = 43;
-            this.button17.Text = "7";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
-            this.button17.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.button_7.Location = new System.Drawing.Point(789, 283);
+            this.button_7.Name = "button_7";
+            this.button_7.Size = new System.Drawing.Size(125, 23);
+            this.button_7.TabIndex = 43;
+            this.button_7.Text = "7";
+            this.button_7.UseVisualStyleBackColor = true;
+            this.button_7.Click += new System.EventHandler(this.button_7_Click);
+            this.button_7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
+            // 
+            // joystick_settings_Timer
+            // 
+            this.joystick_settings_Timer.Tick += new System.EventHandler(this.joystick_settings_Timer_Tick);
             // 
             // Form_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(906, 489);
+            this.ClientSize = new System.Drawing.Size(933, 490);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.button14);
-            this.Controls.Add(this.button15);
-            this.Controls.Add(this.button16);
-            this.Controls.Add(this.button17);
+            this.Controls.Add(this.button_0);
+            this.Controls.Add(this.button_9);
+            this.Controls.Add(this.button_8);
+            this.Controls.Add(this.button_7);
             this.Controls.Add(this.label23);
-            this.Controls.Add(this.button22);
+            this.Controls.Add(this.button_2);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.button23);
+            this.Controls.Add(this.button_1);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label22);
-            this.Controls.Add(this.button18);
-            this.Controls.Add(this.button19);
-            this.Controls.Add(this.button20);
-            this.Controls.Add(this.button21);
+            this.Controls.Add(this.button_6);
+            this.Controls.Add(this.button_5);
+            this.Controls.Add(this.button_4);
+            this.Controls.Add(this.button_3);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.button13);
+            this.Controls.Add(this.button_Num5);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button_Num6);
+            this.Controls.Add(this.button_Num4);
+            this.Controls.Add(this.button_Num2);
+            this.Controls.Add(this.button_Num8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button_Right);
+            this.Controls.Add(this.button_Left);
+            this.Controls.Add(this.button_Down);
+            this.Controls.Add(this.button_Up);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_d);
+            this.Controls.Add(this.button_a);
+            this.Controls.Add(this.button_s);
+            this.Controls.Add(this.button_w);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form_Settings";
             this.Text = "Настройки";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button1_KeyPress);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SetPressedKey_FromTheCurrentButton);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.control_PreviewKeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -614,10 +620,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_w;
+        private System.Windows.Forms.Button button_s;
+        private System.Windows.Forms.Button button_a;
+        private System.Windows.Forms.Button button_d;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -627,39 +633,40 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button_Right;
+        private System.Windows.Forms.Button button_Left;
+        private System.Windows.Forms.Button button_Down;
+        private System.Windows.Forms.Button button_Up;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button_Num6;
+        private System.Windows.Forms.Button button_Num4;
+        private System.Windows.Forms.Button button_Num2;
+        private System.Windows.Forms.Button button_Num8;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button_Num5;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button_6;
+        private System.Windows.Forms.Button button_5;
+        private System.Windows.Forms.Button button_4;
+        private System.Windows.Forms.Button button_3;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button_2;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Button button_1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button_0;
+        private System.Windows.Forms.Button button_9;
+        private System.Windows.Forms.Button button_8;
+        private System.Windows.Forms.Button button_7;
+        private System.Windows.Forms.Timer joystick_settings_Timer;
     }
 }

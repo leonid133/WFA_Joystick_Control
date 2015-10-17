@@ -18,6 +18,12 @@ namespace WFA_Joystick_Control
         private KeyboardConfiguration m_kb_config = new KeyboardConfiguration();
         private Keybord m_keybord;
 
+        private JoystickConfiguration m_joy_config = new JoystickConfiguration();
+        private Joystick joystick;
+        private bool[] joystickButtons_J1;
+        private Joystick joystick2;
+        private bool[] joystickButtons_J2;
+        private bool joy2_connected;
 
         public Form_Settings()
         {
@@ -31,37 +37,41 @@ namespace WFA_Joystick_Control
             m_keybord = new Keybord(this.Handle);
             m_keybord.InitializeKeyboard();
 
+            joystick = new Joystick(this.Handle);
+            joystick2 = new Joystick(this.Handle);
+            MessageBox.Show("Внимание! Пожалуйста подключите джойстики и переведите все оси, всех подключенных джойстиков в центральное положение, и не нажимайте кнопок в течении 5 секунд.");
+            connectToJoysticks(joystick, joystick2);
             Refresh();
         }
 
         public override void Refresh()
         {
-            button1.Text = m_kb_config.keyboard_map[eKey.W].ToString();
-            button2.Text = m_kb_config.keyboard_map[eKey.S].ToString();
-            button3.Text = m_kb_config.keyboard_map[eKey.A].ToString();
-            button4.Text = m_kb_config.keyboard_map[eKey.D].ToString();
+            button_w.Text = m_kb_config.keyboard_map[eKey.W].ToString() + " || " + m_joy_config.m_joystick_map[eKey.W];
+            button_s.Text = m_kb_config.keyboard_map[eKey.S].ToString() + " || " + m_joy_config.m_joystick_map[eKey.S];
+            button_a.Text = m_kb_config.keyboard_map[eKey.A].ToString() + " || " + m_joy_config.m_joystick_map[eKey.A];
+            button_d.Text = m_kb_config.keyboard_map[eKey.D].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D];
 
-            button8.Text = m_kb_config.keyboard_map[eKey.Up].ToString();
-            button7.Text = m_kb_config.keyboard_map[eKey.Down].ToString();
-            button6.Text = m_kb_config.keyboard_map[eKey.Left].ToString();
-            button5.Text = m_kb_config.keyboard_map[eKey.Right].ToString();
+            button_Up.Text = m_kb_config.keyboard_map[eKey.Up].ToString() + " || " + m_joy_config.m_joystick_map[eKey.Up];
+            button_Down.Text = m_kb_config.keyboard_map[eKey.Down].ToString() + " || " + m_joy_config.m_joystick_map[eKey.Down];
+            button_Left.Text = m_kb_config.keyboard_map[eKey.Left].ToString() + " || " + m_joy_config.m_joystick_map[eKey.Left];
+            button_Right.Text = m_kb_config.keyboard_map[eKey.Right].ToString() + " || " + m_joy_config.m_joystick_map[eKey.Right];
 
-            button12.Text = m_kb_config.keyboard_map[eKey.NumPad8].ToString();
-            button11.Text = m_kb_config.keyboard_map[eKey.NumPad2].ToString();
-            button10.Text = m_kb_config.keyboard_map[eKey.NumPad4].ToString();
-            button9.Text = m_kb_config.keyboard_map[eKey.NumPad6].ToString();
-            button13.Text = m_kb_config.keyboard_map[eKey.NumPad5].ToString();
+            button_Num8.Text = m_kb_config.keyboard_map[eKey.NumPad8].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad8];
+            button_Num2.Text = m_kb_config.keyboard_map[eKey.NumPad2].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad2];
+            button_Num4.Text = m_kb_config.keyboard_map[eKey.NumPad4].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad4];
+            button_Num6.Text = m_kb_config.keyboard_map[eKey.NumPad6].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad6];
+            button_Num5.Text = m_kb_config.keyboard_map[eKey.NumPad5].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad5];
 
-            button23.Text = m_kb_config.keyboard_map[eKey.D1].ToString();
-            button22.Text = m_kb_config.keyboard_map[eKey.D2].ToString();
-            button21.Text = m_kb_config.keyboard_map[eKey.D3].ToString();
-            button20.Text = m_kb_config.keyboard_map[eKey.D4].ToString();
-            button19.Text = m_kb_config.keyboard_map[eKey.D5].ToString();
-            button18.Text = m_kb_config.keyboard_map[eKey.D6].ToString();
-            button17.Text = m_kb_config.keyboard_map[eKey.D7].ToString();
-            button16.Text = m_kb_config.keyboard_map[eKey.D8].ToString();
-            button15.Text = m_kb_config.keyboard_map[eKey.D9].ToString();
-            button14.Text = m_kb_config.keyboard_map[eKey.D0].ToString();
+            button_1.Text = m_kb_config.keyboard_map[eKey.D1].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D1];
+            button_2.Text = m_kb_config.keyboard_map[eKey.D2].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D2];
+            button_3.Text = m_kb_config.keyboard_map[eKey.D3].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D3];
+            button_4.Text = m_kb_config.keyboard_map[eKey.D4].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D4];
+            button_5.Text = m_kb_config.keyboard_map[eKey.D5].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D5];
+            button_6.Text = m_kb_config.keyboard_map[eKey.D6].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D6];
+            button_7.Text = m_kb_config.keyboard_map[eKey.D7].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D7];
+            button_8.Text = m_kb_config.keyboard_map[eKey.D8].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D8];
+            button_9.Text = m_kb_config.keyboard_map[eKey.D9].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D9];
+            button_0.Text = m_kb_config.keyboard_map[eKey.D0].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D0];
 
             base.Refresh();
         }
@@ -71,11 +81,11 @@ namespace WFA_Joystick_Control
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
             {
                 e.IsInputKey = true;
-                button1_KeyPress(new object(), new KeyPressEventArgs(new char()));
+                SetPressedKey_FromTheCurrentButton(new object(), new KeyPressEventArgs(new char()));
             }
         }
 
-        private void button1_KeyPress(object sender, KeyPressEventArgs e)
+        private void SetPressedKey_FromTheCurrentButton(object sender, KeyPressEventArgs e)
         {
             eKey[] keys = m_keybord.m_keyboard_device.GetPressedKeys();
 
@@ -91,146 +101,225 @@ namespace WFA_Joystick_Control
             label1.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_w_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.W;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button_s_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.S;
-
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button_a_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.A;
-
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button_d_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D;
-
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button_Up_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.Up;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button_Down_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.Down;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button_Left_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.Left;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button_Right_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.Right;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void button_Num8_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.NumPad8;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void button_Num2_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.NumPad2;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void button_Num4_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.NumPad4;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void button_Num6_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.NumPad6;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button13_Click(object sender, EventArgs e)
+        private void button_Num5_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.NumPad5;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button23_Click(object sender, EventArgs e)
+        private void button_1_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D1;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button22_Click(object sender, EventArgs e)
+        private void button_2_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D2;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button21_Click(object sender, EventArgs e)
+        private void button_3_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D3;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button20_Click(object sender, EventArgs e)
+        private void button_4_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D4;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button19_Click(object sender, EventArgs e)
+        private void button_5_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D5;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button18_Click(object sender, EventArgs e)
+        private void button_6_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D6;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button17_Click(object sender, EventArgs e)
+        private void button_7_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D7;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button16_Click(object sender, EventArgs e)
+        private void button_8_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D8;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button15_Click(object sender, EventArgs e)
+        private void button_9_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D9;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void button_0_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
             m_current_button = eKey.D0;
+            this.joystick_settings_Timer.Enabled = true;
         }
 
+
+        private void connectToJoysticks(Joystick joystick, Joystick joystick2)
+        {
+            while (true)
+            {
+                List<Guid> list_sticks = new List<Guid>();
+                list_sticks = joystick.FindJoysticks();
+
+                if (list_sticks.Count > 0)
+                {
+
+                    if (joystick.AcquireJoystick(list_sticks[0]))
+                    {
+                        if (list_sticks.Count > 1)
+                        {
+                            if (joystick2.AcquireJoystick(list_sticks[1]))
+                                joy2_connected = true;
+                            else
+                                joy2_connected = false;
+                        }
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        private void joystick_settings_Timer_Tick(object sender, EventArgs e)
+        {
+
+            try
+            {
+                joystick.UpdateStatus();
+                joystickButtons_J1 = joystick.m_buttons;
+                String curren_joy_action = "";
+                curren_joy_action = joystick.m_State;
+                if (joy2_connected && curren_joy_action.Length < 2)
+                {
+                    joystick2.UpdateStatus();
+                    joystickButtons_J2 = joystick2.m_buttons;
+                    curren_joy_action += "2";
+                    curren_joy_action += joystick2.m_State;
+                }
+                if (curren_joy_action.Length > 2 && curren_joy_action.Length < 5)
+                {
+                    m_joy_config.SetJoyAction(m_current_button, curren_joy_action);
+                    m_joy_config.Flush();
+
+                    Refresh();
+                    this.joystick_settings_Timer.Enabled = false;
+                }
+            }
+            catch { this.joystick_settings_Timer.Enabled = false; }
+
+        }
+             
     }
 }

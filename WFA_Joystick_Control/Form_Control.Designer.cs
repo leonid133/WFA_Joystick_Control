@@ -133,6 +133,7 @@
             // ReserveKeybord_timer
             // 
             this.ReserveKeybord_timer.Enabled = true;
+            this.ReserveKeybord_timer.Interval = 200;
             this.ReserveKeybord_timer.Tick += new System.EventHandler(this.ReserveKeybord_timer_Tick);
             // 
             // toolStripContainer1
@@ -256,6 +257,7 @@
             this.checkBox_light.Name = "checkBox_light";
             this.checkBox_light.Size = new System.Drawing.Size(83, 17);
             this.checkBox_light.TabIndex = 25;
+            this.checkBox_light.Tag = "1";
             this.checkBox_light.Text = "Прожектор";
             this.checkBox_light.UseVisualStyleBackColor = true;
             // 
@@ -266,6 +268,7 @@
             this.checkBox_Cam.Name = "checkBox_Cam";
             this.checkBox_Cam.Size = new System.Drawing.Size(65, 17);
             this.checkBox_Cam.TabIndex = 26;
+            this.checkBox_Cam.Tag = "1";
             this.checkBox_Cam.Text = "Камера";
             this.checkBox_Cam.UseVisualStyleBackColor = true;
             // 
@@ -276,6 +279,7 @@
             this.checkBox_Fix.Name = "checkBox_Fix";
             this.checkBox_Fix.Size = new System.Drawing.Size(150, 17);
             this.checkBox_Fix.TabIndex = 27;
+            this.checkBox_Fix.Tag = "1";
             this.checkBox_Fix.Text = "Фиксация складывания";
             this.checkBox_Fix.UseVisualStyleBackColor = true;
             // 
