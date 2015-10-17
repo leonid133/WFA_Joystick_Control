@@ -48,6 +48,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.checkBox_light = new System.Windows.Forms.CheckBox();
+            this.checkBox_Cam = new System.Windows.Forms.CheckBox();
+            this.checkBox_Fix = new System.Windows.Forms.CheckBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -138,6 +141,9 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.checkBox_Fix);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.checkBox_Cam);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.checkBox_light);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label1);
@@ -154,13 +160,13 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.button_left);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.button_connect1);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(463, 238);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(630, 275);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(463, 238);
+            this.toolStripContainer1.Size = new System.Drawing.Size(630, 275);
             this.toolStripContainer1.TabIndex = 18;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
@@ -241,11 +247,41 @@
             this.label3.TabIndex = 24;
             this.label3.Text = "B";
             // 
+            // checkBox_light
+            // 
+            this.checkBox_light.AutoSize = true;
+            this.checkBox_light.Location = new System.Drawing.Point(478, 26);
+            this.checkBox_light.Name = "checkBox_light";
+            this.checkBox_light.Size = new System.Drawing.Size(83, 17);
+            this.checkBox_light.TabIndex = 25;
+            this.checkBox_light.Text = "Прожектор";
+            this.checkBox_light.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Cam
+            // 
+            this.checkBox_Cam.AutoSize = true;
+            this.checkBox_Cam.Location = new System.Drawing.Point(478, 55);
+            this.checkBox_Cam.Name = "checkBox_Cam";
+            this.checkBox_Cam.Size = new System.Drawing.Size(65, 17);
+            this.checkBox_Cam.TabIndex = 26;
+            this.checkBox_Cam.Text = "Камера";
+            this.checkBox_Cam.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Fix
+            // 
+            this.checkBox_Fix.AutoSize = true;
+            this.checkBox_Fix.Location = new System.Drawing.Point(478, 85);
+            this.checkBox_Fix.Name = "checkBox_Fix";
+            this.checkBox_Fix.Size = new System.Drawing.Size(150, 17);
+            this.checkBox_Fix.TabIndex = 27;
+            this.checkBox_Fix.Text = "Фиксация складывания";
+            this.checkBox_Fix.UseVisualStyleBackColor = true;
+            // 
             // Form_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 238);
+            this.ClientSize = new System.Drawing.Size(630, 275);
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "Form_Control";
             this.Text = "Управление";
@@ -279,6 +315,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_Statusbar;
+        private System.Windows.Forms.CheckBox checkBox_light;
+        private System.Windows.Forms.CheckBox checkBox_Fix;
+        private System.Windows.Forms.CheckBox checkBox_Cam;
     }
 }
 
