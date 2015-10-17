@@ -96,5 +96,119 @@ namespace WFA_Joystick_Control
 
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.Up;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.Down;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.Left;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.Right;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.NumPad8;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.NumPad2;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.NumPad4;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.NumPad6;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.NumPad5;
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D1;
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D2;
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D3;
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D4;
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D5;
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D6;
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D7;
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D8;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D9;
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            m_current_button = eKey.D0;
+        }
+
     }
 }
