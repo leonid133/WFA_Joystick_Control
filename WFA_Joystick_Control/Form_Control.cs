@@ -49,6 +49,8 @@ namespace WFA_Joystick_Control
 
         private KeyboardConfiguration m_kb_config;
 
+        private JoystickConfiguration m_joy_config;
+
         //String ADRESS = "http:\\\\192.168.1.163:80";
         public Form_Control()
         {
@@ -57,6 +59,7 @@ namespace WFA_Joystick_Control
             joystick2 = new Joystick(this.Handle);
 
             m_kb_config = new KeyboardConfiguration();
+            m_joy_config = new JoystickConfiguration();
 
             keybord = new Keybord(this.Handle);
             keybord.InitializeKeyboard();
@@ -223,11 +226,13 @@ namespace WFA_Joystick_Control
                 ReserveKeybord_timer.Enabled = false;
                 joystick.UpdateStatus();
                 joystickButtons_J1 = joystick.m_buttons;
-                
+
 
                 Microsoft.DirectX.DirectInput.KeyboardState keys = keybord.m_keyboard_device.GetCurrentKeyboardState();
-               
-                if (joystick.m_Xaxis == 0 || keys[Key.Left])
+                
+                textBox1.Text = joystick.m_State;
+
+                if (joystick.m_State.IndexOf( m_joy_config.m_joystick_map["X+"] ) == 0 || keys[m_kb_config.keyboard_map[Key.A]])
                 {
                     controlls.LeftOn(ref laurentA, ref laurentB);
                     button_left.BackColor = Color.Red;
@@ -517,6 +522,7 @@ namespace WFA_Joystick_Control
 
         private void buttonJoysticConnect_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Внимание, при подключении джойстиков будет произведена калибровка! Пожалуйста переведите все оси подключенных джойстиков в центральное положение, и не нажимайте кнопок в течении 5 секунд");
             connectToJoystick(joystick);
         }
 

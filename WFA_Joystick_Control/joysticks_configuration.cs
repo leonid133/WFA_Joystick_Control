@@ -81,13 +81,13 @@ namespace WFA_Joystick_Control
             Dictionary<String, String> dict = new Dictionary<String, String>();
             dict.Add("Y+", "Y+"); //Вперед
             dict.Add("Y-", "Y-"); //Назад
-            dict.Add("X+", "X+"); //Поворот в право
-            dict.Add("X-", "X-"); //Поворот в лево
+            dict.Add("X-", "X-"); //Поворот в право
+            dict.Add("X+", "X+"); //Поворот в лево
 
             dict.Add("AY+", "AY+"); //Подъем пушки
             dict.Add("AY-", "AY-"); //Опускание пушки
-            dict.Add("AX+", "AX+"); //Поворот пушки вправо
-            dict.Add("AX-", "AX-"); //Поворот пушки влево
+            dict.Add("AX-", "AX-"); //Поворот пушки вправо
+            dict.Add("AX+", "AX+"); //Поворот пушки влево
 
             dict.Add("VY+", "VY+"); //Складывание по вертикали вверх
             dict.Add("VY-", "VY-"); //Складывание по вертикали вниз
