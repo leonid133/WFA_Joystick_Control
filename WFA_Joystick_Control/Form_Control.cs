@@ -323,30 +323,168 @@ namespace WFA_Joystick_Control
 
                 if (keys[m_kb_config.keyboard_map[Key.D]])
                 {
+                    controlls.RightOn(ref laurentA, ref laurentB);
                     button_right.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.RightOff(ref laurentA, ref laurentB);
                     button_right.BackColor = Form.DefaultBackColor;
                 }
 
                 if (keys[m_kb_config.keyboard_map[Key.W]])
                 {
+                    controlls.UpOn(ref laurentA, ref laurentB);
                     button_up.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.UpOff(ref laurentA, ref laurentB);
                     button_up.BackColor = Form.DefaultBackColor;
                 }
 
                 if (keys[m_kb_config.keyboard_map[Key.S]])
                 {
+                    controlls.DownOn(ref laurentA, ref laurentB);
                     button_down.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.DownOff(ref laurentA, ref laurentB);
                     button_down.BackColor = Form.DefaultBackColor;
                 }
+
+                if (keys[m_kb_config.keyboard_map[Key.Up]])
+                {
+                    controlls.GunUpOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.GunUpOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.Down]])
+                {
+                    controlls.GunDownOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.GunDownOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.Left]])
+                {
+                    controlls.GunLeftOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.GunLeftOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.Right]])
+                {
+                    controlls.GunRightOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.GunRightOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+
+                if (keys[m_kb_config.keyboard_map[Key.D1]])
+                {
+                    controlls.ProjectorOn(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D2]])
+                {
+                    controlls.CamOn(ref laurentA, ref laurentB);
+                }
+
+                if (keys[m_kb_config.keyboard_map[Key.D3]])
+                {
+                    controlls.OptionalEquipment1UpOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.OptionalEquipment1UpOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D4]])
+                {
+                    controlls.OptionalEquipment1DownOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.OptionalEquipment1DownOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D5]])
+                {
+                    controlls.OptionalEquipment2UpOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.OptionalEquipment2UpOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D6]])
+                {
+                    controlls.OptionalEquipment2DownOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.OptionalEquipment2DownOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D7]])
+                {
+                    controlls.OptionalEquipment3UpOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.OptionalEquipment3UpOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D8]])
+                {
+                    controlls.OptionalEquipment3DownOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.OptionalEquipment3DownOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D9]])
+                {
+                    controlls.OptionalEquipment4UpOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.OptionalEquipment4UpOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D0]])
+                {
+                    controlls.OptionalEquipment4DownOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.OptionalEquipment4DownOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+
             }
             catch
             {
