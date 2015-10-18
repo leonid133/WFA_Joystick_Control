@@ -202,58 +202,6 @@ namespace WFA_Joystick_Control
                 B[11] = false;
             }
         }
-        public void FoldingLeftOn(ref TcpIpLaurentConnector tcp_connectorA, ref TcpIpLaurentConnector tcp_connectorB)
-        {
-            if (!A[1])
-            {
-                tcp_connectorA.OnRel("1");
-                A[1] = true;
-            }
-            if (!A[2])
-            {
-                tcp_connectorB.OnRel("2");
-                A[2] = true;
-            }
-        }
-        public void FoldingLeftOff(ref TcpIpLaurentConnector tcp_connectorA, ref TcpIpLaurentConnector tcp_connectorB)
-        {
-            if (A[2])
-            {
-                tcp_connectorB.OffRel("2");
-                A[2] = false;
-            }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10])
-            {
-                tcp_connectorA.OffRel("1");
-                A[1] = false;
-            }
-        }
-        public void FoldingRightOn(ref TcpIpLaurentConnector tcp_connectorA, ref TcpIpLaurentConnector tcp_connectorB)
-        {
-            if (!A[1])
-            {
-                tcp_connectorA.OnRel("1");
-                A[1] = true;
-            }
-            if (!A[3])
-            {
-                tcp_connectorB.OnRel("3");
-                A[3] = true;
-            }
-        }
-        public void FoldingRightOff(ref TcpIpLaurentConnector tcp_connectorA, ref TcpIpLaurentConnector tcp_connectorB)
-        {
-            if (A[3])
-            {
-                tcp_connectorB.OffRel("3");
-                A[3] = false;
-            }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10])
-            {
-                tcp_connectorA.OffRel("1");
-                A[1] = false;
-            }
-        }
         public void GunUpOn(ref TcpIpLaurentConnector tcp_connectorA, ref TcpIpLaurentConnector tcp_connectorB)
         {
             if (!A[1])
