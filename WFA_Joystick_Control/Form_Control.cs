@@ -185,33 +185,7 @@ namespace WFA_Joystick_Control
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            webBrowser1.AllowWebBrowserDrop = false;
-            webBrowser1.IsWebBrowserContextMenuEnabled = false;
-            webBrowser1.WebBrowserShortcutsEnabled = false;
-            webBrowser1.ObjectForScripting = this;
-            // Uncomment the following line when you are finished debugging.
-            webBrowser1.ScriptErrorsSuppressed = true;
-            /*
-             webBrowser1.DocumentText =
-            "<html><head><script>" +
-            "function test(message) { alert(message); }" +
-            "</script></head><body><button " +
-            "onclick=\"window.external.Test('called from script code')\">" +
-            "call client code from script code</button>" +
-            "</body></html>";*/
-            /*
-             webBrowser1.DocumentText =
-             "<html><head></head><body><img src=\"C:\\Users\\User\\Documents\\Visual Studio 2010\\Projects\\WindowsFormsApplication1\\WindowsFormsApplication1\\1.jpg\" style=\"width:640px;height:480px;\"> "  +
-             "</body></html>";
-            */
-            string directory = AppDomain.CurrentDomain.BaseDirectory;
-             /*webBrowser1.DocumentText =
-             "<html><head></head><body><img src=\"" + 
-             directory +
-             "1.jpg\" style=\"width:640px;height:480px;\"> " +
-             "</body></html>";*/
-             textBox1.Text = ReadStringConnect();
-
+             string directory = AppDomain.CurrentDomain.BaseDirectory;
              laurentA = new TcpIpLaurentConnector();
              laurentB = new TcpIpLaurentConnector();
              controlls = new Controlls();
@@ -220,30 +194,22 @@ namespace WFA_Joystick_Control
 
         private void buttonLeft_Click(object sender, EventArgs e)
         {
-
             controlls.LeftOn(ref laurentA, ref laurentB);
-            
-            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });
         }
 
         private void buttonRight_Click(object sender, EventArgs e)
         {
-            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });
+            controlls.RightOn(ref laurentA, ref laurentB);
         }
 
         private void buttonUp_Click(object sender, EventArgs e)
         {
-            //webBrowser1.Document.InvokeScript("Button_onclick",  new String[] { "up" });
+            controlls.UpOn(ref laurentA, ref laurentB);
         }
 
         private void buttonDown_Click(object sender, EventArgs e)
         {
-            //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" });
-        }
-
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
+            controlls.DownOn(ref laurentA, ref laurentB);
         }
 
         enum Actions { a_move_forward, a_move_back, a_move_left, a_move_right };
@@ -264,7 +230,6 @@ namespace WFA_Joystick_Control
                 if (joystick.m_Xaxis == 0 || keys[Key.Left])
                 {
                     controlls.LeftOn(ref laurentA, ref laurentB);
-                   // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
@@ -276,7 +241,6 @@ namespace WFA_Joystick_Control
                 if (joystick.m_Xaxis == 65535 || keys[Key.Right])
                 {
                     controlls.RightOn(ref laurentA, ref laurentB);
-                    // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
                     button_right.BackColor = Color.Red;
                 }
                 else
@@ -288,7 +252,6 @@ namespace WFA_Joystick_Control
                 if (joystick.m_Yaxis == 0 || keys[Key.Up])
                 {
                     controlls.UpOn(ref laurentA, ref laurentB);
-                    //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
                     button_up.BackColor = Color.Red;
                 }
                 else
@@ -300,7 +263,6 @@ namespace WFA_Joystick_Control
                 if (joystick.m_Yaxis == 65535 || keys[Key.Down])
                 {
                     controlls.DownOn(ref laurentA, ref laurentB);
-                    //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
                     button_down.BackColor = Color.Red;
                 }
                 else
@@ -313,8 +275,7 @@ namespace WFA_Joystick_Control
                 {
                     if (joystickButtons_J1[i] == true)
                     {
-                        //webBrowser1.Url = new Uri("http://192.168.1.163:80/"); //output.Text += "Button " + i + " Pressed\n";
-                        //webBrowser1.Refresh();
+
                     }
                 }
 
@@ -327,7 +288,6 @@ namespace WFA_Joystick_Control
                     if (joystick2.m_Yaxis == 65535)
                     {
                         controlls.FoldingDownOn(ref laurentA, ref laurentB);
-                        //webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
                         button_down.BackColor = Color.Red;
                     }
                     else
@@ -341,7 +301,6 @@ namespace WFA_Joystick_Control
             {
                 joystick_keybord_Timer.Enabled = false;
                 ReserveKeybord_timer.Enabled = true;
-                //connectToJoystick(joystick);
             }
         }
 
@@ -354,7 +313,6 @@ namespace WFA_Joystick_Control
                 if (keys[m_kb_config.keyboard_map[Key.A]])
                 {
                     controlls.LeftOn(ref laurentA, ref laurentB);
-                   // webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "left" });//output.Text += "Left\n";
                     button_left.BackColor = Color.Red;
                 }
                 else
@@ -365,34 +323,189 @@ namespace WFA_Joystick_Control
 
                 if (keys[m_kb_config.keyboard_map[Key.D]])
                 {
-//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "right" });  //output.Text += "Right\n";
+                    controlls.RightOn(ref laurentA, ref laurentB);
                     button_right.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.RightOff(ref laurentA, ref laurentB);
                     button_right.BackColor = Form.DefaultBackColor;
                 }
 
                 if (keys[m_kb_config.keyboard_map[Key.W]])
                 {
-//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "up" }); //output.Text += "Up\n";
+                    controlls.UpOn(ref laurentA, ref laurentB);
                     button_up.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.UpOff(ref laurentA, ref laurentB);
                     button_up.BackColor = Form.DefaultBackColor;
                 }
 
                 if (keys[m_kb_config.keyboard_map[Key.S]])
                 {
-//                     webBrowser1.Document.InvokeScript("Button_onclick", new String[] { "down" }); //output.Text += "Down\n";
+                    controlls.DownOn(ref laurentA, ref laurentB);
                     button_down.BackColor = Color.Red;
                 }
                 else
                 {
+                    controlls.DownOff(ref laurentA, ref laurentB);
                     button_down.BackColor = Form.DefaultBackColor;
                 }
 
+                if (keys[m_kb_config.keyboard_map[Key.Up]])
+                {
+                    controlls.GunUpOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.GunUpOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.Down]])
+                {
+                    controlls.GunDownOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.GunDownOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.Left]])
+                {
+                    controlls.GunLeftOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.GunLeftOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+                if (keys[m_kb_config.keyboard_map[Key.Right]])
+                {
+                    controlls.GunRightOn(ref laurentA, ref laurentB);
+                    button_down.BackColor = Color.Red;
+                }
+                else
+                {
+                    controlls.GunRightOff(ref laurentA, ref laurentB);
+                    button_down.BackColor = Form.DefaultBackColor;
+                }
+
+                if (keys[m_kb_config.keyboard_map[Key.D1]])
+                {
+                    controlls.ProjectorOn(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D2]])
+                {
+                    controlls.CamOn(ref laurentA, ref laurentB);
+                }
+
+                if (keys[m_kb_config.keyboard_map[Key.D3]])
+                {
+                    controlls.OptionalEquipment1UpOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.OptionalEquipment1UpOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D4]])
+                {
+                    controlls.OptionalEquipment1DownOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.OptionalEquipment1DownOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D5]])
+                {
+                    controlls.OptionalEquipment2UpOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.OptionalEquipment2UpOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D6]])
+                {
+                    controlls.OptionalEquipment2DownOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.OptionalEquipment2DownOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D7]])
+                {
+                    controlls.OptionalEquipment3UpOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.OptionalEquipment3UpOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D8]])
+                {
+                    controlls.OptionalEquipment3DownOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.OptionalEquipment3DownOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D9]])
+                {
+                    controlls.OptionalEquipment4UpOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.OptionalEquipment4UpOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.D0]])
+                {
+                    controlls.OptionalEquipment4DownOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.OptionalEquipment4DownOff(ref laurentA, ref laurentB);
+                }
+
+                if (keys[m_kb_config.keyboard_map[Key.NumPad8]])
+                {
+                    controlls.FoldingUpOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingUpOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.NumPad2]])
+                {
+                    controlls.FoldingDownOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingDownOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.NumPad4]])
+                {
+                    controlls.FoldingLeftOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingLeftOff(ref laurentA, ref laurentB);
+                }
+                if (keys[m_kb_config.keyboard_map[Key.NumPad6]])
+                {
+                    controlls.FoldingRightOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingRightOff(ref laurentA, ref laurentB);
+                }
+
+                if (keys[m_kb_config.keyboard_map[Key.NumPad5]])
+                {
+                    controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
+                }
 
             }
             catch
@@ -402,52 +515,12 @@ namespace WFA_Joystick_Control
             }
         }
 
-        private void webBrowser1_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-        }
-
-        private void buttonRefresh_Click(object sender, EventArgs e)
-        {
-            webBrowser1.Refresh();
-        }
-
         private void buttonJoysticConnect_Click(object sender, EventArgs e)
         {
             connectToJoystick(joystick);
         }
 
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            SaveStringConnection(textBox1.Text);
-        }
         
-        private void button_disconnect1_Click(object sender, EventArgs e)
-        {
-            //laurentA.Disconnect();
-        }
-
-        private void button_Record_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonURLConnect_Click(object sender, EventArgs e)
-        {
-            webBrowser1.Url = new Uri(ReadStringConnect());
-            
-        }
-
-        private void button_VideoConnect_Click(object sender, EventArgs e)
-        {
-            string imagestream = textBox_VideoConnect.Text;
-            //imagestream += ":8080/?action=stream";
-            //imagestream += ":8080/?action=snapshot";
-            pictureBox1.Load(imagestream);
-            pictureBox1.BringToFront();
-            webBrowser1.Visible = false;
-        }
-
         private void button_Settings_Click(object sender, EventArgs e)
         {
             form_settings.ShowDialog();

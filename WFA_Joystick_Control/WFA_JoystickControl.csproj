@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlls.cs" />
+    <Compile Include="joysticks_configuration.cs" />
     <Compile Include="keyboard_configuration.cs" />
     <Compile Include="Form_Control.cs">
       <SubType>Form</SubType>
