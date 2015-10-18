@@ -36,7 +36,7 @@ namespace WFA_Joystick_Control
             {
                 m_joystick_map = DefaultDictionary();
                 Flush();
-                throw new System.Exception("An error occured while reading joystick.config. Joystick was reset to default. \nError: " + ex.Message);
+                //throw new System.Exception("An error occured while reading joystick.config. Joystick was reset to default. \nError: " + ex.Message);
             }
         }
 
