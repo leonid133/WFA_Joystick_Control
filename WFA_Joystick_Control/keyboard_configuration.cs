@@ -105,7 +105,6 @@ namespace WFA_Joystick_Control
             dict.Add(eKey.NumPad2, eKey.NumPad2);
             dict.Add(eKey.NumPad4, eKey.NumPad4);
             dict.Add(eKey.NumPad6, eKey.NumPad6);
-            dict.Add(eKey.NumPad5, eKey.NumPad5);
 
             dict.Add(eKey.D1, eKey.D1);
             dict.Add(eKey.D2, eKey.D2);
