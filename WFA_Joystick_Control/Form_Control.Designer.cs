@@ -51,6 +51,7 @@
             this.checkBox_light = new System.Windows.Forms.CheckBox();
             this.checkBox_Cam = new System.Windows.Forms.CheckBox();
             this.checkBox_Fix = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -114,9 +115,9 @@
             // 
             this.button_joyConnect.Location = new System.Drawing.Point(6, 119);
             this.button_joyConnect.Name = "button_joyConnect";
-            this.button_joyConnect.Size = new System.Drawing.Size(75, 23);
+            this.button_joyConnect.Size = new System.Drawing.Size(87, 23);
             this.button_joyConnect.TabIndex = 9;
-            this.button_joyConnect.Text = "Joystic_Connect";
+            this.button_joyConnect.Text = "Joy_Connect";
             this.button_joyConnect.UseVisualStyleBackColor = true;
             this.button_joyConnect.Click += new System.EventHandler(this.buttonJoysticConnect_Click);
             // 
@@ -132,6 +133,7 @@
             // ReserveKeybord_timer
             // 
             this.ReserveKeybord_timer.Enabled = true;
+            this.ReserveKeybord_timer.Interval = 200;
             this.ReserveKeybord_timer.Tick += new System.EventHandler(this.ReserveKeybord_timer_Tick);
             // 
             // toolStripContainer1
@@ -141,6 +143,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.textBox1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.checkBox_Fix);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.checkBox_Cam);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.checkBox_light);
@@ -160,13 +163,13 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.button_left);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.button_connect1);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(630, 275);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(630, 322);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(630, 275);
+            this.toolStripContainer1.Size = new System.Drawing.Size(630, 322);
             this.toolStripContainer1.TabIndex = 18;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
@@ -176,7 +179,7 @@
             this.button_Settings.Location = new System.Drawing.Point(6, 155);
             this.button_Settings.Margin = new System.Windows.Forms.Padding(2);
             this.button_Settings.Name = "button_Settings";
-            this.button_Settings.Size = new System.Drawing.Size(75, 24);
+            this.button_Settings.Size = new System.Drawing.Size(87, 24);
             this.button_Settings.TabIndex = 20;
             this.button_Settings.Text = "Settings";
             this.button_Settings.UseVisualStyleBackColor = true;
@@ -254,6 +257,7 @@
             this.checkBox_light.Name = "checkBox_light";
             this.checkBox_light.Size = new System.Drawing.Size(83, 17);
             this.checkBox_light.TabIndex = 25;
+            this.checkBox_light.Tag = "1";
             this.checkBox_light.Text = "Прожектор";
             this.checkBox_light.UseVisualStyleBackColor = true;
             // 
@@ -264,6 +268,7 @@
             this.checkBox_Cam.Name = "checkBox_Cam";
             this.checkBox_Cam.Size = new System.Drawing.Size(65, 17);
             this.checkBox_Cam.TabIndex = 26;
+            this.checkBox_Cam.Tag = "1";
             this.checkBox_Cam.Text = "Камера";
             this.checkBox_Cam.UseVisualStyleBackColor = true;
             // 
@@ -274,14 +279,22 @@
             this.checkBox_Fix.Name = "checkBox_Fix";
             this.checkBox_Fix.Size = new System.Drawing.Size(150, 17);
             this.checkBox_Fix.TabIndex = 27;
+            this.checkBox_Fix.Tag = "1";
             this.checkBox_Fix.Text = "Фиксация складывания";
             this.checkBox_Fix.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(96, 272);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(355, 20);
+            this.textBox1.TabIndex = 28;
             // 
             // Form_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 275);
+            this.ClientSize = new System.Drawing.Size(630, 322);
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "Form_Control";
             this.Text = "Управление";
@@ -318,6 +331,7 @@
         private System.Windows.Forms.CheckBox checkBox_light;
         private System.Windows.Forms.CheckBox checkBox_Fix;
         private System.Windows.Forms.CheckBox checkBox_Cam;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

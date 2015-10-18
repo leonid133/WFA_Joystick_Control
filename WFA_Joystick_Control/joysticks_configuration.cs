@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization.Json;
 using System.IO;
-
+using eKey = Microsoft.DirectX.DirectInput.Key;
 
 
 namespace WFA_Joystick_Control
@@ -12,11 +12,11 @@ namespace WFA_Joystick_Control
     class JoystickConfiguration
     {
         static string m_config_file_name = "joysticks.config";
-        static DataContractJsonSerializer m_serializer = new DataContractJsonSerializer(typeof(Dictionary<String, String>));
+        static DataContractJsonSerializer m_serializer = new DataContractJsonSerializer(typeof(Dictionary<eKey, String>));
 
-        public Dictionary<String, String> m_joystick_map;
+        public Dictionary<eKey, String> m_joystick_map;
 
-        public void SetKey(String dest, String source)
+        public void SetJoyAction(eKey dest, String source)
         {
             m_joystick_map[dest] = source;
         }
@@ -60,7 +60,7 @@ namespace WFA_Joystick_Control
         }
 
 
-        static public string GetJSON(ref Dictionary<String, String> dict)
+        static public string GetJSON(ref Dictionary<eKey, String> dict)
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -69,46 +69,47 @@ namespace WFA_Joystick_Control
             }
         }
 
-        static public Dictionary<String, String> GetDictionary(ref string json)
+        static public Dictionary<eKey, String> GetDictionary(ref string json)
         {
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
             {
-                return (Dictionary<String, String>)m_serializer.ReadObject(ms);
+                return (Dictionary<eKey, String>)m_serializer.ReadObject(ms);
             }
         }
-        static public Dictionary<String, String> DefaultDictionary()
+        static public Dictionary<eKey, String> DefaultDictionary()
         {
-            Dictionary<String, String> dict = new Dictionary<String, String>();
-            dict.Add("Y+", "Y+"); //Вперед
-            dict.Add("Y-", "Y-"); //Назад
-            dict.Add("X+", "X+"); //Поворот в право
-            dict.Add("X-", "X-"); //Поворот в лево
+            Dictionary<eKey, String> dict = new Dictionary<eKey, String>();
+            dict.Add(eKey.W, "Y-"); //Вперед W
+            dict.Add(eKey.S, "Y+"); //Назад S
+            dict.Add(eKey.D, "X-"); //Поворот в право D
+            dict.Add(eKey.A, "X+"); //Поворот в лево A
 
-            dict.Add("AY+", "AY+"); //Подъем пушки
-            dict.Add("AY-", "AY-"); //Опускание пушки
-            dict.Add("AX+", "AX+"); //Поворот пушки вправо
-            dict.Add("AX-", "AX-"); //Поворот пушки влево
+            dict.Add(eKey.Up, "AY-"); //Подъем пушки Up
+            dict.Add(eKey.Down, "AY+"); //Опускание пушки Down
+            dict.Add(eKey.Right, "AX-"); //Поворот пушки вправо Right
+            dict.Add(eKey.Left, "AX+"); //Поворот пушки влево Left
 
-            dict.Add("VY+", "VY+"); //Складывание по вертикали вверх
-            dict.Add("VY-", "VY-"); //Складывание по вертикали вниз
-            dict.Add("Z+", "Z+"); //Раскладывание
-            dict.Add("Z-", "Z-"); //Складывание
+            dict.Add(eKey.NumPad8, "VY-"); //Складывание по вертикали вверх Num8
+            dict.Add(eKey.NumPad2, "VY+"); //Складывание по вертикали вниз Num2
+            dict.Add(eKey.NumPad4, "Z+"); //Раскладывание Num4
+            dict.Add(eKey.NumPad6, "Z-"); //Складывание Num6
 
-            dict.Add("B1", "B1");  // Фиксация/Расфиксация вертикального складывания
-            dict.Add("B2", "B2");  // Включение/Выключение выключение прожектора
-            dict.Add("B3", "B3");  // Включение/Выключение камеры
+            dict.Add(eKey.NumPad5, "B1");  // Фиксация/Расфиксация вертикального складывания Num5
+
+            dict.Add(eKey.D1, "B2");  // Включение/Выключение выключение прожектора 1
+            dict.Add(eKey.D2, "B3");  // Включение/Выключение камеры 2
             
-            dict.Add("2Y+", "2Y+"); //Доп оборудование №1 вверх
-            dict.Add("2Y-", "2Y-"); //Доп оборудование №1 вниз
+            dict.Add(eKey.D3, "2Y+"); //Доп оборудование №1 вверх 3
+            dict.Add(eKey.D4, "2Y-"); //Доп оборудование №1 вниз 4
 
-            dict.Add("2X+", "2X+"); //Доп оборудование №2 вверх
-            dict.Add("2X-", "2X-"); //Доп оборудование №2 вниз
+            dict.Add(eKey.D5, "2X+"); //Доп оборудование №2 вверх 5
+            dict.Add(eKey.D6, "2X-"); //Доп оборудование №2 вниз 6
 
-            dict.Add("2Z+", "2Z+"); //Доп оборудование №3 вверх
-            dict.Add("2Z-", "2Z-"); //Доп оборудование №3 вниз
+            dict.Add(eKey.D7, "2Z+"); //Доп оборудование №3 вверх 7
+            dict.Add(eKey.D8, "2Z-"); //Доп оборудование №3 вниз 8 
 
-            dict.Add("2VY+", "2VY+"); //Доп оборудование №4 вверх
-            dict.Add("2VY-", "2VY-"); //Доп оборудование №4 вниз
+            dict.Add(eKey.D9, "2VY+"); //Доп оборудование №4 вверх 9
+            dict.Add(eKey.D0, "2VY-"); //Доп оборудование №4 вниз 0
 
             return dict;
         }
