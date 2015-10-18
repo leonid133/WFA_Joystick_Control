@@ -592,19 +592,39 @@ namespace WFA_Joystick_Control
 
                 if (keys[m_kb_config.keyboard_map[Key.D1]])
                 {
-                    checkBox_light.Checked = !checkBox_light.Checked;
-                    if (checkBox_light.Checked)
-                        controlls.ProjectorOn(ref laurentA, ref laurentB);
+                    int count = Convert.ToInt32(checkBox_light.Tag.ToString());
+                    if (count > 3)
+                    {
+                        checkBox_light.Checked = !checkBox_light.Checked;
+                        if (checkBox_light.Checked)
+                            controlls.ProjectorOn(ref laurentA, ref laurentB);
+                        else
+                            controlls.ProjectorOff(ref laurentA, ref laurentB);
+                        checkBox_light.Tag = 0;
+                    }
                     else
-                        controlls.ProjectorOff(ref laurentA, ref laurentB);
+                    {
+                        ++count;
+                        checkBox_light.Tag = count.ToString();
+                    }
                 }
                 if (keys[m_kb_config.keyboard_map[Key.D2]])
                 {
-                    checkBox_Cam.Checked = !checkBox_Cam.Checked;
-                    if (checkBox_Cam.Checked)
-                        controlls.CamOn(ref laurentA, ref laurentB);
+                    int count = Convert.ToInt32(checkBox_Cam.Tag.ToString());
+                    if (count > 3)
+                    {
+                        checkBox_Cam.Checked = !checkBox_Cam.Checked;
+                        if (checkBox_Cam.Checked)
+                            controlls.CamOn(ref laurentA, ref laurentB);
+                        else
+                            controlls.DownOff(ref laurentA, ref laurentB);
+                        checkBox_Cam.Tag = 0;
+                    }
                     else
-                        controlls.DownOff(ref laurentA, ref laurentB);
+                    {
+                        ++count;
+                        checkBox_Cam.Tag = count.ToString();
+                    }
                 }
 
                 if (keys[m_kb_config.keyboard_map[Key.D3]])
@@ -707,11 +727,21 @@ namespace WFA_Joystick_Control
 
                 if (keys[m_kb_config.keyboard_map[Key.NumPad5]])
                 {
-                    checkBox_Fix.Checked = !checkBox_Fix.Checked;
-                    if(checkBox_Fix.Checked)
-                        controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
+                    int count = Convert.ToInt32(checkBox_Fix.Tag.ToString());
+                    if (count > 3)
+                    {
+                        checkBox_Fix.Checked = !checkBox_Fix.Checked;
+                        if (checkBox_Fix.Checked)
+                            controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
+                        else
+                            controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
+                        checkBox_Fix.Tag = 0;
+                    }
                     else
-                        controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
+                    {
+                        ++count;
+                        checkBox_Fix.Tag = count.ToString();
+                    }
                 }
 
             }

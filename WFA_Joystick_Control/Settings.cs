@@ -44,34 +44,46 @@ namespace WFA_Joystick_Control
             Refresh();
         }
 
+         private string NiceName(string raw_name)
+         {
+             if (raw_name.Length == 2 && raw_name[0] == 'D')
+                 return raw_name[1].ToString();
+             if (raw_name == "DownArrow")
+                 return "Down";
+             if (raw_name == "LeftArrow")
+                 return "Left";
+             return raw_name;
+         }
+
         public override void Refresh()
         {
-            button_w.Text = m_kb_config.keyboard_map[eKey.W].ToString() + " || " + m_joy_config.m_joystick_map[eKey.W];
-            button_s.Text = m_kb_config.keyboard_map[eKey.S].ToString() + " || " + m_joy_config.m_joystick_map[eKey.S];
-            button_a.Text = m_kb_config.keyboard_map[eKey.A].ToString() + " || " + m_joy_config.m_joystick_map[eKey.A];
-            button_d.Text = m_kb_config.keyboard_map[eKey.D].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D];
+            
+            button_w.Text = NiceName(m_kb_config.keyboard_map[eKey.W].ToString())+ " || " + m_joy_config.m_joystick_map[eKey.W];
+            button_s.Text = NiceName(m_kb_config.keyboard_map[eKey.S].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.S];
+            button_a.Text = NiceName(m_kb_config.keyboard_map[eKey.A].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.A];
+            button_d.Text = NiceName(m_kb_config.keyboard_map[eKey.D].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D];
 
-            button_Up.Text = m_kb_config.keyboard_map[eKey.Up].ToString() + " || " + m_joy_config.m_joystick_map[eKey.Up];
-            button_Down.Text = m_kb_config.keyboard_map[eKey.Down].ToString() + " || " + m_joy_config.m_joystick_map[eKey.Down];
-            button_Left.Text = m_kb_config.keyboard_map[eKey.Left].ToString() + " || " + m_joy_config.m_joystick_map[eKey.Left];
-            button_Right.Text = m_kb_config.keyboard_map[eKey.Right].ToString() + " || " + m_joy_config.m_joystick_map[eKey.Right];
+            button_Up.Text = NiceName(m_kb_config.keyboard_map[eKey.Up].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.Up];
+            button_Down.Text = NiceName(m_kb_config.keyboard_map[eKey.Down].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.Down];
+            button_Left.Text = NiceName(m_kb_config.keyboard_map[eKey.Left].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.Left];
+            button_Right.Text = NiceName(m_kb_config.keyboard_map[eKey.Right].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.Right];
 
-            button_Num8.Text = m_kb_config.keyboard_map[eKey.NumPad8].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad8];
-            button_Num2.Text = m_kb_config.keyboard_map[eKey.NumPad2].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad2];
-            button_Num4.Text = m_kb_config.keyboard_map[eKey.NumPad4].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad4];
-            button_Num6.Text = m_kb_config.keyboard_map[eKey.NumPad6].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad6];
-            button_Num5.Text = m_kb_config.keyboard_map[eKey.NumPad5].ToString() + " || " + m_joy_config.m_joystick_map[eKey.NumPad5];
+            button_Num8.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad8].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.NumPad8];
+            button_Num2.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad2].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.NumPad2];
+            button_Num4.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad4].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.NumPad4];
+            button_Num6.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad6].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.NumPad6];
+            button_Num5.Text = NiceName(m_kb_config.keyboard_map[eKey.NumPad5].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.NumPad5];
 
-            button_1.Text = m_kb_config.keyboard_map[eKey.D1].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D1];
-            button_2.Text = m_kb_config.keyboard_map[eKey.D2].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D2];
-            button_3.Text = m_kb_config.keyboard_map[eKey.D3].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D3];
-            button_4.Text = m_kb_config.keyboard_map[eKey.D4].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D4];
-            button_5.Text = m_kb_config.keyboard_map[eKey.D5].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D5];
-            button_6.Text = m_kb_config.keyboard_map[eKey.D6].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D6];
-            button_7.Text = m_kb_config.keyboard_map[eKey.D7].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D7];
-            button_8.Text = m_kb_config.keyboard_map[eKey.D8].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D8];
-            button_9.Text = m_kb_config.keyboard_map[eKey.D9].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D9];
-            button_0.Text = m_kb_config.keyboard_map[eKey.D0].ToString() + " || " + m_joy_config.m_joystick_map[eKey.D0];
+            button_1.Text = NiceName(m_kb_config.keyboard_map[eKey.D1].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D1];
+            button_2.Text = NiceName(m_kb_config.keyboard_map[eKey.D2].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D2];
+            button_3.Text = NiceName(m_kb_config.keyboard_map[eKey.D3].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D3];
+            button_4.Text = NiceName(m_kb_config.keyboard_map[eKey.D4].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D4];
+            button_5.Text = NiceName(m_kb_config.keyboard_map[eKey.D5].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D5];
+            button_6.Text = NiceName(m_kb_config.keyboard_map[eKey.D6].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D6];
+            button_7.Text = NiceName(m_kb_config.keyboard_map[eKey.D7].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D7];
+            button_8.Text = NiceName(m_kb_config.keyboard_map[eKey.D8].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D8];
+            button_9.Text = NiceName(m_kb_config.keyboard_map[eKey.D9].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D9];
+            button_0.Text = NiceName(m_kb_config.keyboard_map[eKey.D0].ToString()) + " || " + m_joy_config.m_joystick_map[eKey.D0];
 
             base.Refresh();
         }

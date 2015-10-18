@@ -43,7 +43,7 @@ namespace WFA_Joystick_Control
             {
                 keyboard_map = DefaultDictionary();
                 Flush();
-                throw new System.Exception("An error occured while reading keyboard.config. Keyboard was reset to default. \nError: " + ex.Message);
+                //throw new System.Exception("An error occured while reading keyboard.config. Keyboard was reset to default. \nError: " + ex.Message);
 //                 Console.WriteLine(ex.ToString());
             }
 //             return connectionString;
