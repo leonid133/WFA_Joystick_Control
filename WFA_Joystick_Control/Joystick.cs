@@ -18,8 +18,25 @@ namespace WFA_Joystick_Control
 
         private Device m_joystickDevice;
         private JoystickState m_state;
+        
         public int m_Xaxis; 
-        public int m_Yaxis; 
+        public int m_Yaxis;
+        public int m_Zaxis;
+
+        public int m_AXaxis;
+        public int m_AYaxis;
+        public int m_AZaxis;
+        
+        public int m_VXaxis;
+        public int m_VYaxis;
+        public int m_VZaxis;
+
+        public int m_FXaxis;
+        public int m_FYaxis;
+        public int m_FZaxis;
+
+        public String m_State;
+
         public bool[] m_buttons;
 
         #endregion
@@ -111,21 +128,36 @@ namespace WFA_Joystick_Control
         {
             Poll();
 
-            int[] extraAxis_J1 = m_state.GetSlider();
-            
-            m_Xaxis = m_state.X;
-            m_Yaxis = m_state.Y;
+            int[] extraAxis = m_state.GetSlider();
+            m_Xaxis = m_state.X; // X+ X-
+            m_Yaxis = m_state.Y; // Y+ Y- 
+            m_Zaxis = m_state.Z; // Z+ Z-
+
+            int[] extraAxisAcceleration = m_state.GetASlider();
+            m_AXaxis = m_state.AX; // AX+ AX-
+            m_AYaxis = m_state.AY; // AY+ AY-
+            m_AZaxis = m_state.AZ; // AZ+ AZ-
+
+            int[] extraAxisVelocity = m_state.GetVSlider();
+            m_VXaxis = m_state.VX; // VX+ VX-
+            m_VYaxis = m_state.VY; // VY+ VY-
+            m_VZaxis = m_state.VZ; // VZ+ VZ-
+
+            int[] extraAxisForce = m_state.GetFSlider();
+            m_FXaxis = m_state.FX; // FX+ FX-
+            m_FYaxis = m_state.FY; // FY+ FY-
+            m_FZaxis = m_state.FZ; // FZ+ FZ-
 
             byte[] jsButtons_J1 = m_state.GetButtons();
             m_buttons = new bool[jsButtons_J1.Length];
 
-            int it_button_J1 = 0;
+            int it_button_J1 = 0; // B#
             foreach (byte button in jsButtons_J1)
             {
                 m_buttons[it_button_J1] = button >= 128;
                 it_button_J1++;
             }
-
+            
         }
 
         private void Poll()
