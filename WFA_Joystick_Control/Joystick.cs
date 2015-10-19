@@ -130,7 +130,7 @@ namespace WFA_Joystick_Control
 
         private void CheckAxisFound()
         {
-            m_axiss_found = new bool[16];
+            m_axiss_found = new bool[25];
             int[] extraAxis = m_state.GetSlider();
             if (m_state.X == 0)
                 m_axiss_found[0] = false;
@@ -199,6 +199,20 @@ namespace WFA_Joystick_Control
                 m_axiss_found[14] = false;
             else
                 m_axiss_found[14] = true;
+
+            if (m_state.ARx == 0)
+                m_axiss_found[15] = false;
+            else
+                m_axiss_found[15] = true;
+            if (m_state.ARy == 0)
+                m_axiss_found[16] = false;
+            else
+                m_axiss_found[16] = true;
+            if (m_state.ARz == 0)
+                m_axiss_found[17] = false;
+            else
+                m_axiss_found[17] = true;
+
             
         }
 
@@ -210,7 +224,7 @@ namespace WFA_Joystick_Control
         public void UpdateStatus()
         {
             Poll();
-
+            
             int[] extraAxis = m_state.GetSlider();
             m_State = " ";
 
@@ -297,11 +311,45 @@ namespace WFA_Joystick_Control
             else if (m_Rz == 65535)
                 m_State += "RZ+ ";
 
-            byte[] jsButtons_J1 = m_state.GetButtons();
-            m_buttons = new bool[jsButtons_J1.Length];
+            if ( m_state.ARx == 0 && m_axiss_found[15])
+                m_State += "ARX- ";
+            else if (m_state.ARx == 65535)
+                m_State += "ARX+ ";
+            if (m_state.ARy == 0 && m_axiss_found[16])
+                m_State += "ARY- ";
+            else if (m_state.ARy == 65535)
+                m_State += "ARY+ ";
+            if (m_state.ARz == 0 && m_axiss_found[17])
+                m_State += "ARZ- ";
+            else if (m_Rz == 65535)
+                m_State += "ARZ+ ";
+
+            int[] views = m_state.GetPointOfView();
+            int[] pofviews_j = new int[views.Length];
+
+            int it_pov = 0;
+            foreach (int PofV in views)
+            {
+                pofviews_j[it_pov] = PofV;
+                if (it_pov == 0) 
+                { 
+                    if(pofviews_j[it_pov] == 0)
+                        m_State += "P_Up";
+                    else if (pofviews_j[it_pov] == 27000)
+                        m_State += "P_Le";
+                    else if (pofviews_j[it_pov] == 9000)
+                        m_State += "P_Ri";
+                    else if (pofviews_j[it_pov] == 18000)
+                        m_State += "P_Do";
+                }
+                ++it_pov;
+            }
+            
+            byte[] jsButtons_J = m_state.GetButtons();
+            m_buttons = new bool[jsButtons_J.Length];
 
             int it_button_J1 = 0; // B#
-            foreach (byte button in jsButtons_J1)
+            foreach (byte button in jsButtons_J)
             {
                 m_buttons[it_button_J1] = button >= 128;
                 if (m_buttons[it_button_J1])
