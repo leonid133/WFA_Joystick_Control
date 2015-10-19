@@ -230,11 +230,9 @@ namespace WFA_Joystick_Control
                 
                 Microsoft.DirectX.DirectInput.KeyboardState keys = keybord.m_keyboard_device.GetCurrentKeyboardState();
                 
-                String joy_summ_state = joystick.m_State;
+                String joy_summ_state = joystick.m_State.Trim();
                 textBox1.Text = joystick.m_State;
-                textBox1.Text += m_joy_config.m_joystick_map[Key.A];
-                textBox1.Text += joystick.m_State.IndexOf(m_joy_config.m_joystick_map[Key.A]);
-                
+                 
                 //J2
                 if (joy2_connected) 
                 {
@@ -248,7 +246,6 @@ namespace WFA_Joystick_Control
                     joy2_stat = joy2_stat.TrimEnd('2');
                     joy_summ_state += joy2_stat;
                     textBox1.Text += " || ";
-                    textBox1.Text += joystick2.m_State;
                     textBox1.Text += joy2_stat;
                 }
 
