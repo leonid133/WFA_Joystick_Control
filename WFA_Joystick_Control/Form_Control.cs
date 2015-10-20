@@ -230,7 +230,7 @@ namespace WFA_Joystick_Control
                 
                 Microsoft.DirectX.DirectInput.KeyboardState keys = keybord.m_keyboard_device.GetCurrentKeyboardState();
                 
-                String joy_summ_state = joystick.m_State.Trim();
+                String joy_summ_state = joystick.m_State;
                 textBox1.Text = joystick.m_State;
                  
                 //J2
@@ -329,7 +329,38 @@ namespace WFA_Joystick_Control
                 {
                     controlls.GunRightOff(ref laurentA, ref laurentB);
                 }
-
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad8]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad8]])
+                {
+                    controlls.FoldingUpOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingUpOff(ref laurentA, ref laurentB);
+                }
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad2]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad2]])
+                {
+                    controlls.FoldingDownOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingDownOff(ref laurentA, ref laurentB);
+                }
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad4]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad4]])
+                {
+                    controlls.FoldingLeftOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingLeftOff(ref laurentA, ref laurentB);
+                }
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad6]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad6]])
+                {
+                    controlls.FoldingRightOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingRightOff(ref laurentA, ref laurentB);
+                }
                 if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D1]) == 0 || keys[m_kb_config.keyboard_map[Key.D1]])
                 {
                     int count = Convert.ToInt32(checkBox_light.Tag.ToString());
@@ -357,7 +388,7 @@ namespace WFA_Joystick_Control
                         if (checkBox_Cam.Checked)
                             controlls.CamOn(ref laurentA, ref laurentB);
                         else
-                            controlls.DownOff(ref laurentA, ref laurentB);
+                            controlls.CamOff(ref laurentA, ref laurentB);
                         checkBox_Cam.Tag = 0;
                     }
                     else
@@ -433,38 +464,7 @@ namespace WFA_Joystick_Control
                     controlls.OptionalEquipment4DownOff(ref laurentA, ref laurentB);
                 }
 
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad8]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad8]])
-                {
-                    controlls.FoldingUpOn(ref laurentA, ref laurentB);
-                }
-                else
-                {
-                    controlls.FoldingUpOff(ref laurentA, ref laurentB);
-                }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad2]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad2]])
-                {
-                    controlls.FoldingDownOn(ref laurentA, ref laurentB);
-                }
-                else
-                {
-                    controlls.FoldingDownOff(ref laurentA, ref laurentB);
-                }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad4]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad4]])
-                {
-                    controlls.FoldingLeftOn(ref laurentA, ref laurentB);
-                }
-                else
-                {
-                    controlls.FoldingLeftOff(ref laurentA, ref laurentB);
-                }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad6]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad6]])
-                {
-                    controlls.FoldingRightOn(ref laurentA, ref laurentB);
-                }
-                else
-                {
-                    controlls.FoldingRightOff(ref laurentA, ref laurentB);
-                }
+                
 
                 if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad5]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad5]])
                 {
@@ -614,7 +614,7 @@ namespace WFA_Joystick_Control
                         if (checkBox_Cam.Checked)
                             controlls.CamOn(ref laurentA, ref laurentB);
                         else
-                            controlls.DownOff(ref laurentA, ref laurentB);
+                            controlls.CamOff(ref laurentA, ref laurentB);
                         checkBox_Cam.Tag = 0;
                     }
                     else

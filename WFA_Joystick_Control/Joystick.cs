@@ -321,7 +321,7 @@ namespace WFA_Joystick_Control
                 m_State += "ARY+ ";
             if (m_state.ARz == 0 && m_axiss_found[17])
                 m_State += "ARZ- ";
-            else if (m_Rz == 65535)
+            else if (m_state.ARz == 65535)
                 m_State += "ARZ+ ";
 
             int[] views = m_state.GetPointOfView();
@@ -334,13 +334,21 @@ namespace WFA_Joystick_Control
                 if (it_pov == 0) 
                 { 
                     if(pofviews_j[it_pov] == 0)
-                        m_State += "P_Up";
-                    else if (pofviews_j[it_pov] == 27000)
-                        m_State += "P_Le";
+                        m_State += "P_Up ";
+                    else if (pofviews_j[it_pov] == 4500)
+                        m_State += "P_Up_Ri ";
                     else if (pofviews_j[it_pov] == 9000)
-                        m_State += "P_Ri";
+                        m_State += "P_Ri ";
+                    else if (pofviews_j[it_pov] == 13500)
+                        m_State += "P_Ri_Do ";
                     else if (pofviews_j[it_pov] == 18000)
-                        m_State += "P_Do";
+                        m_State += "P_Do ";
+                    else if (pofviews_j[it_pov] == 22500)
+                        m_State += "P_Do_Le ";
+                    else if (pofviews_j[it_pov] == 27000)
+                        m_State += "P_Le ";
+                    else if (pofviews_j[it_pov] == 22500)
+                        m_State += "P_Le_Up ";
                 }
                 ++it_pov;
             }
@@ -354,7 +362,7 @@ namespace WFA_Joystick_Control
                 m_buttons[it_button_J1] = button >= 128;
                 if (m_buttons[it_button_J1])
                 {
-                    m_State += "B";
+                    m_State += "But";
                     m_State += it_button_J1;
                     m_State += " ";
                 }

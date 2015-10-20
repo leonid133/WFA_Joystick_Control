@@ -330,10 +330,10 @@ namespace WFA_Joystick_Control
                         Regex rgx_joystick2 = new Regex(pattern_regex_joystick2);
                         String joy2_stat = rgx_joystick2.Replace(m_joystick2.m_State, replacement);
                         joy2_stat = joy2_stat.TrimEnd('2');
-                        curren_joy_action += joy2_stat;
+                        curren_joy_action += joy2_stat.Trim();
                     }
                 }
-                if (curren_joy_action.Length > 3)
+                if (curren_joy_action.Length > 2)
                 {
                     m_joy_config.SetJoyAction(m_current_button, curren_joy_action);
                     m_joy_config.Flush();
