@@ -112,6 +112,8 @@ namespace WFA_Joystick_Control
 
             m_current_button = 0;
             label1.Visible = false;
+            this.joystick_settings_Timer.Enabled = false;
+
         }
 
         private void button_w_Click(object sender, EventArgs e)
@@ -313,26 +315,30 @@ namespace WFA_Joystick_Control
                 m_joystick.UpdateStatus();
                 m_joystickButtons_J1 = m_joystick.m_buttons;
                 String curren_joy_action = "";
-                curren_joy_action = m_joystick.m_State.Trim(); 
+                if (m_joystick.m_State.Length>2)
+                {
+                    curren_joy_action = m_joystick.m_State.Trim(); 
+                }
                 if (m_joy2_connected)
                 {
                     m_joystick2.UpdateStatus();
                     m_joystickButtons_J2 = m_joystick2.m_buttons;
-
-                    String pattern_regex_joystick2 = "\\s+";
-                    String replacement = " 2";
-                    Regex rgx_joystick2 = new Regex(pattern_regex_joystick2);
-                    String joy2_stat = rgx_joystick2.Replace(m_joystick2.m_State, replacement);
-                    joy2_stat = joy2_stat.TrimEnd('2');
-                    curren_joy_action += joy2_stat;
+                    if (m_joystick2.m_State.Length > 2)
+                    {
+                        String pattern_regex_joystick2 = "\\s+";
+                        String replacement = " 2";
+                        Regex rgx_joystick2 = new Regex(pattern_regex_joystick2);
+                        String joy2_stat = rgx_joystick2.Replace(m_joystick2.m_State, replacement);
+                        joy2_stat = joy2_stat.TrimEnd('2');
+                        curren_joy_action += joy2_stat;
+                    }
                 }
-                if (curren_joy_action.Length > 3 && curren_joy_action.Length < 8)
+                if (curren_joy_action.Length > 3)
                 {
                     m_joy_config.SetJoyAction(m_current_button, curren_joy_action);
                     m_joy_config.Flush();
 
                     Refresh();
-                    this.joystick_settings_Timer.Enabled = false;
                 }
             }
             catch { this.joystick_settings_Timer.Enabled = false; MessageBox.Show("Упали"); }
