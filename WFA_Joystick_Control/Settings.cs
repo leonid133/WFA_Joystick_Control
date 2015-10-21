@@ -333,7 +333,7 @@ namespace WFA_Joystick_Control
                         curren_joy_action += joy2_stat.Trim();
                     }
                 }
-                if (curren_joy_action.Length > 2)
+                if (curren_joy_action.Length > 1)
                 {
                     m_joy_config.SetJoyAction(m_current_button, curren_joy_action);
                     m_joy_config.Flush();
