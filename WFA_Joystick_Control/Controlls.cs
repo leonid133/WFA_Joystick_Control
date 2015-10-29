@@ -22,6 +22,14 @@ namespace WFA_Joystick_Control
                 B[i]=false;
             }
         }
+        private bool A1Off_tester()
+        {
+            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[2] && !A[3] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+                return true;
+            else
+                return false;
+        }
+
         public void GetState(ref TcpIpLaurentConnector tcp_connectorA, ref TcpIpLaurentConnector tcp_connectorB)
         {
             stateA = tcp_connectorA.GetRDR();
@@ -47,7 +55,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("1");
                 B[1] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -74,7 +82,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("2");
                 B[2] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -101,7 +109,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("8");
                 B[8] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -128,7 +136,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("7");
                 B[7] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -154,7 +162,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("9");
                 B[9] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -180,7 +188,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("10");
                 B[10] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -222,7 +230,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("2");
                 A[2] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -248,7 +256,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("3");
                 A[3] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -274,7 +282,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("5"); 
                 B[5] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -302,7 +310,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("6");
                 B[6] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -329,7 +337,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("4");
                 B[4] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -356,7 +364,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorB.OffRel("3");
                 B[3] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -414,7 +422,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorA.OffRel("4");
                 A[4] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] &&!A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11] )
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -441,7 +449,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorA.OffRel("5");
                 A[5] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -467,7 +475,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorA.OffRel("6");
                 A[6] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -494,7 +502,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorA.OffRel("7");
                 A[7] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -520,7 +528,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorA.OffRel("8");
                 A[8] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -547,7 +555,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorA.OffRel("9");
                 A[9] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -573,7 +581,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorA.OffRel("10");
                 A[10] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;
@@ -600,7 +608,7 @@ namespace WFA_Joystick_Control
                 tcp_connectorA.OffRel("11");
                 A[11] = false;
             }
-            if (A[1] && !B[1] && !B[2] && !B[3] && !B[4] && !B[5] && !B[6] && !B[7] && !B[8] && !B[9] && !B[10] && !A[4] && !A[5] && !A[6] && !A[7] && !A[8] && !A[9] && !A[10] && !A[11])
+            if (A1Off_tester())
             {
                 tcp_connectorA.OffRel("1");
                 A[1] = false;

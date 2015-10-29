@@ -224,9 +224,18 @@ namespace WFA_Joystick_Control
         public void UpdateStatus()
         {
             Poll();
-            
-            int[] extraAxis = m_state.GetSlider();
             m_State = " ";
+
+            int[] extraAxisSlider = m_state.GetSlider();
+            foreach (int slider in extraAxisSlider)
+            {
+                if(slider > 129 && slider < 22200) 
+                    m_State += "Sl1 ";
+                else if (slider >= 22200 && slider < 50000)
+                    m_State += "Sl2 ";
+                else if (slider >= 50000)
+                    m_State += "Sl3 ";
+            }
 
             m_Xaxis = m_state.X; // X+ X-
             if (m_Xaxis < 129 && m_axiss_found[0])
@@ -244,7 +253,13 @@ namespace WFA_Joystick_Control
             else if (m_Zaxis > 65406)
                 m_State += "Z+ ";
             
-            int[] extraAxisAcceleration = m_state.GetASlider();
+            int[] extraAxisAccelerationSlider = m_state.GetASlider();
+            foreach (int slider in extraAxisAccelerationSlider)
+            {
+                if (slider > 129)
+                    m_State += "ASl" + slider + " ";
+            }
+            
             m_AXaxis = m_state.AX; // AX+ AX-
             if (m_AXaxis < 129 && m_axiss_found[3])
                 m_State += "AX- ";
@@ -261,7 +276,13 @@ namespace WFA_Joystick_Control
             else if (m_AZaxis > 65406)
                 m_State += "AZ+ ";
 
-            int[] extraAxisVelocity = m_state.GetVSlider();
+            int[] extraAxisVelocitySlider = m_state.GetVSlider();
+            foreach (int slider in extraAxisVelocitySlider)
+            {
+                if (slider > 129)
+                    m_State += "VSl" + slider + " ";
+            }
+
             m_VXaxis = m_state.VX; // VX+ VX-
             if (m_VXaxis < 129 && m_axiss_found[6])
                 m_State += "VX- ";
@@ -278,7 +299,13 @@ namespace WFA_Joystick_Control
             else if (m_VZaxis > 65406)
                 m_State += "VZ+ ";
 
-            int[] extraAxisForce = m_state.GetFSlider();
+            int[] extraAxisForceSlider = m_state.GetFSlider();
+            foreach (int slider in extraAxisForceSlider)
+            {
+                if (slider > 129)
+                    m_State += "FSl" + slider + " ";
+            }
+            
             m_FXaxis = m_state.FX; // FX+ FX-
             if (m_FXaxis < 129 && m_axiss_found[9])
                 m_State += "FX- ";

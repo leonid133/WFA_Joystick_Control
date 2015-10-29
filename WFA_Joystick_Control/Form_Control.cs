@@ -304,7 +304,6 @@ namespace WFA_Joystick_Control
                 else
                 {
                     controlls.GunUpOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
                 if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Down]) != -1 || keys[m_kb_config.keyboard_map[Key.Down]])
                 {
@@ -368,10 +367,6 @@ namespace WFA_Joystick_Control
                     if (count > 3)
                     {
                         checkBox_light.Checked = !checkBox_light.Checked;
-                        if (checkBox_light.Checked)
-                            controlls.ProjectorOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.ProjectorOff(ref laurentA, ref laurentB);
                         checkBox_light.Tag = 0;
                     }
                     else
@@ -380,16 +375,17 @@ namespace WFA_Joystick_Control
                         checkBox_light.Tag = count.ToString();
                     }
                 }
+                if (checkBox_light.Checked)
+                    controlls.ProjectorOn(ref laurentA, ref laurentB);
+                else
+                    controlls.ProjectorOff(ref laurentA, ref laurentB);
+
                 if (keys[m_kb_config.keyboard_map[Key.D2]])
                 {
                     int count = Convert.ToInt32(checkBox_Cam.Tag.ToString());
                     if (count > 3)
                     {
                         checkBox_Cam.Checked = !checkBox_Cam.Checked;
-                        if (checkBox_Cam.Checked)
-                            controlls.CamOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.CamOff(ref laurentA, ref laurentB);
                         checkBox_Cam.Tag = 0;
                     }
                     else
@@ -397,8 +393,11 @@ namespace WFA_Joystick_Control
                         ++count;
                         checkBox_Cam.Tag = count.ToString();
                     }
-                    
                 }
+                if (checkBox_Cam.Checked)
+                    controlls.CamOn(ref laurentA, ref laurentB);
+                else
+                    controlls.CamOff(ref laurentA, ref laurentB);
 
                 if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D3]) != -1 || keys[m_kb_config.keyboard_map[Key.D3]])
                 {
@@ -465,18 +464,13 @@ namespace WFA_Joystick_Control
                     controlls.OptionalEquipment4DownOff(ref laurentA, ref laurentB);
                 }
 
-                
-
                 if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad5]) != -1 || keys[m_kb_config.keyboard_map[Key.NumPad5]])
                 {
                     int count = Convert.ToInt32(checkBox_Fix.Tag.ToString());
                     if (count > 3)
                     {
                         checkBox_Fix.Checked = !checkBox_Fix.Checked;
-                        if (checkBox_Fix.Checked)
-                            controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
+                        
                         checkBox_Fix.Tag = 0;
                     }
                     else
@@ -484,8 +478,11 @@ namespace WFA_Joystick_Control
                         ++count;
                         checkBox_Fix.Tag = count.ToString();
                     }
-                   
                 }
+                if (checkBox_Fix.Checked)
+                    controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
+                else
+                    controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
 
                 
                 
@@ -550,42 +547,34 @@ namespace WFA_Joystick_Control
                 if (keys[m_kb_config.keyboard_map[Key.Up]])
                 {
                     controlls.GunUpOn(ref laurentA, ref laurentB);
-                    button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     controlls.GunUpOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
                 if (keys[m_kb_config.keyboard_map[Key.Down]])
                 {
                     controlls.GunDownOn(ref laurentA, ref laurentB);
-                    button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     controlls.GunDownOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
                 if (keys[m_kb_config.keyboard_map[Key.Left]])
                 {
                     controlls.GunLeftOn(ref laurentA, ref laurentB);
-                    button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     controlls.GunLeftOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
                 if (keys[m_kb_config.keyboard_map[Key.Right]])
                 {
                     controlls.GunRightOn(ref laurentA, ref laurentB);
-                    button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     controlls.GunRightOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
 
                 if (keys[m_kb_config.keyboard_map[Key.D1]])
@@ -594,10 +583,7 @@ namespace WFA_Joystick_Control
                     if (count > 3)
                     {
                         checkBox_light.Checked = !checkBox_light.Checked;
-                        if (checkBox_light.Checked)
-                            controlls.ProjectorOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.ProjectorOff(ref laurentA, ref laurentB);
+                        
                         checkBox_light.Tag = 0;
                     }
                     else
@@ -606,16 +592,17 @@ namespace WFA_Joystick_Control
                         checkBox_light.Tag = count.ToString();
                     }
                 }
+                if (checkBox_light.Checked)
+                    controlls.ProjectorOn(ref laurentA, ref laurentB);
+                else
+                    controlls.ProjectorOff(ref laurentA, ref laurentB);
                 if (keys[m_kb_config.keyboard_map[Key.D2]])
                 {
                     int count = Convert.ToInt32(checkBox_Cam.Tag.ToString());
                     if (count > 3)
                     {
                         checkBox_Cam.Checked = !checkBox_Cam.Checked;
-                        if (checkBox_Cam.Checked)
-                            controlls.CamOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.CamOff(ref laurentA, ref laurentB);
+                        
                         checkBox_Cam.Tag = 0;
                     }
                     else
@@ -624,6 +611,10 @@ namespace WFA_Joystick_Control
                         checkBox_Cam.Tag = count.ToString();
                     }
                 }
+                if (checkBox_Cam.Checked)
+                    controlls.CamOn(ref laurentA, ref laurentB);
+                else
+                    controlls.CamOff(ref laurentA, ref laurentB);
 
                 if (keys[m_kb_config.keyboard_map[Key.D3]])
                 {
@@ -729,10 +720,6 @@ namespace WFA_Joystick_Control
                     if (count > 3)
                     {
                         checkBox_Fix.Checked = !checkBox_Fix.Checked;
-                        if (checkBox_Fix.Checked)
-                            controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
                         checkBox_Fix.Tag = 0;
                     }
                     else
@@ -741,6 +728,11 @@ namespace WFA_Joystick_Control
                         checkBox_Fix.Tag = count.ToString();
                     }
                 }
+                if (checkBox_Fix.Checked)
+                    controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
+                else
+                    controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
+                 
 
             }
             catch
