@@ -232,9 +232,7 @@ namespace WFA_Joystick_Control
                 
                 String joy_summ_state = joystick.m_State;
                 textBox1.Text = joystick.m_State;
-                textBox1.Text += m_joy_config.m_joystick_map[Key.A];
-                textBox1.Text += joystick.m_State.IndexOf(m_joy_config.m_joystick_map[Key.A]);
-                
+                 
                 //J2
                 if (joy2_connected) 
                 {
@@ -248,14 +246,14 @@ namespace WFA_Joystick_Control
                     joy2_stat = joy2_stat.TrimEnd('2');
                     joy_summ_state += joy2_stat;
                     textBox1.Text += " || ";
-                    textBox1.Text += joystick2.m_State;
                     textBox1.Text += joy2_stat;
                 }
 
                 textBox1.Text += " || ";
                 textBox1.Text += joy_summ_state;
+                textBox1.Text += joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.A]);
 
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.A]) == 0 || keys[m_kb_config.keyboard_map[Key.A]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.A]) != -1 || keys[m_kb_config.keyboard_map[Key.A]])
                 {
                     controlls.LeftOn(ref laurentA, ref laurentB);
                     button_left.BackColor = Color.Red;
@@ -266,7 +264,7 @@ namespace WFA_Joystick_Control
                     button_left.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D]) == 0 || keys[m_kb_config.keyboard_map[Key.D]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D]) != -1 || keys[m_kb_config.keyboard_map[Key.D]])
                 {
                     controlls.RightOn(ref laurentA, ref laurentB);
                     button_right.BackColor = Color.Red;
@@ -277,7 +275,7 @@ namespace WFA_Joystick_Control
                     button_right.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.W]) == 0 || keys[m_kb_config.keyboard_map[Key.W]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.W]) != -1 || keys[m_kb_config.keyboard_map[Key.W]])
                 {
                     controlls.UpOn(ref laurentA, ref laurentB);
                     button_up.BackColor = Color.Red;
@@ -288,7 +286,7 @@ namespace WFA_Joystick_Control
                     button_up.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.S]) == 0 || keys[m_kb_config.keyboard_map[Key.S]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.S]) != -1 || keys[m_kb_config.keyboard_map[Key.S]])
                 {
                     controlls.DownOn(ref laurentA, ref laurentB);
                     button_down.BackColor = Color.Red;
@@ -299,16 +297,15 @@ namespace WFA_Joystick_Control
                     button_down.BackColor = Form.DefaultBackColor;
                 }
 
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Up]) == 0 || keys[m_kb_config.keyboard_map[Key.Up]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Up]) != -1 || keys[m_kb_config.keyboard_map[Key.Up]])
                 {
                     controlls.GunUpOn(ref laurentA, ref laurentB);
                 }
                 else
                 {
                     controlls.GunUpOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Down]) == 0 || keys[m_kb_config.keyboard_map[Key.Down]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Down]) != -1 || keys[m_kb_config.keyboard_map[Key.Down]])
                 {
                     controlls.GunDownOn(ref laurentA, ref laurentB);
                 }
@@ -316,7 +313,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.GunDownOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Left]) == 0 || keys[m_kb_config.keyboard_map[Key.Left]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Left]) != -1 || keys[m_kb_config.keyboard_map[Key.Left]])
                 {
                     controlls.GunLeftOn(ref laurentA, ref laurentB);
                 }
@@ -324,7 +321,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.GunLeftOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Right]) == 0 || keys[m_kb_config.keyboard_map[Key.Right]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.Right]) != -1 || keys[m_kb_config.keyboard_map[Key.Right]])
                 {
                     controlls.GunRightOn(ref laurentA, ref laurentB);
                 }
@@ -332,17 +329,44 @@ namespace WFA_Joystick_Control
                 {
                     controlls.GunRightOff(ref laurentA, ref laurentB);
                 }
-
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D1]) == 0 || keys[m_kb_config.keyboard_map[Key.D1]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad8]) != -1 || keys[m_kb_config.keyboard_map[Key.NumPad8]])
+                {
+                    controlls.FoldingUpOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingUpOff(ref laurentA, ref laurentB);
+                }
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad2]) != -1 || keys[m_kb_config.keyboard_map[Key.NumPad2]])
+                {
+                    controlls.FoldingDownOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingDownOff(ref laurentA, ref laurentB);
+                }
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad4]) != -1 || keys[m_kb_config.keyboard_map[Key.NumPad4]])
+                {
+                    controlls.FoldingLeftOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingLeftOff(ref laurentA, ref laurentB);
+                }
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad6]) != -1 || keys[m_kb_config.keyboard_map[Key.NumPad6]])
+                {
+                    controlls.FoldingRightOn(ref laurentA, ref laurentB);
+                }
+                else
+                {
+                    controlls.FoldingRightOff(ref laurentA, ref laurentB);
+                }
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D1]) != -1 || keys[m_kb_config.keyboard_map[Key.D1]])
                 {
                     int count = Convert.ToInt32(checkBox_light.Tag.ToString());
                     if (count > 3)
                     {
                         checkBox_light.Checked = !checkBox_light.Checked;
-                        if (checkBox_light.Checked)
-                            controlls.ProjectorOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.ProjectorOff(ref laurentA, ref laurentB);
                         checkBox_light.Tag = 0;
                     }
                     else
@@ -351,16 +375,17 @@ namespace WFA_Joystick_Control
                         checkBox_light.Tag = count.ToString();
                     }
                 }
+                if (checkBox_light.Checked)
+                    controlls.ProjectorOn(ref laurentA, ref laurentB);
+                else
+                    controlls.ProjectorOff(ref laurentA, ref laurentB);
+
                 if (keys[m_kb_config.keyboard_map[Key.D2]])
                 {
                     int count = Convert.ToInt32(checkBox_Cam.Tag.ToString());
                     if (count > 3)
                     {
                         checkBox_Cam.Checked = !checkBox_Cam.Checked;
-                        if (checkBox_Cam.Checked)
-                            controlls.CamOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.DownOff(ref laurentA, ref laurentB);
                         checkBox_Cam.Tag = 0;
                     }
                     else
@@ -368,10 +393,13 @@ namespace WFA_Joystick_Control
                         ++count;
                         checkBox_Cam.Tag = count.ToString();
                     }
-                    
                 }
+                if (checkBox_Cam.Checked)
+                    controlls.CamOn(ref laurentA, ref laurentB);
+                else
+                    controlls.CamOff(ref laurentA, ref laurentB);
 
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D3]) == 0 || keys[m_kb_config.keyboard_map[Key.D3]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D3]) != -1 || keys[m_kb_config.keyboard_map[Key.D3]])
                 {
                     controlls.OptionalEquipment1UpOn(ref laurentA, ref laurentB);
                 }
@@ -379,7 +407,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.OptionalEquipment1UpOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D4]) == 0 || keys[m_kb_config.keyboard_map[Key.D4]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D4]) != -1 || keys[m_kb_config.keyboard_map[Key.D4]])
                 {
                     controlls.OptionalEquipment1DownOn(ref laurentA, ref laurentB);
                 }
@@ -387,7 +415,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.OptionalEquipment1DownOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D5]) == 0 || keys[m_kb_config.keyboard_map[Key.D5]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D5]) != -1 || keys[m_kb_config.keyboard_map[Key.D5]])
                 {
                     controlls.OptionalEquipment2UpOn(ref laurentA, ref laurentB);
                 }
@@ -395,7 +423,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.OptionalEquipment2UpOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D6]) == 0 || keys[m_kb_config.keyboard_map[Key.D6]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D6]) != -1 || keys[m_kb_config.keyboard_map[Key.D6]])
                 {
                     controlls.OptionalEquipment2DownOn(ref laurentA, ref laurentB);
                 }
@@ -403,7 +431,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.OptionalEquipment2DownOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D7]) == 0 || keys[m_kb_config.keyboard_map[Key.D7]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D7]) != -1 || keys[m_kb_config.keyboard_map[Key.D7]])
                 {
                     controlls.OptionalEquipment3UpOn(ref laurentA, ref laurentB);
                 }
@@ -411,7 +439,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.OptionalEquipment3UpOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D8]) == 0 || keys[m_kb_config.keyboard_map[Key.D8]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D8]) != -1 || keys[m_kb_config.keyboard_map[Key.D8]])
                 {
                     controlls.OptionalEquipment3DownOn(ref laurentA, ref laurentB);
                 }
@@ -419,7 +447,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.OptionalEquipment3DownOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D9]) == 0 || keys[m_kb_config.keyboard_map[Key.D9]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D9]) != -1 || keys[m_kb_config.keyboard_map[Key.D9]])
                 {
                     controlls.OptionalEquipment4UpOn(ref laurentA, ref laurentB);
                 }
@@ -427,7 +455,7 @@ namespace WFA_Joystick_Control
                 {
                     controlls.OptionalEquipment4UpOff(ref laurentA, ref laurentB);
                 }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D0]) == 0 || keys[m_kb_config.keyboard_map[Key.D0]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.D0]) != -1 || keys[m_kb_config.keyboard_map[Key.D0]])
                 {
                     controlls.OptionalEquipment4DownOn(ref laurentA, ref laurentB);
                 }
@@ -436,49 +464,13 @@ namespace WFA_Joystick_Control
                     controlls.OptionalEquipment4DownOff(ref laurentA, ref laurentB);
                 }
 
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad8]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad8]])
-                {
-                    controlls.FoldingUpOn(ref laurentA, ref laurentB);
-                }
-                else
-                {
-                    controlls.FoldingUpOff(ref laurentA, ref laurentB);
-                }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad2]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad2]])
-                {
-                    controlls.FoldingDownOn(ref laurentA, ref laurentB);
-                }
-                else
-                {
-                    controlls.FoldingDownOff(ref laurentA, ref laurentB);
-                }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad4]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad4]])
-                {
-                    controlls.FoldingLeftOn(ref laurentA, ref laurentB);
-                }
-                else
-                {
-                    controlls.FoldingLeftOff(ref laurentA, ref laurentB);
-                }
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad6]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad6]])
-                {
-                    controlls.FoldingRightOn(ref laurentA, ref laurentB);
-                }
-                else
-                {
-                    controlls.FoldingRightOff(ref laurentA, ref laurentB);
-                }
-
-                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad5]) == 0 || keys[m_kb_config.keyboard_map[Key.NumPad5]])
+                if (joy_summ_state.IndexOf(m_joy_config.m_joystick_map[Key.NumPad5]) != -1 || keys[m_kb_config.keyboard_map[Key.NumPad5]])
                 {
                     int count = Convert.ToInt32(checkBox_Fix.Tag.ToString());
                     if (count > 3)
                     {
                         checkBox_Fix.Checked = !checkBox_Fix.Checked;
-                        if (checkBox_Fix.Checked)
-                            controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
+                        
                         checkBox_Fix.Tag = 0;
                     }
                     else
@@ -486,8 +478,11 @@ namespace WFA_Joystick_Control
                         ++count;
                         checkBox_Fix.Tag = count.ToString();
                     }
-                   
                 }
+                if (checkBox_Fix.Checked)
+                    controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
+                else
+                    controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
 
                 
                 
@@ -552,42 +547,34 @@ namespace WFA_Joystick_Control
                 if (keys[m_kb_config.keyboard_map[Key.Up]])
                 {
                     controlls.GunUpOn(ref laurentA, ref laurentB);
-                    button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     controlls.GunUpOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
                 if (keys[m_kb_config.keyboard_map[Key.Down]])
                 {
                     controlls.GunDownOn(ref laurentA, ref laurentB);
-                    button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     controlls.GunDownOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
                 if (keys[m_kb_config.keyboard_map[Key.Left]])
                 {
                     controlls.GunLeftOn(ref laurentA, ref laurentB);
-                    button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     controlls.GunLeftOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
                 if (keys[m_kb_config.keyboard_map[Key.Right]])
                 {
                     controlls.GunRightOn(ref laurentA, ref laurentB);
-                    button_down.BackColor = Color.Red;
                 }
                 else
                 {
                     controlls.GunRightOff(ref laurentA, ref laurentB);
-                    button_down.BackColor = Form.DefaultBackColor;
                 }
 
                 if (keys[m_kb_config.keyboard_map[Key.D1]])
@@ -596,10 +583,7 @@ namespace WFA_Joystick_Control
                     if (count > 3)
                     {
                         checkBox_light.Checked = !checkBox_light.Checked;
-                        if (checkBox_light.Checked)
-                            controlls.ProjectorOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.ProjectorOff(ref laurentA, ref laurentB);
+                        
                         checkBox_light.Tag = 0;
                     }
                     else
@@ -608,16 +592,17 @@ namespace WFA_Joystick_Control
                         checkBox_light.Tag = count.ToString();
                     }
                 }
+                if (checkBox_light.Checked)
+                    controlls.ProjectorOn(ref laurentA, ref laurentB);
+                else
+                    controlls.ProjectorOff(ref laurentA, ref laurentB);
                 if (keys[m_kb_config.keyboard_map[Key.D2]])
                 {
                     int count = Convert.ToInt32(checkBox_Cam.Tag.ToString());
                     if (count > 3)
                     {
                         checkBox_Cam.Checked = !checkBox_Cam.Checked;
-                        if (checkBox_Cam.Checked)
-                            controlls.CamOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.DownOff(ref laurentA, ref laurentB);
+                        
                         checkBox_Cam.Tag = 0;
                     }
                     else
@@ -626,6 +611,10 @@ namespace WFA_Joystick_Control
                         checkBox_Cam.Tag = count.ToString();
                     }
                 }
+                if (checkBox_Cam.Checked)
+                    controlls.CamOn(ref laurentA, ref laurentB);
+                else
+                    controlls.CamOff(ref laurentA, ref laurentB);
 
                 if (keys[m_kb_config.keyboard_map[Key.D3]])
                 {
@@ -731,10 +720,6 @@ namespace WFA_Joystick_Control
                     if (count > 3)
                     {
                         checkBox_Fix.Checked = !checkBox_Fix.Checked;
-                        if (checkBox_Fix.Checked)
-                            controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
-                        else
-                            controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
                         checkBox_Fix.Tag = 0;
                     }
                     else
@@ -743,6 +728,11 @@ namespace WFA_Joystick_Control
                         checkBox_Fix.Tag = count.ToString();
                     }
                 }
+                if (checkBox_Fix.Checked)
+                    controlls.FixFoldingUpOn(ref laurentA, ref laurentB);
+                else
+                    controlls.FixFoldingUpOff(ref laurentA, ref laurentB);
+                 
 
             }
             catch

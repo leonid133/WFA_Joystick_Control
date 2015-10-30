@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Microsoft.DirectX.DirectInput;
 
 using eKey = Microsoft.DirectX.DirectInput.Key;
+using System.Text.RegularExpressions;
 
 namespace WFA_Joystick_Control
 {
@@ -19,11 +20,11 @@ namespace WFA_Joystick_Control
         private Keybord m_keybord;
 
         private JoystickConfiguration m_joy_config = new JoystickConfiguration();
-        private Joystick joystick;
-        private bool[] joystickButtons_J1;
-        private Joystick joystick2;
-        private bool[] joystickButtons_J2;
-        private bool joy2_connected;
+        private Joystick m_joystick;
+        private bool[] m_joystickButtons_J1;
+        private Joystick m_joystick2;
+        private bool[] m_joystickButtons_J2;
+        private bool m_joy2_connected;
 
         public Form_Settings()
         {
@@ -37,10 +38,10 @@ namespace WFA_Joystick_Control
             m_keybord = new Keybord(this.Handle);
             m_keybord.InitializeKeyboard();
 
-            joystick = new Joystick(this.Handle);
-            joystick2 = new Joystick(this.Handle);
+            m_joystick = new Joystick(this.Handle);
+            m_joystick2 = new Joystick(this.Handle);
             MessageBox.Show("Внимание! Пожалуйста подключите джойстики и переведите все оси, всех подключенных джойстиков в центральное положение, и не нажимайте кнопок в течении 5 секунд.");
-            connectToJoysticks(joystick, joystick2);
+            connectToJoysticks(m_joystick, m_joystick2);
             Refresh();
         }
 
@@ -111,6 +112,8 @@ namespace WFA_Joystick_Control
 
             m_current_button = 0;
             label1.Visible = false;
+            this.joystick_settings_Timer.Enabled = false;
+
         }
 
         private void button_w_Click(object sender, EventArgs e)
@@ -290,9 +293,9 @@ namespace WFA_Joystick_Control
                         if (list_sticks.Count > 1)
                         {
                             if (joystick2.AcquireJoystick(list_sticks[1]))
-                                joy2_connected = true;
+                                m_joy2_connected = true;
                             else
-                                joy2_connected = false;
+                                m_joy2_connected = false;
                         }
                         break;
                     }
@@ -309,27 +312,36 @@ namespace WFA_Joystick_Control
 
             try
             {
-                joystick.UpdateStatus();
-                joystickButtons_J1 = joystick.m_buttons;
+                m_joystick.UpdateStatus();
+                m_joystickButtons_J1 = m_joystick.m_buttons;
                 String curren_joy_action = "";
-                curren_joy_action = joystick.m_State;
-                if (joy2_connected && curren_joy_action.Length < 2)
+                if (m_joystick.m_State.Length>2)
                 {
-                    joystick2.UpdateStatus();
-                    joystickButtons_J2 = joystick2.m_buttons;
-                    curren_joy_action += "2";
-                    curren_joy_action += joystick2.m_State;
+                    curren_joy_action = m_joystick.m_State.Trim(); 
                 }
-                if (curren_joy_action.Length > 2 && curren_joy_action.Length < 5)
+                if (m_joy2_connected)
+                {
+                    m_joystick2.UpdateStatus();
+                    m_joystickButtons_J2 = m_joystick2.m_buttons;
+                    if (m_joystick2.m_State.Length > 2)
+                    {
+                        String pattern_regex_joystick2 = "\\s+";
+                        String replacement = " 2";
+                        Regex rgx_joystick2 = new Regex(pattern_regex_joystick2);
+                        String joy2_stat = rgx_joystick2.Replace(m_joystick2.m_State, replacement);
+                        joy2_stat = joy2_stat.TrimEnd('2');
+                        curren_joy_action += joy2_stat.Trim();
+                    }
+                }
+                if (curren_joy_action.Length > 1)
                 {
                     m_joy_config.SetJoyAction(m_current_button, curren_joy_action);
                     m_joy_config.Flush();
 
                     Refresh();
-                    this.joystick_settings_Timer.Enabled = false;
                 }
             }
-            catch { this.joystick_settings_Timer.Enabled = false; }
+            catch { this.joystick_settings_Timer.Enabled = false; MessageBox.Show("Упали"); }
 
         }
              

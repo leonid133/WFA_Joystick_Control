@@ -28,7 +28,12 @@ namespace WFA_Joystick_Control
             {
                 using (StreamReader sr = File.OpenText(m_config_file_name))
                 {
-                    joystick_map_readbuff = sr.ReadLine();
+                    string s = "";
+                    if ((s = sr.ReadLine()) != null)
+                    {
+                        //                         Console.WriteLine(s);
+                        joystick_map_readbuff = s;
+                    }
                 }
                 m_joystick_map = GetDictionary(ref joystick_map_readbuff);
             }
