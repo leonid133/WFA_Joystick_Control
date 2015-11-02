@@ -755,6 +755,7 @@ namespace WFA_Joystick_Control
             ReserveKeybord_timer.Enabled = false;
             form_settings.ShowDialog();
             m_kb_config = new KeyboardConfiguration();
+            m_joy_config = new JoystickConfiguration();
         }
 
         private void TimerConnectionStatus_Tick(object sender, EventArgs e)
