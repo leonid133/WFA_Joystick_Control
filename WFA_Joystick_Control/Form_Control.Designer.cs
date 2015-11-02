@@ -59,7 +59,7 @@
             // button_connect1
             // 
             this.button_connect1.Location = new System.Drawing.Point(463, 41);
-            this.button_connect1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_connect1.Margin = new System.Windows.Forms.Padding(4);
             this.button_connect1.Name = "button_connect1";
             this.button_connect1.Size = new System.Drawing.Size(100, 28);
             this.button_connect1.TabIndex = 1;
@@ -70,7 +70,7 @@
             // button_left
             // 
             this.button_left.Location = new System.Drawing.Point(8, 32);
-            this.button_left.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_left.Margin = new System.Windows.Forms.Padding(4);
             this.button_left.Name = "button_left";
             this.button_left.Size = new System.Drawing.Size(55, 28);
             this.button_left.TabIndex = 2;
@@ -81,7 +81,7 @@
             // button_right
             // 
             this.button_right.Location = new System.Drawing.Point(128, 32);
-            this.button_right.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_right.Margin = new System.Windows.Forms.Padding(4);
             this.button_right.Name = "button_right";
             this.button_right.Size = new System.Drawing.Size(55, 28);
             this.button_right.TabIndex = 3;
@@ -92,7 +92,7 @@
             // button_up
             // 
             this.button_up.Location = new System.Drawing.Point(69, 9);
-            this.button_up.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_up.Margin = new System.Windows.Forms.Padding(4);
             this.button_up.Name = "button_up";
             this.button_up.Size = new System.Drawing.Size(55, 28);
             this.button_up.TabIndex = 4;
@@ -103,7 +103,7 @@
             // button_down
             // 
             this.button_down.Location = new System.Drawing.Point(69, 62);
-            this.button_down.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_down.Margin = new System.Windows.Forms.Padding(4);
             this.button_down.Name = "button_down";
             this.button_down.Size = new System.Drawing.Size(55, 28);
             this.button_down.TabIndex = 5;
@@ -113,13 +113,12 @@
             // 
             // joystick_keybord_Timer
             // 
-            this.joystick_keybord_Timer.Enabled = true;
             this.joystick_keybord_Timer.Tick += new System.EventHandler(this.joystick_and_keybord_Timer_Tick);
             // 
             // button_joyConnect
             // 
             this.button_joyConnect.Location = new System.Drawing.Point(8, 146);
-            this.button_joyConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_joyConnect.Margin = new System.Windows.Forms.Padding(4);
             this.button_joyConnect.Name = "button_joyConnect";
             this.button_joyConnect.Size = new System.Drawing.Size(116, 28);
             this.button_joyConnect.TabIndex = 9;
@@ -138,7 +137,6 @@
             // 
             // ReserveKeybord_timer
             // 
-            this.ReserveKeybord_timer.Enabled = true;
             this.ReserveKeybord_timer.Interval = 200;
             this.ReserveKeybord_timer.Tick += new System.EventHandler(this.ReserveKeybord_timer_Tick);
             // 
@@ -182,17 +180,17 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(128, 335);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(140, 301);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(472, 22);
+            this.textBox1.Size = new System.Drawing.Size(460, 22);
             this.textBox1.TabIndex = 28;
             // 
             // checkBox_Fix
             // 
             this.checkBox_Fix.AutoSize = true;
             this.checkBox_Fix.Location = new System.Drawing.Point(637, 105);
-            this.checkBox_Fix.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_Fix.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Fix.Name = "checkBox_Fix";
             this.checkBox_Fix.Size = new System.Drawing.Size(188, 21);
             this.checkBox_Fix.TabIndex = 27;
@@ -204,7 +202,7 @@
             // 
             this.checkBox_Cam.AutoSize = true;
             this.checkBox_Cam.Location = new System.Drawing.Point(637, 68);
-            this.checkBox_Cam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_Cam.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Cam.Name = "checkBox_Cam";
             this.checkBox_Cam.Size = new System.Drawing.Size(80, 21);
             this.checkBox_Cam.TabIndex = 26;
@@ -216,7 +214,7 @@
             // 
             this.checkBox_light.AutoSize = true;
             this.checkBox_light.Location = new System.Drawing.Point(637, 32);
-            this.checkBox_light.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_light.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_light.Name = "checkBox_light";
             this.checkBox_light.Size = new System.Drawing.Size(103, 21);
             this.checkBox_light.TabIndex = 25;
@@ -257,7 +255,7 @@
             // textBox_Statusbar
             // 
             this.textBox_Statusbar.Location = new System.Drawing.Point(140, 105);
-            this.textBox_Statusbar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Statusbar.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Statusbar.Multiline = true;
             this.textBox_Statusbar.Name = "textBox_Statusbar";
             this.textBox_Statusbar.Size = new System.Drawing.Size(460, 173);
@@ -277,7 +275,7 @@
             // textBox_Port2
             // 
             this.textBox_Port2.Location = new System.Drawing.Point(359, 63);
-            this.textBox_Port2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Port2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Port2.Name = "textBox_Port2";
             this.textBox_Port2.Size = new System.Drawing.Size(67, 22);
             this.textBox_Port2.TabIndex = 19;
@@ -286,7 +284,7 @@
             // textBox_TCP_2
             // 
             this.textBox_TCP_2.Location = new System.Drawing.Point(236, 63);
-            this.textBox_TCP_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_TCP_2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_TCP_2.Name = "textBox_TCP_2";
             this.textBox_TCP_2.Size = new System.Drawing.Size(113, 22);
             this.textBox_TCP_2.TabIndex = 18;
@@ -312,7 +310,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 396);
             this.Controls.Add(this.toolStripContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_Control";
             this.Text = "Управление";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -341,7 +341,7 @@ namespace WFA_Joystick_Control
                     Refresh();
                 }
             }
-            catch { this.joystick_settings_Timer.Enabled = false; MessageBox.Show("Упали"); }
+            catch(Exception ex) { this.joystick_settings_Timer.Enabled = false; MessageBox.Show("Внутренняя ошибка: " + ex.Message); }
 
         }
              
