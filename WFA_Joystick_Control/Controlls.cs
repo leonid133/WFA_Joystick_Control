@@ -219,7 +219,7 @@ namespace WFA_Joystick_Control
             }
             if (!A[2])
             {
-                tcp_connectorB.OnRel("2");
+                tcp_connectorA.OnRel("2");
                 A[2] = true;
             }
         }
@@ -227,7 +227,7 @@ namespace WFA_Joystick_Control
         {
             if (A[2])
             {
-                tcp_connectorB.OffRel("2");
+                tcp_connectorA.OffRel("2");
                 A[2] = false;
             }
             if (A1Off_tester())
@@ -245,7 +245,7 @@ namespace WFA_Joystick_Control
             }
             if (!A[3])
             {
-                tcp_connectorB.OnRel("3");
+                tcp_connectorA.OnRel("3");
                 A[3] = true;
             }
         }
@@ -253,7 +253,7 @@ namespace WFA_Joystick_Control
         {
             if (A[3])
             {
-                tcp_connectorB.OffRel("3");
+                tcp_connectorA.OffRel("3");
                 A[3] = false;
             }
             if (A1Off_tester())
